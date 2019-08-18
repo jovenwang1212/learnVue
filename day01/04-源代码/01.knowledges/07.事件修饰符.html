@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" value="这是一个寂寞的天" @keyup="keyupHanlder" />
+      <input type="text" value="下着有些伤心的雨" @keyup.enter="enterHandler" />
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+          // enter键抬起的时候，打印input value
+          keyupHanlder(event) {
+            //判断是否是enter键
+            if (event.keyCode === 13) {
+              console.log(event.target.value)
+            }
+          },
+          enterHandler(event){
+            console.log(event.target.value)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

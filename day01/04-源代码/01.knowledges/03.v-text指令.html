@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ message }}</h2>
+      <h2 v-text="message"></h2>
+      <h2 v-text="message">标签之间的文本</h2>
+      <h2>之前的文本--{{ message }}--之后的文本</h2>
+      {{ alink }}
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*
+      v-text:把值作为文本插入到它所在的标签之间 textContext，会覆盖掉标签之间的文案
+      简写就是{{}}，推荐使用{{}}
+      v-text不能解析html
+    */
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '今天天气如何',
+          alink: '<a href="http://www.baidu.com">百度</a>'
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ imgUrl }}</h2>
+      <img v-bind:src="imgUrl" alt="" @click="changeImg" />
+      <img :src="imgUrl2" />
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          imgUrl: './img/01.png',
+          imgUrl2: './img/cat.gif'
+        },
+        methods: {
+          changeImg() {
+            this.imgUrl = './img/03.png'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
