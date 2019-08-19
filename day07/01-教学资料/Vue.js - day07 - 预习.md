@@ -1,29 +1,6 @@
-# Vue.js - day07
+# Vue学习第七天
 
 ## 反馈
-
-1. 等vue学完之后,有谁一起跟我出去找工作的呀??现在市场行情很不错.我们得抓住机会,旁边的工厂现在已经涨到4000个月了,一起去4000包吃住??
-2. 想要生活过得去，人生总要带点绿，成功绿
-3. 感觉我不是我了!
-4. 敲这些好慢呀, 前几天的都还没敲完 , 今天的又来了, 赶不上进度唉,又不想放弃昨天的,凉凉
-5. 有一天小吉和一群人去山洞，发现山洞有个尸体，就和其他人抬出去了。回家后，其他人都死了，爷爷问：“吉你抬没？”小吉摇了摇头。这时小吉的身上变绿了，爷爷说：“不好，是绿尸寒警告！”
-6. 你为何如此优秀
-7. 老师 还是不要用拟声词 ,
-8. 是不是项目中不用相对路径 ,稍微整合下 就要改很多的图片路径 ,要是大点的项目 ,那不得搞死人
-9. 老师会搞黑苹果吗
-   1. windows的电脑安装mac的系统
-   2. mac配置开发环境很简单
-10. eeee
-11. 其实一开始老师上课的语气，我是拒绝的。太温柔了接受不了，我是  钢铁直男。 那么后来，我知道要学习vue，对我特别重要，所以我就开始当舔狗。当了几次以后发现很舒服。就喜欢上了老师。 现在我学vue效率特别高，老师说的什么都记得特别牢。
-12. 老湿,猫没有男朋友,哈哈哈哈哈哈,嗝~~~
-13. 相信我的建议,一定可以一针见血 (不支持富文本)
-14. nice
-15. 工作中网页的结构都是要在html文件中写好再复制粘贴过去吗,那感觉还不如直接在template里写.... 音乐播放器的逻辑完成后,组件的路径都变成动态的了,一开始的声明式的导航都失效了,想让它重新启用就必须传数据,但是也不好写死一个数据啊,这个问题该怎么解决
-16. vue-cli感觉不出来好处,就是蛮多,容易混淆🤸‍♂️
-17. 老师,为什么我的viscode在输入img的src地址的时候不会自动补全,好烦呐,得一个一个输
-    1. 插件
-18. <div id="app"> <!-- 2.使用组件像html标签一样 --> <index></index> <indexB></indexB> 为什么这里会报错！！！ </div> <script> Vue.component('index', { template: '<div>这是首页<index-b></index-b></div>' }) Vue.component('indexB', { //template属性指定组件模板，模板只能有一个根节点 template: '<div>这是首页B</div>' }) let vm = new Vue({ el: '#app', data: { } })
-19. 嘿嘿嘿(●ˇ∀ˇ●)
 
 ## 回顾
 
@@ -39,34 +16,35 @@
 2. vue-cli文件组成
 
    1. main.js 主要的文件，所有和顶级vue实例相关的都放到这里
-   2. App.vue 最顶级的组件，仅次于 Vue实例，看到的顶级页面结构一般放在这里
+   2. App.vue 主组件，包裹在根组件里面，看到的页面结构一般放在这里
    3. components 组件的文件夹
    4. assets 静态资源
 
-3. vscode 红色波浪警告关闭&禁用
+3. 路径提示
 
-   1. ![1562655099632](assets/1562655099632.png)
-   2. `vetur`插件提供的异常提示
-
-4. 路径提示
-
-   ![1562655171598](assets/1562655171598.png)
+   ![1562655171598](assets/1562655171598.png
 
    安装之后就可以生效
 
    可以使用相对路径的方式来触发这个提示插件`./`就会有提示了
 
-   
+
 
 ## player-项目创建
 
 1. vue create 02.player
+
 2. cd 02.player
+
 3. npm run serve
+
+   
 
 ## player-界面分析
 
 ![1562655721263](assets/1562655721263.png)
+
+
 
 ## player-搜索区域整合
 
@@ -79,7 +57,11 @@
    3. 在App.vue中导入并局部注册搜索组件
    4. 页面中使用即可
 
+
+
 ## player-搜索区域抽取为组件
+
+
 
 ## player-路由整合
 
@@ -96,6 +78,8 @@
 
 路由的整合套路是一样的，写多了自然就记住了
 
+
+
 ## player-轮播图
 
 ### 00 -整合轮播图组件
@@ -109,6 +93,8 @@
 
 1. 添加了路由规则之后，可以用router-link,或者router.push来修改地址，跟通用的方法是，**直接修改url**
 
+
+
 ### 01 - 饿了么ui 介绍
 
 1. 饿了吗前端团队开发的pc端的基于vue的组件库
@@ -120,22 +106,21 @@
    4. 饿了么ui
    5. vuex
 
+
+
 ### 02 - 轮播图组件使用 
 
  	1. 下包 npm i element-ui -S
-		2. 导包 [传送门](https://element.eleme.cn/#/zh-CN/component/quickstart)
-		3. 用组件
-     		1. 找到你要的组件 找到你要的结构
-     		2. c+v
-     		3. 走马灯 组件
 	4. 获取轮播图 <https://autumnfish.cn/banner> 
-    	1. axios调用接口
-       		1. 安装axios
-       		2. 导入axios
-       		3. created中接口调用
-    	2. 数据回来之后
-    	3. 渲染到页面上
-	5. 可能还需要调整轮播图样式
+	    	1. axios调用接口
+              		1. 安装axios
+                  		2. 导入axios
+                      		3. created中接口调用
+	        	2. 数据回来之后
+        	3. 渲染到页面上
+       5. 可能还需要调整轮播图样式
+
+
 
 #### 注意点
 
@@ -157,6 +142,10 @@
 
 重定向的地址 如果没有对应组件，页面会显示空白
 
+
+
+
+
 ## player-歌曲搜索
 
 ### 01 - 搜索路由
@@ -169,6 +158,8 @@
 #### 注意
 
 路由规则测试直接url输入地址即可，对于动态路由匹配，地址`/results/内容`
+
+
 
 ### 02 - 搜索路由切换
 
@@ -186,6 +177,8 @@
     get: function get () { return this._routerRoot._router }
   });
 ```
+
+
 
 ### 03 - 饿了么ui 弹框
 
@@ -223,6 +216,8 @@ this.$message({
 1. $message之所以可以使用是因为设置给vue的原型
 2. 在![1562663523452](assets/1562663523452.png)直接搜索`$message`即可找到
 
+
+
 ### 05 - 渲染搜索结果
 
 1. 通过路由获取数据
@@ -230,13 +225,13 @@ this.$message({
 3. 数据获取到之后
 4. 渲染到页面上
 
-
-
 #### 注意
 
 1. created 很多时候都可以用来获取初始的数据 
 
-### 06 - 过滤器歌手处理
+
+
+### 06 - 过滤器手处理
 
 filters:formatSinger(singers)\{ return}
 
@@ -246,19 +241,9 @@ filters:formatTIme(time){ return}
 
  定义和用法类似，但是内部的逻辑需要根据需求来调整
 
-### 08 - 侦听器（zhentingqi）
 
-1. 检测指定的数据改变，执行自定义的逻辑
-2. watch:{  数据名(){} }
 
-#### 注意
-
-1. watch的作用是，观察data中的数据改变，添加自定义的逻辑
-2. 要观察那个数据，就写哪个数据的名字即可
-3. 如果数据的访问涉及到点语法，使用引号包裹
-4. updated，只要任何数据改变都会触发，watch只在**特定数据改变时**触发
-
-### 09 - 重复搜索功能实现
+### --- 09 - 重复搜索功能实现
 
 1. 当search改变时重新调用接口
 2. created中已经实现了接口调用
@@ -269,6 +254,10 @@ filters:formatTIme(time){ return}
 1. created组件如果不被销毁，只会触发一次
 2. 如果有需求在特定数据改变时重新执行逻辑，可以使用 侦听器`watch`
 3. watch和updated相比触发的频率 低
+
+
+
+
 
 ## player - 播放歌曲
 
@@ -282,6 +271,8 @@ filters:formatTIme(time){ return}
    2. path:'/player/:id'
    3. component:player
 
+
+
 ### 02-axios抽取 基地址设置
 
 1.  main.js中 把axios设置给
@@ -290,8 +281,6 @@ filters:formatTIme(time){ return}
 3. 基础地址一样，没有必要每次都写，可以直接抽取出来
 4. `axios.defaults.baseURL = '设置的基地址';`
 5. main.js中
-
-
 
 #### 注意
 
@@ -304,8 +293,8 @@ filters:formatTIme(time){ return}
       1. axios就会自动补全基地址部分
 4. 绝大多数的项目中，后台接口部署在一台服务器上，基地址是一样的，设置一次即可
    1. 对于不同基地址的接口，直接给完整地址
-   2. axios可以创建克隆对象（现在了解即可）
-   3. ![1562667908419](assets/1562667908419.png)
+
+
 
 ### 03 - 歌曲信息显示
 
@@ -323,27 +312,268 @@ created中 调用 歌曲url接口，歌曲封面接口，及 歌词接口即可
 
 
 
-## player - mv播放
-
-### 01 - mv路由设置 
-
-### 02-点击携带mvid去mv组件
-
-### 03 - 获取mv信息 
-
-### 04 - 播放最高清的mv
-
 ## player - 歌曲评论
 
 ### 01 - 歌曲评论路由设置
 
+1. main.js 路由规则
+   1. 05.comment.vue
+   2. path:/comment/:id
+   3. component:comment
+
 ### 02-点击携带歌曲id去评论组件
+
+1. 在 04.player.vue组件中
+2. 为歌名 绑定点击或者双击事件(dblclick)
+3. 编程式导航`this.$router.push('/comment/${id}')`
+
+#### 注意点
+
+1. 根据需求找到设置的文件即可
 
 ### 03 - 获取评论信息
 
+1. created获取评论信息 /comment/hot?id=186016&type=0 
+2. then方法中
+3. data中加数据
+4. 页面中写vue指令 渲染
+
 ### 04 - 格式化评论时间
 
-使用moment.js
+1. 下载moment.js  
+
+   1. npm i moment
+
+2. 05.comment.vue中添加一个过滤器
+
+   1. filters:{  formatTime(time){ 处理并返回 } }
+
+3. {{ 数据 |过滤器}}
+
+4. 时间的处理，第一时间想到moment这个库
+
+
+
+
+## player - mv播放
+
+### 01 - mv路由设置 
+
+1. main.js
+   1. 新建06.mv.vue
+   2. path:"/mv/:mvid"
+   3. component:mv
+
+### 02-点击携带mvid去mv组件
+
+1. 04.results.vue中 为mv的图标绑定点击事件 传入id
+   1. this.$router.push('/mv/${id}')
+
+### 03 - 获取mv信息 
+
+1. created中调用接口 获取数据  /mv/detail?mvid=5436712 
+
+### 04 - 播放最高清的mv
+
+1. then中获取清晰度最高的mv进行播放
+
+#### 注意点
+
+1. 对象的属性获取可以用点语法也可以中括号的语法
+
+   
+
+## 播放器优化
+
+### 统一设置宽度
+
+App.vue中
+
+把router-view包在盒子里
+
+为这个盒子设置尺寸即可
+
+### 设置滚动
+
+1. iScroll很流行的滚动库，已经不更新了
+2. better-scroll [更好的滚动库](https://www.npmjs.com/package/better-scroll)
+   1. 下包 npm i better-scroll 
+   2. 导包
+   3. 准备结构
+   4. 用包
+
+#### 注意
+
+1. 获取dom元素最早在mounted中
+2. 更美观的滚动效果，工作中偶尔会碰到
+   1. iScroll
+   2. better-scroll(推荐)
+   3. 单纯的滚动库
+3. 为了实现滚动效果，
+   1. 3层盒子
+      1. 容器
+      2. 内容容器
+      3. 内容
+      
+   2. 容器的高度必须写死，内容超过了容器之后，自动滚动
+   
+      
+
+### 接口缓存问题
+
+1. [传送门](https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%E8%B0%83%E7%94%A8%E5%89%8D%E9%A1%BB%E7%9F%A5)
+2. 在请求的url后面跟上一个时间参数
+   1. 有参数 用&作为连接
+   2. 没有参数用?作为分隔符
+3. **慎用！**
+   1. 避免**云把花姐的服务器限制
+   2. 开启了自动保存 很容易出现频繁调用
+
+```
+// 接口本来不需要参数 额外的增加时间戳参数
+https://autumnfish.cn/banner?timestamp=${Date.now()}
+// 接口本来需要参数 增加时间戳
+https://autumnfish.cn/search?keywords=key&timestamp=${Date.now()}
+```
+
+
+
+
+
+## watch补充
+
+### watch的2个参数
+
+1. 参数不写，直接通过 this.数据的方式 也可以获取到最新的数据
+
+```js
+// 侦听器
+    watch: {
+      // 和数据的名字一样
+      // 参数1 新值
+      // 参数2 旧值 上一次的值
+      // 参数不写，直接通过 this.数据的方式 也可以获取到最新的数据
+      // 需要新旧对比时 可以用到第二个参数
+      message(newValue, oldValue) {
+        console.log(newValue)
+        console.log(oldValue)
+        // 尝试访问data中的数据
+        console.log(this.message)
+      }
+    }
+```
+
+### 深度侦听
+
+1. deep:true
+2. 执行的方法是handler
+3. 2个参数都是相同的内存地址，值一样（复杂数据类型）
+
+```js
+ // 侦听复杂类型数据的时候，传入的参数，是数据的内存地址
+      // 2个参数的值是一样的
+      // 基本数据类型2个参数是不同的
+      // 复杂类型无法通过2个参数进行对比
+      food: {
+        handler(newVal, oldVal) {
+          console.log(newVal)
+          console.log(oldVal)
+        },
+        // 开启深度侦听
+        deep: true
+      }**
+```
+
+
+
+
+
+### 侦听器解决第二次搜索没反应的问题（zhentingqi）
+
+1. 检测指定的数据改变，执行自定义的逻辑
+2. watch:{  数据名(){} }
+
+#### 注意
+
+1. watch的作用是，观察data中的数据改变，添加自定义的逻辑
+2. 要观察那个数据，就写哪个数据的名字即可
+3. 如果数据的访问涉及到点语法，使用引号包裹
+4. updated，只要任何数据改变都会触发，watch只在**特定数据改变时**触发
+
+
+
+
+
+## 过滤器补充
+
+[过滤器中的this](https://github.com/vuejs/vue/issues/5998)
+
+### 过滤器的串联
+
+1. 依次写一堆过滤器即可
+
+2. ` <h2>{{ info | addFont | addBack | addBack2 }}</h2> `
+
+   ```js
+   filters: {
+         addFont(value) {
+           return '唱,' + value
+         },
+         addBack(value) {
+           return value + ',rap'
+         },
+         addBack2(value) {
+           return value + ',打篮球'
+         }
+       }
+   ```
+
+### 过滤器传参
+
+1. 调用过滤器是，和调用方法类似，传入参数即可
+
+```html
+<h2>过滤器的传参</h2>
+<p>{{ food | cookFood('爆炒')}}</p>
+<p>{{ food | cookFood('清蒸')}}</p>
+<p>{{ food | cookFoodPlus('清蒸','红烧')}}</p>
+```
+
+2. 定义过滤器时
+
+```js
+// 处理food的过滤器
+  cookFood(foodName, do1) {
+    return foodName + do1
+  },
+  // 高级烹饪
+  cookFoodPlus(foodName, do1, do2) {
+    return foodName + do1 + do2
+  }
+```
+
+3. 自己传入的参数，从第二个开始，第一个参数固定是，处理的数据
+
+### 全局过滤器，局部过滤器
+
+1. 定义一次
+
+   1. 所有地方都可以用
+   2. 如下语法 即可定义全局过滤器
+   3. 第二个参数是函数，如果要传参和上面写法一样
+
+   ```js
+    Vue.filter('cookFoodPro', (value)=>{
+       return value+'削皮，切碎，爆炒，油炸，装盘，美滋滋！！！'
+     })
+   ```
+
+2. 全局过滤器的定义一定要放在实例化Vue`new Vue`的前面，否则不会生效
+
+3. 局部过滤器
+
+   1. 定义一次，只在当前这个Vue实例中可以使用（组件）
+   2. 实例内部的`filters` 局部过滤器
 
 
 
@@ -362,13 +592,6 @@ created中 调用 歌曲url接口，歌曲封面接口，及 歌词接口即可
 5. 饿了么ui的走马灯-轮播图
 
 
-
-## 补充
-
-低成本，电脑加速
-
- 	1. 加内存
-		2. 加固态
 
 
 

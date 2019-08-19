@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in brandList" :key="index">
+          {{item.name}}
+          <input type="text">
+        </li>
+      </ul>
+      <input type="button" value="反转" @click="reverseList">
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          brandList: [
+            {
+              name: '华为',
+              id: 12345
+            },
+            {
+              name: '小米',
+              id: 98765
+            }
+          ]
+        },
+        methods: {
+          reverseList(){
+            this.brandList.reverse()
+          }
+        },
+      })
+    </script>
+  </body>
+</html>
