@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="axios发请求" class="axios" />
+    <div id="app">
+      <input type="text" v-model.trim="city" @keyup.enter="searchWeather" />
+    </div>
+  </body>
+</html>
+<!-- axios 网络请求库 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  document.querySelector('.axios').onclick = function() {
+    // $.ajax({
+    //   success(){
+    //     $.ajax({})
+    //   }
+    // })
+
+    axios
+      .get('http://wthrcdn.etouch.cn/weather_mini?city=深圳')
+      // .get('http://wthrcdn.etouch12345678.cn/weather_mini?city=深圳')
+      // 成功回调
+      .then(backData => {
+        console.log(backData)
+      })
+      // 失败回调
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  // vue中结合axios
+  const app = new Vue({
+    el: '#app',
+    data: {
+      // 城市信息
+      city: '',
+      // 天气数组
+      weatherList: []
+    },
+    methods: {
+      searchWeather() {        
+        axios
+          .get(`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`)
+          // 成功回调
+          .then(backData => {
+            // this就是vue实例
+            console.log(this)
+            console.log(backData)
+            this.weatherList = backData.data.data.forecast
+          })
+          // 失败回调
+          .catch(err => {
+            console.log(err)
+          })
+        // axios
+        //   .get(`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`)
+        //   // 成功回调
+        //   .then(function(backData) {
+        //     // this就是vue实例
+        //     console.log(this)
+        //     console.log(backData)
+        //     this.weatherList = backData.data.data.forecast
+        //   })
+        //   // 失败回调
+        //   .catch(err => {
+        //     console.log(err)
+        //   })
+      }
+    }
+  })
+</script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .niubi-enter-active,
+      .niubi-leave-active {
+        transition: opacity 0.5s;
+      }
+      .niubi-enter, .niubi-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="切换显示" @click="isShow=!isShow" />
+      <br />
+      <transition name="niubi">
+        <!-- <img src="./img/sister.png" v-show="isShow" alt="" /> -->
+        <img src="./img/sister.png" v-if="isShow" alt="" />
+      </transition>
+    </div>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      isShow: false
+    }
+  })
+</script>

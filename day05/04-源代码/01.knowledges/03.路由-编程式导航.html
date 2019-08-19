@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- tab - nav 导航 声明式导航  -->
+      <router-link to="/music1">歌曲1</router-link>
+      <router-link to="/bar">歌曲2</router-link>
+      <router-link to="/run">边唱歌鞭炮</router-link>
+      <h2>编程式导航</h2>
+      <input type="button" value="点我去唱歌" @click="toSing">
+
+      <!-- tab - content -->
+      <router-view></router-view>
+    </div>
+  </body>
+</html>
+<!-- 放上面会影响页面的接在 js加载完毕之后页面是看不到的 -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+  // 1. 定义组件 简化的写法
+  const Foo = { template: '<div>foo</div>' }
+  const Bar = { template: '<div>bar</div>' }
+  const run = { template: '<div>咔咔咔！！！！的跑！！！！</div>' }
+
+  // 2. 定义规则
+  // url和组件的对应关系
+  // const routes = [
+  const routers = [
+    { path: '/music1', component: Foo },
+    { path: '/bar', component: Bar },
+    { path: '/run', component: run }
+  ]
+
+  // 3. 把路由规则 设置给路由对象
+  const router = new VueRouter({
+    // routes // (缩写) 相当于 routes: routes
+    routes: routers // routers: routers
+  })
+
+  // 4. 创建和挂载根实例。
+
+  const app = new Vue({
+    el: '#app',
+    methods: {
+      // 跳转去唱歌
+      toSing(){
+        // console.log('唱歌去')
+        // 用路由对象跳转
+        // router.push('/bar')
+        router.push('/niubiliti')
+      }
+    },
+    router // router:router
+  })
+
+  // 现在，应用已经启动了！
+</script>

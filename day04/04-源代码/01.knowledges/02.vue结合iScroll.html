@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        width: 400px;
+        height: 200px;
+        border: 1px solid #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="add">添加</button>
+      <div id="wrapper" class="wrapper" ref="myScroll">
+        <!-- 内容包裹的盒子 -->
+        <ul>
+          <li v-for="(item, index) in arr" :key="index">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/iscroll.js"></script>
+    <script>
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          arr: []
+        },
+        mounted() {
+          this.myScroll = new IScroll(this.$refs.myScroll)
+        },
+        updated() {
+          this.myScroll.refresh()
+        },
+        methods: {
+          add() {
+            this.arr.push('是兄弟就一起贪玩蓝月！')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

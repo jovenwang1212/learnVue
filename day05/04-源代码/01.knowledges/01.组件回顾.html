@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        border: 1px solid #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <counter></counter>
+      <counter></counter>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script type="text/x-template" id="counter_tpl">
+      <div class="wrapper">
+        <h2>点击了{{num}}次</h2>
+        <button @click="add">+</button>
+      <div>
+    </script>
+    <script>
+      Vue.component('counter', {
+        template: '#counter_tpl',
+        data: () => {
+          return {
+            num: 0
+          }
+        },
+        methods: {
+          add() {
+            this.num++
+          }
+        }
+      })
+      const app = new Vue({
+        el: '#app',
+        data: {}
+      })
+    </script>
+  </body>
+</html>

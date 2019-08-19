@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .tem {
+        border: 1px solid #000;
+        margin: 10px;
+        background-color: hotpink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 注册的组件名直接当标签即可 -->
+      <sayhi></sayhi>
+      <sayhi></sayhi>
+      <sayhi></sayhi>
+      <sayhi></sayhi>
+      <sayhi></sayhi>
+      <sayhi></sayhi>
+    </div>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 为了方便编码 可以把组件的结构 抽取到标签中 -->
+<script type="text/x-template" id="tem">
+  <div class="tem">
+      <h2>天知道</h2>
+      <h2>越听播放器</h2>
+      <input type="button" value="点我打招呼" @click="alert" />
+      <input type="button" value="点我吃西兰花炒蛋啊" />
+      <ul>
+        <li>使用数据</li>
+        <li>{{message}}</li>
+        <li><input type="text" v-model="message"></li>
+      </ul>
+  </div>
+</script>
+<script>
+  // 注册组件
+  Vue.component('sayhi', {
+    // 组件的各种设置
+    // 结构支持抽取到模板
+    template: '#tem',
+    // 数据绑定
+    // data: function() {
+    data() {
+      console.log('组件被使用了！！')
+      return {
+        message: '阿尼阿瑟哟,欧巴！'
+      }
+    },
+    // 方法
+    methods: {
+      alert() {
+        window.alert('阔你急哇！！')
+      }
+    }
+    // 结构 支持写字符串
+    // template: `<div>
+    //         <input type="button" value="点我打招呼" />
+    //         <input type="button" value="点我吃西兰花炒蛋啊" />
+    //         </div>`
+  })
+
+  const app = new Vue({
+    el: '#app'
+  })
+</script>

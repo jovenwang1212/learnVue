@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .bounce-enter-active {
+        animation: jackInTheBox 0.5s;
+      }
+      .bounce-leave-active {
+        animation: jackInTheBox 0.5s reverse;
+      }
+
+      @keyframes jackInTheBox {
+        from {
+          opacity: 0;
+          -webkit-transform: scale(0.1) rotate(30deg);
+          transform: scale(0.1) rotate(30deg);
+          -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+        }
+
+        50% {
+          -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+        }
+
+        70% {
+          -webkit-transform: rotate(3deg);
+          transform: rotate(3deg);
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="example-2">
+        <button @click="show = !show">Toggle show</button>
+        <transition name="bounce">
+          <p v-if="show">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam
+            fermentum id. Pellentesque habitant morbi tristique senectus et netus.
+          </p>
+        </transition>
+      </div>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#example-2',
+        data: {
+          show: true
+        }
+      })
+    </script>
+  </body>
+</html>

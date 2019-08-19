@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{time}}</h2>
+      <h2>{{time|formatTime}}</h2>
+      <h2>{{time2|formatTime}}</h2>
+
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          // time:234243
+          time:192000,
+          time2:24324432,
+        },
+        // 过滤器
+        filters:{
+          formatTime(time){
+            console.log(time)
+            //时间处理
+            
+            // 毫秒->秒 192
+            const totalSec = Math.floor(time/1000)
+            // 秒->分 192/60=3
+            const min = Math.floor(totalSec/60)
+            // 秒 % 获取除不尽的部分 192/60 为3分 12秒
+            const sec = totalSec%60
+
+            // return '天长地9'
+            return `${min}:${sec}`
+          }
+        }
+      });
+      </script>
+  </body>
+</html>

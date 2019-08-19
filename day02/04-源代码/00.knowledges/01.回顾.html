@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #app>div{
+        width: 100px;
+        height: 100px;
+        border:1px solid #123456;
+      }
+      .red{
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{message}}</h2>
+      <!-- <h2 v-text="message+' lalalala'"></h2> -->
+      <span v-html="alink"></span>
+      <!-- <input type="button" value="吃饭饭" onclick="sayHello()"> -->
+      <input type="button" value="点我呀" v-on:click="sayHello">
+      <div v-bind:class="isRed?'red':''" @click="isRed = !isRed"></div>
+      <!-- <input type="button" :disabled=""> -->
+      <input type="text" v-model="message">
+      <ul>
+        <li v-for="(song,index) in songList">{{song}}--{{index}}</li>
+      </ul>
+
+      <p v-if="isShow">何不给个拥抱</p>
+      <p v-show="isShow">何不给个拥抱</p>
+
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      // function sayHello(){
+      //   alert('还是吃得太饱')
+      // }
+      
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message:'雨一直下',
+          alink:'<a href="https://cn.vuejs.org/v2/guide/">vue.js</a>',
+          isRed:true,
+          songList:[
+            '雨一直下',
+            '给你们',
+            '两只蝴蝶',
+            '两只老虎',
+            '捉泥鳅'
+          ],
+          isShow:true
+        },
+        methods: {
+          sayHello(event){
+            console.log(event)
+            alert('还是吃得太饱')
+          },
+          toggleCls(){
+            this.isRed = !this.isRed
+          }
+        },
+      });
+      </script>
+  </body>
+</html>

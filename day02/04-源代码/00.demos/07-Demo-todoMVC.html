@@ -1,0 +1,331 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="./css/result-light.css" />
+
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+
+    <style id="compiled-css" type="text/css">
+      /* 结合v-cloak */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="todoapp">
+      <header class="header">
+        <h1>任务清单</h1>
+        <input
+          autofocus="autofocus"
+          autocomplete="off"
+          placeholder="请输入任务"
+          class="new-todo"
+          v-model.trim="inputValue"
+          @keyup.enter="addTodo"
+        />
+      </header>
+      <section class="main">
+        <!--  -->
+        <input
+          type="checkbox"
+          class="toggle-all"
+          id="toggle-all"
+          v-model="isCheckAll"
+        />
+        <!-- label的for属性 把自己跟某个表单元素关联起来  for指定的值 必须是 id -->
+        <label for="toggle-all"></label>
+        <ul class="todo-list">
+          <li
+            class="todo"
+            v-for="(item,index) in foreachArr"
+            @dblclick="editTodo=item"
+            :class="{completed:item.isCompleted,editing:editTodo==item}"
+            :key="item.id"
+          >
+            <div class="view">
+              <input
+                type="checkbox"
+                v-model="item.isCompleted"
+                class="toggle"
+              />
+              <label>{{ item.todo }}</label>
+              <button class="destroy" @click="delTodo(index)"></button>
+            </div>
+            <input
+              type="text"
+              @keyup.enter="editTodo=undefined"
+              @blur="editTodo=undefined"
+              v-model="item.todo"
+              class="edit"
+              v-focus
+            />
+          </li>
+        </ul>
+      </section>
+      <footer class="footer">
+        <span class="todo-count"
+          ><strong>{{ unCompletedNum }}</strong> items left
+        </span>
+        <ul class="filters">
+          <li>
+            <a
+              href="#/all"
+              :class="{selected:filter=='All'}"
+              @click="filter='All'"
+              >All</a
+            >
+          </li>
+          <li>
+            <a
+              href="#/active"
+              :class="{selected:filter=='Active'}"
+              @click="filter='Active'"
+              >Active</a
+            >
+          </li>
+          <li>
+            <a
+              href="#/completed"
+              :class="{selected:filter=='Completed'}"
+              @click="filter='Completed'"
+              >Completed</a
+            >
+          </li>
+        </ul>
+        <button class="clear-completed" style="display: none;">
+          Clear completed
+        </button>
+      </footer>
+    </section>
+    <footer class="info">
+      <p>双击进入编辑</p>
+      <p>感谢 <a href="http://evanyou.me">Evan You</a></p>
+      <p>感谢 <a href="http://todomvc.com"></a></p>
+    </footer>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  /*
+    1.新增数据
+      input元素 v-model.trim @keyup.enter
+      data:{
+        todoList:[],
+        inputValue
+      }
+      methods addTodo(){
+        {
+          todo:'',
+          isCompleted:false
+        }
+
+      }
+    2.点击xx删除
+      绑定点击事件
+      传入索引
+      根据索引删除即可
+    3.浏览器数据常驻
+      sessionStorage 关闭浏览器 销毁
+      localStorage 常驻
+        数组 对象 ->JSON格式的字符串
+         JSON.stringify
+         JSON.parse
+      抽取 数据操纵对象 简化编码
+      读取数据
+        页面打开
+      保存数据
+        页面关闭
+    4.数据删除
+      缓存数据 页面关闭时 自动保存的
+      Vue实例 自己内部也有一份数据
+
+      删除缓存 不会影响Vue实例的数据
+      页面关闭 会吧Vue实例中的数据 保存到 缓存中
+    5.数据读取失败
+      保存的格式不是JSON 会出现读取失败的问题 导致代码无法正常运行
+    6.双击进入编辑状态
+        为了标记当前在编辑谁 增加一个字段用来保存编辑的todo
+        根据编辑的todo 来决定谁增加类名 类名 editing
+      展现出编辑框 填入当前这一项的内容
+        双向数据绑定实现
+    7.保存修改
+        失去焦点保存
+        回车保存
+    8.计算属性实现未完成个数
+    9.点击底部的按钮
+      1.切换筛选的条件
+        增加一个字段 用来记录点击的 筛选条件
+      2.根据筛选的条件返回不一样的数组用来循环
+        循环的数组需要动态生成 ->稍微算一算才生成->计算属性
+    10.使用计算属性来判断是否全部选中
+      判断选中个数 跟总个数是否相等
+    11.点击全选
+      让底部的选中状态 跟自己一致
+
+  */
+
+  // 抽取数据常驻的代码 到一个对象中
+  let todoDB = {
+    // 读取数据
+    get() {
+      // string
+      let str = window.localStorage.getItem('todo29')
+      // string->array
+      let data
+      try {
+        data = JSON.parse(str)
+      } catch (error) {
+        // json转化失败 设置初始值
+        data = []
+      }
+      // 非空判断 类型判断 有可能没有数据
+      if (!data) {
+        data = []
+      }
+      return data
+    },
+    // 保存数据
+    set(todoList) {
+      window.localStorage.setItem('todo29', JSON.stringify(todoList))
+    }
+  }
+
+  // 注册自定义指令
+  Vue.directive('focus', {
+    update(el) {
+      // el使用指令的dom元素
+      el.focus()
+    }
+  })
+
+  let app = new Vue({
+    el: '.todoapp',
+    data: {
+      //  总数据
+      todoList: todoDB.get(),
+      //  输入的内容
+      inputValue: '',
+      // 当前正在编辑的任务
+      editTodo: undefined,
+      // 当前的筛选条件
+      filter: 'All'
+    },
+    // 方法
+    methods: {
+      // 增加任务
+      addTodo() {
+        this.todoList.push({
+          todo: this.inputValue,
+          isCompleted: false,
+          id:Date.now()
+        })
+      },
+      // 删除任务
+      delTodo(index) {
+        this.todoList.splice(index, 1)
+      }
+    },
+    // 计算属性
+    computed: {
+      // 未完成的个数
+      unCompletedNum() {
+        let num = 0
+        // 遍历
+        this.todoList.forEach(v => {
+          if (v.isCompleted == false) {
+            num++
+          }
+        })
+        return num
+      }, // 当前遍历的数组
+      // 遍历的数组
+      foreachArr() {
+        // 根据filter的值 返回不同的数组
+        // this.filter
+        switch (this.filter) {
+          case 'All':
+            return this.todoList
+            break
+          case 'Active':
+            // 计算一个未完成的数组 并返回
+            let activeArr = []
+            this.todoList.forEach(v => {
+              if (v.isCompleted == false) {
+                activeArr.push(v)
+              }
+            })
+            return activeArr
+            break
+          case 'Completed':
+            // 计算一个 完成的数组 并返回
+            let comArr = []
+            this.todoList.forEach(v => {
+              if (v.isCompleted == true) {
+                comArr.push(v)
+              }
+            })
+            return comArr
+            break
+        }
+        // All
+        // Active
+        // Completed
+      },
+      // 是否全部选中
+      // 计算属性的 set 和 get
+      // 默认都是get 返回内容
+      // 如果要赋值 可以实现 set
+      // isCheckAll() {
+      //   // 选中个数
+      //   let checkedNum = 0
+      //   this.todoList.forEach(v => {
+      //     if (v.isCompleted == true) {
+      //       checkedNum++
+      //     }
+      //   })
+      //   // 总个数
+      //   let totalNum = this.todoList.length
+      //   return checkedNum == totalNum
+      // }
+      isCheckAll: {
+        // 计算属性的get 取值
+        get() {
+          //  选中个数
+          let checkedNum = 0
+          this.todoList.forEach(v => {
+            if (v.isCompleted == true) {
+              checkedNum++
+            }
+          })
+          // 总个数
+          let totalNum = this.todoList.length
+          return checkedNum == totalNum
+        },
+        // 设置 赋值
+        // 上面checkbox点击的时候 相当于为计算属性进行了赋值
+        // 触发set
+        set(value) {
+          // console.log(value)
+          this.todoList.forEach(v => {
+            v.isCompleted = value
+          })
+        }
+      }
+    }
+  })
+
+  // 浏览器关闭，刷新时触发，
+  window.onbeforeunload = function() {
+    // window.localStorage.setItem('secret','我有一个小秘密')
+    todoDB.set(app.todoList)
+  }
+</script>

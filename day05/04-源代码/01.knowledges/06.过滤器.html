@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>公历生日:{{formatDate1}}</h2>
+      <h2>农历生日:{{formatDate2}}</h2>
+      <h2>过滤器的方式</h2>
+      <h2>公历生日:{{date1|formatDate}}</h2>
+      <h2>农历生日:{{date2|formatDate}}</h2>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/moment.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          date1:'2019-8-13',
+          date2:'2019-7-13'
+        },
+        computed: {
+          formatDate1(){
+            return moment(this.date1).format('YYYY.MM.DD')
+
+          },
+          formatDate2(){
+            return moment(this.date2).format('YYYY.MM.DD')
+          }
+        },
+        filters:{
+          formatDate(date){
+            return moment(date).format('YYYY.MM.DD')
+          }
+        }
+      });
+      </script>
+  </body>
+</html>

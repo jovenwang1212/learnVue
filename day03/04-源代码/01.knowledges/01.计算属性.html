@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>菜中带花的有{{ flowerNum }}个</h2>
+      <input type="text" v-model.trim="food" @keyup.enter="addFood" />
+    </div>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      foodArr: ['西兰花', '韭菜'],
+      // 双向绑定的值
+      food: ''
+    },
+    methods: {
+      addFood() {
+        this.foodArr.push(this.food)
+      }
+    },
+    // 计算属性
+    computed: {
+      // 定义方法 通过返回值 返回一个结果 内部可以写一些逻辑语句
+      // 如果用到了data中的数据 数据发生改变，重新执行一次
+      flowerNum() {
+        console.log('执行啦！！')
+        // 定义数字
+        let num = 0
+        // 遍历
+        for (let i = 0; i < this.foodArr.length; i++) {
+          if (this.foodArr[i].indexOf('花') != -1) {
+            num++
+          }
+        }
+        return num
+      }
+    }
+  })
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .wrapper{
+        width: 400px;
+        height: 200px;
+        border:1px solid #666;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="add()">添加</button>
+    <!-- 窗口 -->
+    <div id="wrapper" class="wrapper">
+      <!-- 大盒子 -->
+      <ul>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+        <li>是男人，一起来玩贪玩蓝月</li>
+      </ul>
+    </div>
+    <script src="./lib/iscroll.js"></script>
+    <script>
+      var myScroll = new IScroll('#wrapper');
+
+      function add(){
+        // 添加li
+        let liDom = document.createElement('li')
+        liDom.innerHTML ='<li>是男人，一起来玩贪玩蓝月</li>'
+        document.querySelector('#wrapper ul').appendChild(liDom)
+        myScroll.refresh()
+      }
+    </script>
+  </body>
+</html>

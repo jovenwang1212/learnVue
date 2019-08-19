@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>成为京东Plus会员的时间{{date}}</h2>
+      <h2>您已经成为会员{{vipDays}}天</h2>
+      <input type="text" v-model="date">
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*
+        （当前时间的毫秒数-date的毫秒数）/(24*60*60*1000)
+        小数点处理
+      */
+      const app = new Vue({
+        el: "#app",
+        data: {
+          // message:'我反正不知道怎样打发时间，出门或不出门'
+          date:'2019-7-31'
+        },
+        computed: {
+          vipDays(){
+            return Math.ceil((Date.now()- new Date(this.date.replace(/\-/g,'/')).getTime())/(24*60*60*1000))
+          }
+        },
+      });
+      </script>
+  </body>
+</html>

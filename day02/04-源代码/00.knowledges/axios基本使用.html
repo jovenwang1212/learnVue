@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model.trim="city" @keyup.enter="queryWeather" />
+    </div>
+    <input type="button" value="查询天气" onclick="queryWeather()" />
+    <script src="./lib/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function queryWeather() {
+        axios
+          .get('http://wthrcdn.etouch.cn/weather_mini?city=深圳')
+          .then(backData => {
+            console.log(backData)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+
+      new Vue({
+        el: '#app',
+        data: {
+          city: '深圳',
+          weatherList:[]
+
+        },
+        methods: {
+          queryWeather() {
+            axios
+              .get(`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`)
+              .then(backData => {
+               // this就是Vue实例
+                console.log(this);
+                
+                console.log(backData)
+                this.weatherList=backData.data.data.forecast
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+<script src="./lib/vue.js"></script>
+<script>
+  Vue.component('fly', {
+    template: '<div>2</div>',
+    data() {
+      return {}
+    },
+    methods: {
+      sayHi() {}
+    },
+    computed: {},
+    filters: {},
+    created() {},
+    mounted() {},
+    updated() {}
+  })
+
+  const app = new Vue({
+    // 选择器
+    el: '#app',
+    // 数据
+    data: {
+      info: '',
+      arr: [],
+      obj: {}
+    },
+    // 方法
+    methods: {
+      sayHi() {
+        alert('你好')
+      }
+    },
+    // 计算属性
+    computed: {
+      // 计算属性一般会使用data中的数据
+      // data中的数据改变时，重新执行
+      infoLength() {
+        // 获取info的长度
+        return this.info.length
+      }
+    },
+    // 过滤器
+    filters: {
+      // 格式化对象
+      formatObj(obj) {
+        // 处理对象数据
+
+        // 返回处理完毕的数据
+        return '数据'
+      }
+    },
+    // 生命周期钩子(函数)
+    // vue实例创建完毕，传入的数据设置给了这个vue实例
+    created() {},
+    // vue实例和dom关联起来，执行一次 最早获取dom写在这里
+    mounted() {},
+    // 数据改变，同步到了页面上
+    // 页面更新完毕之后要添加逻辑，就可以写在这里
+    updated() {}
+  })
+</script>

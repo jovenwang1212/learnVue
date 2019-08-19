@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        <!-- 等同于 导航 tab nav 
+          to: 代码中的路由规则想匹配
+          router-link 解析为a标签
+          但是不能直接写（路由在解析的时候会缺失一些功能）
+        -->
+        <!-- <a href="#/foo">自己写的A</a> -->
+        <router-link to="/foo">首页</router-link>
+        <router-link to="/bar">我的音乐</router-link>
+        <router-link to="/friend">朋友</router-link>
+        <router-link to="/shopping">商城</router-link>
+      </p>
+      <!-- 等同于 tab-content -->
+      <router-view></router-view>
+    </div>
+  </body>
+</html>
+<!-- 导入Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 导入 vue路由 -->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+  // 1. 组件简写方式
+  const Foo = { template: '<div><img src="./img/01.png"></div>' }
+  const Bar = { template: '<div><img src="./img/02.png"></div>' }
+  const Friend = { template: '<div><img src="./img/03.png"></div>' }
+  const Shopping = { template: '<div><img src="./img/04.png"></div>' }
+
+  // 2. 定义路由
+  // 前端路由规则
+  // url和组件的对应关系
+  const routes = [
+    { path: '/foo', component: Foo },
+    { path: '/bar', component: Bar },
+    { path: '/friend', component: Friend },
+    { path: '/shopping', component: Shopping },
+  ]
+
+  // 3. 创建 router 实例
+  // 实例化 路由对象，把定义的规则 传递给他
+  const router = new VueRouter({
+    routes
+  })
+
+  // 4. 创建和挂载根实例。
+  const app = new Vue({
+    el: '#app',
+    // 把路由 和Vue实例关联起来
+    // 挂载到Vue实例上
+    router
+  })
+  // .$mount('#app') 含义和el:#app一样
+
+  // 现在，应用已经启动了！
+</script>

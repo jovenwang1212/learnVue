@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/player.css" />
+    <link rel="stylesheet" href="./css/results.css" />
+    <link rel="stylesheet" href="./css/video.css" />
+    <link rel="stylesheet" href="./css/comment.css" />
+    <link rel="stylesheet" href="./css/iconfont.css" />
+  </head>
+  <body>
+    <div id="player">
+      <h2 class="title">黑云音乐</h2>
+      <div class="search">
+        <input type="text" v-model="query" @keyup.enter="search" />
+        <button @click="search">
+          <span class="iconfont icon-search"></span>
+        </button>
+      </div>
+      <p class="result">
+        搜索"学猫叫",找到<span>100</span>首单曲
+      </p>
+      <ul class="tab-wrapper">
+        <!-- tab栏 -->
+        <ul class="tab-bar">
+          <li class="bar-item" @click="index=1" :class="{active:index==1}">
+            搜索结果
+          </li>
+          <li class="bar-item" @click="index=2" :class="{active:index==2}">
+            歌曲播放
+          </li>
+          <li class="bar-item" @click="index=3" :class="{active:index==3}">
+            mv
+          </li>
+          <li class="bar-item" @click="index=4" :class="{active:index==4}">
+            歌曲评论
+          </li>
+          <li class="bar-item" @click="index=5" :class="{active:index==5}">
+            推荐歌曲
+          </li>
+        </ul>
+        <!-- 对应的内容区域 -->
+        <div class="tab-content">
+          <div class="content-item" v-show="index==1">
+            <div class="result-wrapper">
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+            </div>
+          </div>
+          <div class="content-item" v-show="index==2">
+            <div class="player">
+              <div class="left">
+                <img class="disc" src="./img/disc.png" alt="" />
+                <img class="cover" src="./img/cover.png" alt="" />
+              </div>
+              <div class="right">
+                <div class="title">
+                  <img src="./img/tag.png" alt="" /><span>放个大招给你看</span>
+                </div>
+                <div class="singer">歌手: <span>尼古拉斯赵四</span></div>
+                <div class="album">所属专辑: <span>我就是我</span></div>
+                <audio class="audio" controls src=""></audio>
+                <ul class="lyric-container">
+                  <li class="lyric">难以忘记</li>
+                  <li class="lyric">初次见你</li>
+                  <li class="lyric">那双迷人的小眼睛</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="content-item" v-show="index==3">
+            <div class="video">
+              <div class="title-wrapper">
+                <span class="tag">MV</span>
+                <span class="title">冲动的惩罚</span>
+                <span class="artist">刀郎</span>
+              </div>
+              <video src="" controls></video>
+            </div>
+          </div>
+          <div class="content-item" v-show="index==4">
+            <div class="comment-wrapper">
+              <div class="items">
+                <div class="item">
+                  <div class="left">
+                    <img src="./img/icon.jpg" alt="" />
+                  </div>
+                  <div class="right">
+                    <div class="top">
+                      <span class="user">阿木木:</span>
+                      <span class="content"
+                        >写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心</span
+                      >
+                    </div>
+                    <div class="bottom">
+                      <div class="time">2016年9月18日</div>
+                      <div class="like-wrapper"><span>👍</span>(6666)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="left">
+                    <img src="./img/icon.jpg" alt="" />
+                  </div>
+                  <div class="right">
+                    <div class="top">
+                      <span class="user">阿木木:</span>
+                      <span class="content"
+                        >写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心</span
+                      >
+                    </div>
+                    <div class="bottom">
+                      <div class="time">2016年9月18日</div>
+                      <div class="like-wrapper"><span>👍</span>(6666)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="left">
+                    <img src="./img/icon.jpg" alt="" />
+                  </div>
+                  <div class="right">
+                    <div class="top">
+                      <span class="user">阿木木:</span>
+                      <span class="content"
+                        >写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心写歌的人假正经，唱歌的人最矫情，听歌的人最用心</span
+                      >
+                    </div>
+                    <div class="bottom">
+                      <div class="time">2016年9月18日</div>
+                      <div class="like-wrapper"><span>👍</span>(6666)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-item" v-show="index==5">
+            <div class="result-wrapper">
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+              <div class="song">
+                <div class="name">
+                  <span class="iconfont icon-play"></span>
+                  美丽的神话
+                  <span class="iconfont icon-editmedia"></span>
+                </div>
+                <div class="singer">韩红|孙楠</div>
+                <div class="album">《美丽的神话》</div>
+                <div class="time">04:30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </body>
+</html>
+<script src="./lib/vue.js"></script>
+<!-- axios 阿西奥斯 -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  /*
+    1.tab栏切换
+      点击tabbar 记录点击的 是哪个 index
+        索引跟当前的tab一致 添加 active类名
+      底部的 内容区域
+        每次显示的 跟 index相对应 其余的隐藏
+    2.歌曲搜索
+      输入内容  点击回车     查询数据
+      v-model  @keyup.13    ajax
+      数据查询到了之后  渲染到页面上
+       musicList=[]    v-for
+    3.点击放歌
+      绑定事件
+        多媒体标签 <audio controls="controls"></audio> 播放音频  通过设置src属性 为歌曲的url地址
+      调用接口 获取歌曲的url地址 设置给audio
+        data musicUrl
+        <audio controls="controls" :src="musicUrl"></audio>
+      事件绑定时 需要携带id
+      接口地址
+        https://autumnfish.cn/song/url?id=33894312
+      自动播放 设置 autoplay属性即可
+  */
+  const app = new Vue({
+    el: '#player',
+    data: {
+      // tab的索引
+      index: 1,
+      // 搜索的内容
+      query: '',
+      // 歌曲列表
+      musicList: [],
+      // 歌曲的url
+      musicUrl: ''
+    },
+    // 方法
+    methods: {
+      search() {
+        axios
+          .get(`https://autumnfish.cn/search?keywords=${this.query}`)
+          .then(response => {
+            // console.log(response)
+            this.musicList = response.data.result.songs
+          })
+      }, // 获取歌曲的url
+      playMusic(id) {
+        axios.get(`https://autumnfish.cn/song/url?id=${id}`).then(response => {
+          // console.log(response)
+          // 设置url
+          this.musicUrl = response.data.data[0].url
+        })
+      }
+    }
+  })
+</script>
