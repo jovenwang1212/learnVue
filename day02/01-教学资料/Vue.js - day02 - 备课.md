@@ -178,11 +178,17 @@
 ### 实现步骤
 
 1. 输入城市，显示搜索城市
-   1. 获取输入的城市 v-model
-2. 回车，请求
+   1. 获取输入的城市 v-model.trim
+   2. 显示城市 {{city}}
+2. 回车，请求数据
    1. enter键点击响应@keyup.enter
-   2. 请求天气 $.ajax
+   2. 请求天气 $.ajax(url,success（获取数据）)
+   3. 接口 http://wthrcdn.etouch.cn/weather_mini?city=深圳
 3. 展示天气搜索结果
+   1. 获取天气信息 forecastList[]
+   2. v-for展示天气
+4. emoji表情的展示
+   1. 判断item.type里面是否包含 云 雨 v-if
 
 ### 注意点
 
@@ -192,20 +198,6 @@
 
 3. includes 字符串中是否包含字符 
 
-   ```js
-     /*
-     1. 显示搜索城市
-       1. v-model:city
-       2. {{city}}
-     2. 输入城市，回车，请求
-       1. @keyup.enter:queryWeather
-       2. $.ajax(url) http://wthrcdn.etouch.cn/weather_mini?city=深圳
-     3. 展示天气搜索结果
-       1. forecastList[]
-       2. v-for
-       3. v-if
-     */
-   ```
 
 >1. 看效果
 >2. 思路分析
@@ -221,75 +213,102 @@
 
 ### 实现步骤
 
-1.  展示消息
-2.  我发送消息
-3.  姐姐回复消息
+1. 展示消息
 
-```html
-1.我发送消息
-  1.v-model.trim:inputVal 
-  2.@keyup.enter @click:chat
-  3.messageList.push
-  4.messageList v-for 展示
+   1. 很多条消息，得有一个消息数组messageList[]
 
-2. 姐姐回复消息
-    请求地址：http://www.tuling123.com/openapi/api
-    请求方法：post
-    请求参数：key,info
-    2162602fd87240a8b7bba7431ffd379b
-    a618e456f0744066840ceafb6a249d9d
-    d7c82ebd8b304abeacc73b366e42b9ed
-    7b1cf467c0394dd5b3e49f32663f8b29
-    9fbb98effab142c9bb324f804be542ba
-  1. $.ajax
-  2. messageList.push
+   2. 姐姐的消息和我的消息是不一样的，所以消息得有两个属性，一个是消息体，一个是所有者（属性谁的消息）。所以一条消息必须是一个对象
 
-3.消息格式调整 
-  1. messageList:
-    [
-      {
-        content:'你好',
+      ```js
+      messageList:
+      [
+        {
+          content:'你好',
+          isme:true
+        },
+        {
+          content:'好呀',
+          isme:false
+        },
+        {
+          content:'吃饭了吗',
+          isme:true
+        },
+        {
+          content:'滚！',
+          isme:false
+        }
+      ]
+      ```
+
+   3. 展示消息v-for
+
+   4. v-bind: 绑定属性，根据是我的消息还是姐姐的消息，显示不同的样式
+
+2. 我输入消息，回车，或者点击发送，添加我的消息
+
+   1. 获取输入消息 v-model.trim:inputVal
+
+   2. 回车/点击发送 @keyup.enter/@click: chat
+
+   3. 添加我的消息 
+
+      ```js
+      messageList.push({
+        content:inputVal,
+        //标志是我的消息
         isme:true
-      },
-      {
-        content:'好呀',
-        isme:false
-      },
-      {
-        content:'吃饭了吗',
-        isme:true
-      },
-      {
-        content:'滚！',
-        isme:false
-      }
-    ]
+      })
+      ```
 
-  2. 我的消息添加 messageList.push({
-    content:'xx',
-    isme:true
-  })
-  3. 我的消息添加 messageList.push({
-    content:'xx',
-    isme:false
-  })
-	4. v-bind: 绑定属性，根据是我的消息还是姐姐的消息，显示不同的样式
-```
+3. 姐姐回复消息
 
-> 1. 看效果，然后查看HTML，分析思路（先把消息展示出来）
-> 2. 先把数据渲染出来，很多条消息，用数组。 一条消息至少有两个属性 文本，所有者 是一个对象
-> 3. 显示消息 v-bind指令绑定样式
-> 4. 输入消息，回车，添加我的消息
-> 5. 请求添加姐姐的消息
+   1. 添加完我的消息后，请求接口获取姐姐的消息
+
+   2. 请求接口获取姐姐的消息 $.ajax()
+
+      ```html
+      请求地址：http://www.tuling123.com/openapi/api
+          请求方法：post
+          请求参数：key,info
+          2162602fd87240a8b7bba7431ffd379b
+          a618e456f0744066840ceafb6a249d9d
+          d7c82ebd8b304abeacc73b366e42b9ed
+          7b1cf467c0394dd5b3e49f32663f8b29
+          9fbb98effab142c9bb324f804be542ba
+      ```
+
+      
+
+   3. 添加姐姐的消息
+
+      ```js
+      messageList.push({
+        // 标志不是我的消息
+        isme:false,
+      })
+      ```
+
 
 
 
 ### 注意点
 
 1. 消息数组元素为一个对象，对象有isme来区分是我的消息，还是姐姐的消息
+
 2. v-bind:src和v-bind:class配合isme来区分姐姐和我的消息样式
+
 3. v-cloak vue解析完后移除这个属性，一般结合display:none样式，在解析前隐藏元素
+
 4. 留有问题：添加姐姐的消息后，需要手动滚动滚动条.
+
+   
+
+> 1. 看效果，然后查看HTML，分析思路（先把消息展示出来）
+> 2. 先把数据渲染出来，很多条消息，用数组。 一条消息至少有两个属性 文本，所有者 是一个对象
+> 3. 显示消息 v-bind指令绑定样式
+> 4. 输入消息，回车，添加我的消息
+> 5. 请求添加姐姐的消息
 
 
 
@@ -332,7 +351,7 @@ setTimeout(()=>{
 
 
 
-## Vue生命周期钩子
+## Vue生命周期钩子函数
 
 [传送门](https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90)
 
@@ -340,7 +359,7 @@ setTimeout(()=>{
 
 同时在这个过程中也会运行一些叫做**生命周期钩子**的函数，这给了用户在不同阶段添加自己的代码的机会。
 
-1. Vue提供给开发者的一系列的回调函数，方便我们添加自定义的逻辑
+1. Vue的生命周期钩子函数是从创建到销毁，有个8个重要节点，8个节点事件发生的时候，Vue以回调函数的形式通知我们
 2. 钩子函数和data，el、methods是并列的
 3. 生命周期钩子的 `this` 上下文指向调用它的 Vue 实例。用methods里面的方法是一样的
 4. `updated`在数据改变，对应的视图已经更新完后，会触发updated方法.
@@ -410,7 +429,7 @@ setTimeout(()=>{
 ```
 
 > 1. 展示一个日期，但是想按指定格式展示，不是原样输出。需要计算，放在方法里面。引出computed
-> 2. ，重点解释计算属性的return的值就是展示计算属性的值，
+> 2. 重点解释计算属性的return的值就是展示计算属性的值，
 > 3. 且计算属性会重新计算，加console.log看看方法是否真的被调用了。
 > 4. 总结
 > 5. 再用以上的代码来一个复杂一些的你例子，说明复杂的逻辑是{{}}放不下的，适合放计算属性里面
@@ -424,50 +443,63 @@ setTimeout(()=>{
 #### 实现步骤
 
 1. 展示列表
-2. 删除一项
-3. 添加
-4. 搜索
 
-```js
-	1. 展示列表
-        1. 品牌列表数组 brandList:[
-            {
-              name:'小米',
-              time:'2019-07-26 10:36:38 am'
-            },
-            {
-              name:'红米',
-              time:'2019-07-24 10:36:38 am'
-            }
-          ]
-        2. 列表展示: v-for tr
-    2.删除一项
-      1. 点击事件 @click:delBrand(index)
-      2. 数组移除元素 brandList.splice(从哪一个元素开始删除，删除多少个)
-    3.新增品牌
-      1.弹层的显示与隐藏
-        1. 弹层 v-show="isShow"
-        1. 点击新增品牌，显示 @click isShow=true
-        2. 添加与取消 隐藏 @click isShow=false
-       
-      2.新增品牌
-        1. v-model.trim:inputVal
-        2. @keyup.enter或者添加 addBrand
-        3. brandList.push({
-          name:'商品名称',
-          time: 当前的时间
-        })
-    4.搜索功能
-        1.v-model.trim:keywords
-        2.计算属性 filterBrandList 
-          1. brandList根据keywords过滤后数组 item.name.includes(keywords
-```
+   1. 品牌列表数组
+
+      ```js
+      brandList:[
+                  {
+                    name:'小米',
+                    time:'2019-07-26 10:36:38 am'
+                  },
+                  {
+                    name:'红米',
+                    time:'2019-07-24 10:36:38 am'
+                  }
+                ]
+      ```
+
+   2. 列表的展示 v-for tr
+
+2. 删除一项
+
+   1. 点击事件 @click:delBrand(index)
+   2. 数组移除元素 brandList.splice(从哪一个元素开始删除，删除多少个)
+
+3. 新增品牌
+
+   1. 弹层的显示与隐藏
+
+      1. 弹层 v-show="isShow"
+      2. 点击新增品牌，显示 @click isShow=true
+      3. 添加与取消 隐藏 @click isShow=false
+
+   2. 弹层输入框，输入品牌，回车或者点击添加，新增品牌
+
+      1. 获取用户输入的品牌 v-model.trim:inputVal
+
+      2. 回车或者点击添加 @keyup.enter/@click addBrand
+
+      3. 新增品牌，给数组添加一项 
+
+         ```js
+         brandList.push({
+           name:'商品名称',
+           time: 当前的时间
+         })
+         ```
+
+4. 输入关键字，展示包含关键字的品牌名称项
+
+   1. 获取用户的输入 v-mode.trim:keyword
+   2. 列表展示的内容是过滤后的数组，需要用到计算属性 filterBrandList
+      1. 取出brandList里面的每一项，每一项的品牌名称是否包含keyword，如果包含就展示这一项
 
 ### 注意点
 
 1. 品牌列表是一个过滤的数组，过滤条件是品牌名称包含搜索的关键词
 
-2. 计算属性可以用在for 里面
+2. 计算属性也是属性，可以用在for 里面
 
 3. 字符的非空判断建议用`if(!str)`  等价于 `if(str=='')`
 

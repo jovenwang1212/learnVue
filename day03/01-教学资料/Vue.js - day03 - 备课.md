@@ -54,9 +54,8 @@ Vue.nextTick(()=>{
 
 > 1. 聊天机器人滚动的问题，updated在所有的数据改动会都会触发updated。昨天讲这个是为了引入Vue生命周期钩子函数
 >
-> 2. 引入nextTick，解决问题。看文档，解释。
+> 2. 看文档，解释,引入nextTick，解决问题, 这是终级解决方案。
 >
-> 3. 使用nextTick，同样解决问题，终极方案。
 
 
 
@@ -81,7 +80,7 @@ Vue.nextTick(()=>{
 
    ```js
    axios.get('/user?ID=12345')
-  .then(function (response) {
+    .then(function (response) {
        // handle success
     console.log(response);
      })

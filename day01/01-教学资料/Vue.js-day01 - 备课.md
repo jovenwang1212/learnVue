@@ -606,35 +606,32 @@ v-bind指令动态绑定HTML标签的属性。当属性值不是一个写死的�
 ### 实现步骤
 
 1. 数字的显示
-2. +-功能实现
-3. 数字的范围是0=10，边界问题处理
-
-> 1. 打开页面，查看页面上的行为
-> 2. 检查HTML，disabled类名和disabled属性
-> 3. 大的思路
-> 4. 一边分析怎么实现一边实现功能
+       1.声明数字 data.num
+       2.显示数字 {{num}
+2. +-按钮功能实现
+       1.+注册点击事件 @click:add num++
+       2.-注册点击事件 @click:sub num--
+3. 数字范围是0-10，边界问题的处理
+   1. 数字为0的时候
+      1. -按钮添加disabled属性
+         1. v-bind:disabled="num===0"
+      2. -按钮添加'disabled'样式
+         1. v-bind:class="num==0?'diabled':''"
+   2. 数字为10的时候
+      1. +按钮添加disabled属性
+         1. v-bind:disabled="num===10"
+      2. +按钮添加'disabled'样式
+         1. v-bind:class="num==10?'diabled':''"
 
 ### 注意点
 
-1. v-bind:class={'className':true/false} true时候，添加className样式; 否则移除className样式
+1. v-bind:disabled="是否添加disabled属性" 值为true的时候，按钮disabled; 否则不disabled
+2. v-bind:class="添加的样式" 三元运算的值为className
 
-```js
-  /*
-  1.数字的显示
-    1.声明 data.num
-    2.显示 {{num}}
-  2.+-功能实现
-    1.+ @click:add num++
-    2.- @click:sub num--
-  3.数字范围是0-10，边界问题的处理
-    1.数字为0的时候
-      1. 添加disabled属性
-      2.-按钮添加'disabled'样式 v-bind:class="{'disabled':num==0}"
-    2.数字为10的时候
-      1. 添加disabled属性
-      2. +按钮添加'disabled' 样式 v-bind:class="{'disabled':num==10}"
-  */
-```
+> 1. 打开页面，查看页面上的行为
+> 2. 检查HTML，disabled类名和disabled属性
+> 3. 思路分析
+> 4. 一边分析怎么实现一边实现功能
 
 
 
@@ -644,16 +641,30 @@ v-bind指令动态绑定HTML标签的属性。当属性值不是一个写死的�
 
 ### 实现步骤
 
-1. 图片展示
+1. 图片的展示
+
+   1. 图片数组装四张图片imgList:[img1,img2,img3,img4] 下标0,1,2,3
+   2. 数组下标
+   3. 取出数组中一张图片 imgList[index] 
+   4. 显示图片v-bind:src="imgList[index]"
+
 2. 上一张和下一张功能
+
+   1. 上一张 @click:pre  index--
+   2. 下一张 @click:next index++
+
 3. 图片循环展示
 
-> 1. 画图分析有四张图片分析  图片数组及下标 ：src
+   1. 点下一张的时候，如果当前显示最后一张，下一张是第一张
+
+   2. 点上一张的时候，如果当是显示是第一张，上一张是最后一张
+
+      
 
 
 ### 注意点
 
-1. v-bind:src="imgList[index]"
+1. 图片的展示 v-bind:src="imgList[index]"
 
 2. 数组的边界的问题
 
@@ -661,27 +672,9 @@ v-bind指令动态绑定HTML标签的属性。当属性值不是一个写死的�
 
    2. 上一页： 第一项->数组最后一项
 
-```js
-  /*
-  1.图片的展示
-    1.imgList:[img1,img2,img3,img4] 下标0,1,2,3
-    2.index 
-    3.imgList[index]  v-bind:src="imgList[index]"
-  2. 上一张和下一张的功能
-    1. 上一张 @click:pre index--
-    2. 下一张 @click:next index++
-	3.数组边界的问题处理
-    1.点下一张的时候，如果当前显示最后一张，下一张是第一张
-    2.点上一张的时候，如果当前显示第一张，下一张是最后一张
-  
-  */
-```
+> 画图分析有四张图片分析  图片数组及下标 ：src
 
 
-
-
-
- 
 
 ## 表单输入绑定 v-model
 
@@ -786,8 +779,17 @@ v-bind指令动态绑定HTML标签的属性。当属性值不是一个写死的�
 ### 实现步骤
 
 1. 展示任务列表
-2. 添加任务
-3. 删除任务
+   1. todoList:['睡觉觉','吃饭饭','打豆豆']
+   2.  v-for="元素别名 in 数组" li就可以使用元素别名
+2. 用户输入内容，回车，添加任务
+   1. 获取用户输入 v-model:inputVal
+   2. enter键抬起时候触发事件 @keyup.enter="addTodo"
+   3. 添加任务 todoList.push(inputVal)
+   4. 清空输入
+3. 双击删除任务
+   1. 双击事件 @dblclick:delTodo(index)
+   2. index来自v-for
+   3. todoList.splice(从哪个下标开始删除，删除多少项)
 
 ### 注意点
 
@@ -803,23 +805,9 @@ v-bind指令动态绑定HTML标签的属性。当属性值不是一个写死的�
 
 3. array.splice(从哪个下标开始删除，删除元素的个数)
 
-```js
-  /*
-  1.展示任务列表
-    1. todoList:['睡觉觉','吃饭饭','打豆豆']
-    2. v-for="元素别名 in 数组" li就可以使用元素别名
-  2. 添加任务
-    1.v-model:inputVal
-    2.@keyup.enter="addTodo"
-    3.todoList.push(inputVal)
-  3.删除任务
-    1. @dblclick:delTodo(index)
-    2. index来自v-for
-    3.delTodo todoList.splice(从哪个下标开始删除,删除多少项)
-  */
-```
-
 > 没啥好说的，就是要讲得细
+>
+> 最后优化说明v-model.trim
 
 
 
