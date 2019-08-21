@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="点我呀" v-on:click="sayHello" />
+      <input type="button" value="简写" @click="sayHello">
+      <input type="button" value="双击" @dblclick="sayHello">
+    
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*
+        注册事件的方法 v-on:事件名="事件处理方法"
+        事件处理方法声明在methods
+        事件名和原生html里面注册事件的事件名是相同 dblclick,click,mouseover,input,keyup,keydown...
+        简写@(at) 推荐用简写
+      */
+      const app = new Vue({
+        el: '#app',
+        data: {},
+        // 一些方法
+        methods: {
+          // sayHello:function(){
+          //   alert('function')
+          // },
+          sayHello:()=>{
+              alert('=>')
+          }
+          // 简洁写法
+          // sayHello() {
+          //   alert('Hello')
+          // }
+        }
+      })
+    </script>
+  </body>
+</html>

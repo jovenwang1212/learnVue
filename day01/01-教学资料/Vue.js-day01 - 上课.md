@@ -4,14 +4,19 @@
 
 ## 课程安排
 
+1. 总共有27天的课程
+2. 每天上课时长6小时
+3. 三个小阶段，Vue基础，pc端项目还有移动端
+4. Vue基础包括基本使用，指令，一些小的案例串起这些知识点
+
 
 
 
 ## Vue.js介绍 
 
 1. [官方文档](https://cn.vuejs.org/)
-
-
+2. Vue.js是一个js框架，相比jquery，**基本**上不用操作DOM
+3. 大家将来工作很可能是写Vue的
 
 
 
@@ -19,9 +24,21 @@
 
 [传送门](https://cn.vuejs.org/v2/guide/#%E8%B5%B7%E6%AD%A5)
 
-
+1. Vue的学习会以官方文档知识点为主线，但是以项目驱动
+2. Vue的读音
+   1. 官方的读音是 /fju:/
+   2. 国内普通读法 /uju:/
+3. 渐进式 是说Vue能够做大的项目也能做小的项目
 
 ### Vue基本使用解析
+
+使用Vue
+
+1. 导入vue.js
+2. dom结构:Vue管理的容器
+3. 实例化new Vue({})
+   1. el:'id选择器' 关联到Vue管理的容器
+   2. data的值是对象，是可以通过{{}}在Vue管理的容器里面进行渲染。
 
 
 
@@ -29,11 +46,25 @@
 
 [传送门](https://cn.vuejs.org/v2/guide/syntax.html#%E4%BD%BF%E7%94%A8-JavaScript-%E8%A1%A8%E8%BE%BE%E5%BC%8F)
 
+1. {{}}也叫插值语法，胡子语法,mustache语法。都一个概念
+2. 用法 {{js表达式}}
+3. js表达式是js语句，但是得返回一个值
+
 
 
 ## Vue指令
 
 [传送门](https://cn.vuejs.org/v2/guide/syntax.html#%E6%8C%87%E4%BB%A4)
+
+指令 (Directives) 是带有 `v-` 前缀的特殊特性。
+
+Vue指令是提供给HTML标签新增的属性
+
+使用是`v-text="值"`
+
+```html
+<img src="" title="鼠标悬停文案" v-text="js表达式(值)">
+```
 
 
 
@@ -41,19 +72,53 @@
 
 [传送门](https://cn.vuejs.org/v2/api/#v-text)
 
+1. v-text的作用：把值作为文本插入到标签之间
 
+2. 底层的实现textContent
+
+3. 会覆盖掉标签之间的文本
+
+4. {{}},推荐用简写
+
+5. 不能够解析html str
+
+   
 
 ## v-html指令(innerHTML)
 
 [传送门](https://cn.vuejs.org/v2/api/#v-html)
 
+1. v-html指令是把值作为用html插入到所在的标签之间。
 
+2. 底层innerHTML实现的。
+
+3. 会覆盖标签之间的文本
+
+4. 没有简写      
+
+5. 使用得比较少
+
+   
 
 ## v-on指令
 
 [基本使用](https://cn.vuejs.org/v2/guide/events.html)
 
+注册事件
 
+1. 使用方法 v-on:事件名=“事件处理方法”
+
+2. 简写@，推荐用简写
+
+3. 事件名和原生html标签里注册事件的事件名是一样的。可以是click,dblclick,mouseover,mouseenter,keyup,keydown,keypress,blur,focus
+
+4. methods是el、data是平级的
+
+5. 事件处理方法应该声明在methods里面
+
+6. methods里面的方法，推荐用简洁写法
+
+   
 
 ## 事件参数
 

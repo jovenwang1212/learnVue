@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>{{msg}}</h3>
+      <h3 v-text="msg"></h3>
+      <h3 v-text="msg">标签之间的文本</h3>
+      <h2>前面的文本--{{msg}}--之后的文本</h2>
+      {{alink}}
+      
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*
+        v-text作用就是把值作为文本插入到所在的标签之间。底层实现是textContent，会覆盖掉标签之间的文本
+        {{}}是简写,推荐用简写
+        v-text并不能解释html
+      */
+      const app = new Vue({
+        el: "#app",
+        data: {
+          msg:'还是吃得太饱了',
+          alink:'<a href="https://cn.vuejs.org/v2/guide/syntax.html#%E6%8C%87%E4%BB%A4">指令</a>'
+        }
+      });
+      </script>
+  </body>
+</html>
