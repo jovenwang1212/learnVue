@@ -193,6 +193,8 @@ js表达式里面的变量都应该是data或者methods的属性
 1. v-bind:src=“js表达式”
 2. 简写是 :src="js表达式" 当然推荐用简写
 3. :src="imgUrl2" 当我们改变imgUrl2的时候，就会改变src的值，图片改变了。
+4. v-bind:class ="js表达式" 可以用三元运算，值为字符串
+5. v-bind:disabled="是否禁用" 值为true的时候，禁用;值为false的时候，会移除disabled
 
 
 
@@ -202,9 +204,27 @@ js表达式里面的变量都应该是data或者methods的属性
 
 ### 实现步骤
 
+1. 显示数字
+   1. 声明数字 data.num:0
+   2. {{data}}
+2. +-按钮功能
+   1. 点击+ @click:add num++
+   2. 点击- @click:sub num--
+3. 值是0~10，边界问题
+   1. 值为0的时候给-加disabled属性和dislabed的样式
+      1. 值为0时添加disabled属性 v-bind:disabled="num===0"
+      2. 值为0时候，添加disabled样式 v-bind:class="num==0?'disabled':''"
+   2. 值为10的时候给+加disalbed属性和disabled样式
+      1. 值为10时添加disabled属性 v-bind:disabled="num===0"
+      2. 值为10时候，添加disabled样式 v-bind:class="num==0?'disabled':''"
+
 
 
 ### 注意点
+
+1. v-bind:disabled="是否禁用"
+2. v-bind:class="添加的样式"
+3. html标签的disabled属性，只要添加了，就会禁用，无论disabled的值为多少。再者有disabled属性的button，并不会触发点击事件。
 
 
 
