@@ -234,10 +234,23 @@ js表达式里面的变量都应该是data或者methods的属性
 
 ### 实现步骤
 
+1. 显示图片
+   1. 图片数组 imgList:[img1,img2,img3,img4]
+   2. 数组下标index:0
+   3. 取图片 v-bind:src=imgList[index]
+2. 上一张和下一张按钮功能的实现
+   1. 点击上一张 @click:pre index--
+   2. 点击下一张 @click:next index++
+3. 图片循环展示
+   1. 如果当前是最后一张，点下一张，去到第一张
+   2. 如果当前是第一张，点上一张，去到最后一张
 
 
 
 ### 注意点
+
+1. v-bind:src="imgList[index]"就取个值
+2. 边界处理的问题
 
 
 
@@ -285,6 +298,10 @@ js表达式里面的变量都应该是data或者methods的属性
 **Vetur** 让vscode提高对vue的支持，比如高亮，比如图标...
 
 **Vue 2 Snippets** vue关键语法的提示
+
+prettier 格式化代码
+
+path Intellisense 路径提示
 
 
 
