@@ -6,6 +6,20 @@
 
 
 
+## v-if,v-else-if,v-else指令
+
+[传送门](https://cn.vuejs.org/v2/guide/conditional.html)
+
+
+
+## v-show指令
+
+[传送门](https://cn.vuejs.org/v2/guide/conditional.html#v-show)
+
+
+
+
+
 ## v-cloak指令
 
 [传送门](https://cn.vuejs.org/v2/api/#v-cloak)

@@ -314,21 +314,10 @@ v-for遍历数组，渲染列表
    - [`.trim`](https://cn.vuejs.org/v2/guide/forms.html#trim) - 输入首尾空格过滤
 
 2. 字符串的非空判断 推荐用 `if(!this.inputVal)`
+
 3. arr.splice(从哪一项开始删除，删除多少项)
 
-
-
-## v-if,v-else-if,v-else指令
-
-[传送门](https://cn.vuejs.org/v2/guide/conditional.html)
-
-
-
-## v-show指令
-
-[传送门](https://cn.vuejs.org/v2/guide/conditional.html#v-show)
-
-
+   
 
 ## 总结
 
