@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      img{
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- {{imgUrl}} -->
+      <img v-bind:src="imgUrl" alt="">
+      <img :src="imgUrl2" alt="" @click="changeImg">
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*  
+        v-bind:src="js表达式"
+        简写:src="js表达式"
+      */
+      const app = new Vue({
+        el: "#app",
+        data: {
+          imgUrl:'./img/cat.gif',
+          imgUrl2:'./img/girl.png'
+        },
+        methods: {
+          changeImg(){
+            this.imgUrl2='./img/boy.png'
+          }
+        },
+      });
+      </script>
+  </body>
+</html>

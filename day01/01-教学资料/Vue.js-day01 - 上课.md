@@ -122,7 +122,11 @@ Vue指令是提供给HTML标签新增的属性
 
 ## 事件参数
 
+事件处理方法里面，会默认接受一个事件对象event，比较少使用
 
+事件传参和html注册事件一样的。
+
+如果方法无须参数的话，就不要给括号
 
 
 
@@ -130,23 +134,65 @@ Vue指令是提供给HTML标签新增的属性
 
 [传送门](https://cn.vuejs.org/v2/guide/events.html#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6)
 
+1. 使用方法 v-on:事件名.修饰符=“事件处理方法”
+2. @keyup.enter enter抬起的时候触发的事件
+3. .stop阻止事件冒泡
+4. .prevent阻止默认默认事件
+
+```html
+<!-- 阻止单击事件继续传播 -->
+<a v-on:click.stop="doThis"></a>
+
+<!-- 提交事件不再重载页面 -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- 修饰符可以串联 -->
+<a v-on:click.stop.prevent="doThat"></a>
+
+<!-- 只有修饰符 -->
+<form v-on:submit.prevent></form>
+
+<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+<!-- 即事件不是从内部元素触发的 -->
+<div v-on:click.self="doThat">...</div>
+
+<!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+<input v-on:keyup.enter="submit">
+```
+
 
 
 ## vue方法中的this
 
 [传送门](https://cn.vuejs.org/v2/api/#methods)
 
+1. 方法中的this就是Vue实例
 
+2. 方法中的this可以直接访问到data和methods的属性，`this.`
+
+3. 在Vue里面，改变data值，对应的视图会响应。
+
+   
 
 ### js表达式的作用域
 
 [传送门](https://cn.vuejs.org/v2/guide/syntax.html#%E4%BD%BF%E7%94%A8-JavaScript-%E8%A1%A8%E8%BE%BE%E5%BC%8F)
+
+js表达式里面的变量都应该是data或者methods的属性
 
 
 
 ## v-bind指令
 
 [传送门](https://cn.vuejs.org/v2/api/#v-bind)
+
+动态地绑定一个或多个html标签属性
+
+**如果html标签的属性不是写死的，都应该用v-bind**
+
+1. v-bind:src=“js表达式”
+2. 简写是 :src="js表达式" 当然推荐用简写
+3. :src="imgUrl2" 当我们改变imgUrl2的时候，就会改变src的值，图片改变了。
 
 
 
