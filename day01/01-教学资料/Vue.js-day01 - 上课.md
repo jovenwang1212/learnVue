@@ -7,7 +7,7 @@
 1. 总共有27天的课程
 2. 每天上课时长6小时
 3. 三个小阶段，Vue基础，pc端项目还有移动端
-4. Vue基础包括基本使用，指令，一些小的案例串起这些知识点
+4. Vue基础7天课程，包括基本使用，指令，一些小的案例串起这些知识点
 
 
 
@@ -58,7 +58,7 @@
 
 指令 (Directives) 是带有 `v-` 前缀的特殊特性。
 
-Vue指令是提供给HTML标签新增的属性
+**Vue指令是提供给HTML标签新增的属性**
 
 使用是`v-text="值"`
 
@@ -258,13 +258,35 @@ js表达式里面的变量都应该是data或者methods的属性
 
 [传送门](https://cn.vuejs.org/v2/guide/forms.html)
 
+你可以用 `v-model` 指令在表单 `<input>`、`<textarea>` 及 `<select>` 元素上创建双向数据绑定。
+
+1. v-model只能用在input、textarea、select三个元素上
+2. **获取用户的输入**
+3. 双向数据绑定
+   1. value改变，data的值跟着改变
+   2. data值改变，radio value也改变
+
 
 
 ## v-for指令
 
 [传送门](https://cn.vuejs.org/v2/guide/list.html)
 
+我们可以用 `v-for` 指令基于一个数组来渲染一个列表。
 
+v-for遍历数组，渲染列表
+
+1. 用法 v-for="元素的别名 in 数组"
+
+2. 用法 v-for="（元素的别名，下标） in 数组"
+
+3. v-for需要写在需要重复的元素，比如li
+
+4. 元素别名和下标也可以在v-for作用的标签上和标签之内使用。
+
+5. in 是一个关键字不能改。
+
+   
 
 ## Demo-记事本
 
@@ -272,8 +294,27 @@ js表达式里面的变量都应该是data或者methods的属性
 
 ### 实现步骤
 
+1. 显示列表
+   1. 列表的数据 todoList
+   2. v-for遍历todoList ,vfor加在li标签上
+2. 输入任务，回车，添加任务
+   1. 获取到输入框的内容 v-model
+   2. 回车 @keyup.enter:addTodo
+   3. 添加任务就是给数组添加一项 todoList.push()
+3. 双击删除任务
+   1. 双击 @dblclick:delTodo(index)
+   2. index来自v-for里面
+   3. arr.splice(从哪个下标开始删除，删除多少项)
 
 ### 注意点
+
+1. v-model的修饰符
+   - [`.lazy`](https://cn.vuejs.org/v2/guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件
+   - [`.number`](https://cn.vuejs.org/v2/guide/forms.html#number) - 输入字符串转为有效的数字
+   - [`.trim`](https://cn.vuejs.org/v2/guide/forms.html#trim) - 输入首尾空格过滤
+
+2. 字符串的非空判断 推荐用 `if(!this.inputVal)`
+3. arr.splice(从哪一项开始删除，删除多少项)
 
 
 
@@ -297,11 +338,19 @@ js表达式里面的变量都应该是data或者methods的属性
 
 **Vetur** 让vscode提高对vue的支持，比如高亮，比如图标...
 
+![1566375080182](Vue.js-day01 - 上课.assets/1566375080182.png)
+
 **Vue 2 Snippets** vue关键语法的提示
+
+![1566375178648](Vue.js-day01 - 上课.assets/1566375178648.png)
 
 prettier 格式化代码
 
+![1566375231607](Vue.js-day01 - 上课.assets/1566375231607.png)
+
 path Intellisense 路径提示
+
+![1566375257887](Vue.js-day01 - 上课.assets/1566375257887.png)
 
 
 
