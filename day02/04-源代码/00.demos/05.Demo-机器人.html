@@ -136,8 +136,6 @@
         <!-- <li><img src="./img/girl.png" class="imgleft"><span class="spanleft">不好</span></li> -->
         <!-- 生成列表 -->
         <li v-for="it in messageList">
-          <template v-if="item.isme"></div>
-          <div v-else></div>
           <img
             :src="it.male?'./img/right.png':'./img/left.gif'"
             :class="it.male?'imgright':'imgleft'"
@@ -200,8 +198,6 @@
               male: false,
               msg: backData.text
             })
-
-            $('.content').scrollTop(9999999)
           }
         })
         // 清空内容
