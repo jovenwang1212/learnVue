@@ -57,7 +57,7 @@
         <a href="javascript:;" v-for="city in hotCitys" @click="clickSearch(city)">{{ city }}</a>
       </div>
     </div>
-    <transition-group name="list" tag="ul" class="weather_list">
+    <transition-group name="list" tag="ul" class="weather_list" @after-enter="afterEnter">
       <li v-for="(item,index) in weatherInfo.forecast" :key="item.date" :style="{transitionDelay:index*100+'ms'}">
         <div class="info_type">
           <!-- 雨 -->
@@ -118,6 +118,10 @@
         clickSearch(city) {
           this.city = city
           this.queryWeather()
+        },
+        afterEnter(el) {
+          // 出现动画结束，清空动画延迟
+          el.style.transitionDelay = ''
         }
       }
     })

@@ -232,94 +232,29 @@ Vue列表动画：Vue在列表元素添加或移除过程中，在恰当的时�
 
 [传送门](https://cn.vuejs.org/v2/guide/transitions.html#JavaScript-%E9%92%A9%E5%AD%90)
 
-Vue动画执行过程中，在重要的时间节点会以回调函数的形式通知我们，在回调函数里面可以自定义逻辑
+Vue动画钩子就是元素出现和隐藏的动画过程中，Vue在会恰当的时机以回调函数的形式通知我们。在回调函数里可以自定义一些逻辑。
 
-1. 元素出现过程中有钩子：前，中，后还有取消
-
-2. 元素消失过程中有钩子：前，中，后还有取消
-
-   ```html
-   <transition
-     v-on:before-enter="beforeEnter"
-     v-on:enter="enter"
-     v-on:after-enter="afterEnter"
-     v-on:enter-cancelled="enterCancelled"
-   
-     v-on:before-leave="beforeLeave"
-     v-on:leave="leave"
-     v-on:after-leave="afterLeave"
-     v-on:leave-cancelled="leaveCancelled"
-   >
-   ```
-
-3. 动画的钩子函数注册在transtion标签上，或者transtion-group标签上
-
-4. 动画钩子函数声明在methods里面，接受一个el参数，这个el就是dom
+1. 元素出现动画 前，中，后，还有取消
+2. 元素消失动画的前，中后还有取消
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
+<transition
+  v-on:before-enter="beforeEnter"
+  v-on:enter="enter"
+  v-on:after-enter="afterEnter"
+  v-on:enter-cancelled="enterCancelled"
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Document</title>
-  <style>
-    .list-enter-active,
-    .list-leave-active {
-      transition: all 1s;
-    }
-
-    .list-enter,
-    .list-leave-to
-
-    /* .list-leave-active for below version 2.1.8 */
-      {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app">
-    <button @click="add">添加</button>
-    <transition-group name="list" tag="ul" v-on:after-enter="afterEnter">
-      <li v-for="(item, index) in arr" :key="item">{{item}}</li>
-    </transition-group>
-  </div>
-  <script src="./lib/vue.js"></script>
-  <script>
-    const app = new Vue({
-      el: "#app",
-      data: {
-        arr: [1, 2, 3, 4, 5]
-      },
-      methods: {
-        add() {
-          this.arr.push(parseInt(Math.random() * 1000))
-        },
-        afterEnter(el) {
-          //console.log('ok')
-          console.log(el)
-        }
-      },
-    });
-  </script>
-</body>
-
-</html>
+  v-on:before-leave="beforeLeave"
+  v-on:leave="leave"
+  v-on:after-leave="afterLeave"
+  v-on:leave-cancelled="leaveCancelled"
+>
 ```
 
+使用方法
 
-
-> 1. 在昨天实现的天知道案例里面，有一个小细节和演示的案例不太一样。打开案例，这个差别肉眼还看不出来呢，降低网速。注意到天气列表元素出现的时候，是依次延迟的，但是消失的时候是一起消失的。对比我们的实现，消失的时候，也是依次消失的。
-> 2. 如果想实现消失动画一起消失，怎么实现。依次消失是由于设置了transition-delay。所以我们需要在元素出现动画结束后清除transition-delay样式。这里涉及到一个知识点Vue动画的钩子函数。
-> 3. 看文档，解释。我们说Vue动画其实是元素在显示与隐藏时的动画，那么显示与隐藏时并不是瞬间的，是有阶段的，在这些阶段的重要时间节点也会以回调函数的形式通知给我们。这个和Vue生命周期钩子函数可以对照起来理解
-> 4. Vue动画钩子定义。
-> 5. 看基本使用，然后举例说明
-> 6. 总结用法，这些钩子函数不用去记忆。
+	1. 动画钩函数是注册在transition,transition-grup上
+ 	2. 钩子函数的声明是放在methods，默认接受一个el参数，就是动画元素的DOM
 
 
 
@@ -327,8 +262,8 @@ Vue动画执行过程中，在重要的时间节点会以回调函数的形式�
 
 ### 实现步骤
 
-1. transition-group上注册after-enter
-2. after-enter事件处理方法里面移除transition-delay
+1. 在transition-group上注册after-enter
+2. after-enter事件处理方法里面重置transition-delay
 
 
 
