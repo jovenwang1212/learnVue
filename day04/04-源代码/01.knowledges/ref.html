@@ -10,28 +10,26 @@
 
 <body>
   <div id="app">
-    <h2 ref="txt">{{message}}</h2>
+    <button @click="print">打印</button>
+    <p ref="txt">这是一个寂寞的天</p>
+    <ul ref="list">
+      <li>啦啦啦</li>
+      <li>biu biu</li>
+    </ul>
   </div>
+  <h2 ref="txt">下着有些伤心的雨</h2>
   <script src="./lib/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
-      data: {
-        message: '这是一个寂寞的天'
+      data: {},
+      methods: {
+        print() {
+          console.log(this.$refs)
+          // console.log(this.$refs.txt)
+          // console.log(this.$refs.list)
+        }
       },
-      beforeCreate() {
-        console.log(this.$refs.txt)
-      },
-      created() {
-        console.log(this.$refs.txt)
-      },
-      beforeMount() {
-        console.log(this.$refs.txt)
-      },
-      mounted() {
-        // 最早能在这里获取到dom
-        console.log(this.$refs.txt)
-      }
     });
   </script>
 </body>

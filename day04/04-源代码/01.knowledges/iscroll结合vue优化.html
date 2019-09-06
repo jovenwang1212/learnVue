@@ -27,7 +27,6 @@
   <script src="./lib/vue.js"></script>
   <script src="./lib/iscroll.js"></script>
   <script>
-    var myScroll = null
     const app = new Vue({
       el: "#app",
       data: {
@@ -44,16 +43,21 @@
           '台风前的宁静',
           '台风前的宁静',
           '台风前的宁静'
-        ]
+        ],
+        // myScroll: null
       },
       methods: {
         add() {
           this.arr.push('台风前的宁静')
-          myScroll.refresh()
+          this.$nextTick(() => {
+            this.myScroll.refresh()
+          })
         }
       },
+      mounted() {
+        this.myScroll = new IScroll(this.$refs.wrapper);
+      },
     });
-    myScroll = new IScroll(dom);
   </script>
 </body>
 
