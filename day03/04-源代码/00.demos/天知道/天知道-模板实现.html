@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>天知道</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/iconfont.css" />
+  <link rel="stylesheet" href="css/main2.css" />
+  <style>
+    .tem .iconfont {
+      font-size: 50px;
+    }
+
+    .list-item {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 1s;
+    }
+
+    .list-enter,
+    .list-leave-to
+
+    /* .list-leave-active for below version 2.1.8 */
+      {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* li:nth-child(2){
+        transition-delay: 200ms;
+      } */
+  </style>
+</head>
+
+<body>
+  <div class="wrap" id="app">
+    <div class="search_form">
+      <div class="logo"><img src="img/logo.png" alt="logo" /></div>
+      <div class="form_group">
+        <input type="text" class="input_txt" placeholder="请输入查询的天气" v-model="city" @keyup.enter="queryWeather" />
+        <button class="input_sub" :class="{loading:isLoading}" @click="queryWeather">
+          搜 索
+        </button>
+      </div>
+      <div class="hotkey">
+        <!-- <a href="javascript:;" @click="clickSearch('北京')">北京</a>
+          <a href="javascript:;" @click="clickSearch('上海')">上海</a>
+          <a href="javascript:;" @click="clickSearch('广州')">广州</a>
+          <a href="javascript:;" @click="clickSearch('深圳')">深圳</a> -->
+        <a href="javascript:;" v-for="city in hotCitys" @click="clickSearch(city)">{{ city }}</a>
+      </div>
+    </div>
+    <transition-group name="list" tag="ul" class="weather_list">
+      <li v-for="(item,index) in weatherInfo.forecast" :key="item.date" :style="{transitionDelay:index*100+'ms'}">
+        <div class="info_type">
+          <!-- 雨 -->
+          <span class="iconfont" v-if="item.type.includes('雨')">&#xe931;</span>
+          <!-- 晴 -->
+          <span class="iconfont" v-else-if="item.type.includes('晴')">&#xe933;</span>
+          <!-- 阴 -->
+          <span class="iconfont" v-else-if="item.type.includes('阴')">&#xe92d;</span>
+          <!-- 雪 -->
+          <span class="iconfont" v-else-if="item.type.includes('雪')">&#xeb87;</span>
+          <!-- 云 -->
+          <span class="iconfont" v-else-if="item.type.includes('云')">&#xeb79;</span>
+          <!-- 雷 -->
+          <span class="iconfont" v-else-if="item.type.includes('雷')">&#xeb77;</span>
+          <!-- 雹 -->
+          <span class="iconfont" v-else-if="item.type.includes('雹')">&#xeb76;</span>
+          <!-- 雾 -->
+          <span class="iconfont" v-else>&#xeb75;</span>
+        </div>
+        <div class="info_temp">
+          {{item.high}}<br />{{ item.low }}
+        </div>
+        <div class="info_date">
+          <b>{{ weatherInfo.city }}</b><span>{{ item.date }}</span>
+        </div>
+      </li>
+    </transition-group>
+  </div>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        city: '武汉',
+        weatherInfo: {},
+        isLoading: false,
+        hotCitys: ['北京', '上海', '广州', '深圳']
+      },
+      methods: {
+        queryWeather() {
+          this.isLoading = true
+          this.weatherInfo.forecast = []
+          axios
+            .get(`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`)
+            .then(res => {
+              console.log(res)
+              this.weatherInfo = res.data.data
+            })
+            .catch(err => {
+              console.log(err)
+            })
+            .finally(() => {
+              this.isLoading = false
+            })
+        },
+        clickSearch(city) {
+          this.city = city
+          this.queryWeather()
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

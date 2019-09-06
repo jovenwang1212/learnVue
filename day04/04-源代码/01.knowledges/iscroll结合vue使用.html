@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    #wrapper {
+      width: 400px;
+      height: 200px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="add">添加</button>
+    <div id="wrapper">
+      <ul>
+        <li v-for="item in arr">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/iscroll.js"></script>
+  <script>
+    var myScroll = null
+    const app = new Vue({
+      el: "#app",
+      data: {
+        arr: [
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静',
+          '台风前的宁静'
+        ]
+      },
+      methods: {
+        add() {
+          this.arr.push('台风前的宁静')
+          myScroll.refresh()
+        }
+      },
+    });
+    myScroll = new IScroll('#wrapper');
+  </script>
+</body>
+
+</html>

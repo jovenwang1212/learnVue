@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- dom结构 -->
+    <div id="container">
+      <h2>{{ message }}</h2>
+      <h2>{{ num * 23 }}</h2>
+      <h2>{{ isRed ? 'red' : 'green' }}</h2>
+      <!-- <h2>{{const PI=3.1415926535}}</h2> -->
+    </div>
+    <!-- 导入vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 实例化Vue -->
+
+    <script>
+      const PI=3.1415926535
+      new Vue({
+        el: '#container',
+        data: {
+          message: '中分还带波浪，是不是很萌',
+          num: 99,
+          isRed: true
+        }
+      })
+    </script>
+  </body>
+</html>

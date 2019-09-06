@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="./css/result-light.css" />
+
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+
+    <style id="compiled-css" type="text/css">
+      /* 结合v-cloak */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="todoapp">
+      <header class="header">
+        <h1>任务清单</h1>
+        <input
+          autofocus="autofocus"
+          autocomplete="off"
+          placeholder="请输入任务"
+          class="new-todo"
+        />
+      </header>
+      <section class="main">
+        <input type="checkbox" class="toggle-all" />
+        <label for="toggle-all"></label>
+        <ul class="todo-list">
+          <h2>模板</h2>
+          <li class="todo">
+            <div class="view">
+              <input type="checkbox" class="toggle" />
+              <label>吃饭饭</label> <button class="destroy"></button>
+            </div>
+            <input type="text" class="edit" />
+          </li>
+          <li class="todo completed">
+            <div class="view">
+              <input type="checkbox" class="toggle" /> <label>睡觉觉</label>
+              <button class="destroy"></button>
+            </div>
+            <input type="text" class="edit" />
+          </li>
+          <li class="todo editing">
+            <div class="view">
+              <input type="checkbox" class="toggle" /> <label>睡觉觉</label>
+              <button class="destroy"></button>
+            </div>
+            <input type="text" class="edit" />
+          </li>
+        </ul>
+      </section>
+      <footer class="footer">
+        <span class="todo-count"><strong>2</strong> items left </span>
+        <ul class="filters">
+          <li><a href="#/all" class="selected">All</a></li>
+          <li><a href="#/active" class="">Active</a></li>
+          <li><a href="#/completed" class="">Completed</a></li>
+        </ul>
+        <button class="clear-completed" style="display: none;">
+          Clear completed
+        </button>
+      </footer>
+    </section>
+    <footer class="info">
+      <p>双击进入编辑</p>
+      <p>感谢 <a href="http://evanyou.me">Evan You</a></p>
+      <p>感谢 <a href="http://todomvc.com"></a></p>
+    </footer>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script></script>

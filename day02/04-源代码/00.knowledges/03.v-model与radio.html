@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>性别是: {{sex}}</h2>
+      <input type="radio" value="男" name="sex" v-model="sex"/>男
+      <br />
+      <input type="radio" value="女" name="sex" v-model="sex"/> 女
+      <br>
+      <button @click="changeMale">泰国变性</button>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          sex:'男'
+        },
+        methods: {
+          changeMale(){
+            this.sex='女'
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

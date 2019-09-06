@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>聊天机器人</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="wrap" id="app">
+    <div class="header">
+      <h3>知心姐姐</h3>
+      <img src="img/person01.png" alt="icon" />
+    </div>
+    <div class="main">
+      <ul class="talk_list">
+        <li :class="item.isMe?'right_word':'left_word'" v-for="item in messageList">
+          <img :src="item.isMe?'img/person02.png':'img/person01.png'" /> <span>{{item.content}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="footer">
+      <img src="img/person02.png" alt="icon" />
+      <input type="text" placeholder="说的什么吧..." class="input_txt" v-model="inputVal" @keyup.enter="chat" />
+      <input type="button" value="发 送" class="input_sub" @click="chat" />
+    </div>
+  </div>
+
+  <script src="./js/vue2.0.js"></script>
+  <script src="./js/jquery-1.12.4.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // 用户的输入
+        inputVal: '',
+        // 聊天消息数组
+        messageList: [{
+            content: '你好',
+            isMe: true
+          },
+          {
+            content: '好啊',
+            isMe: false
+          },
+          {
+            content: '吃饭了吗',
+            isMe: true
+          },
+          {
+            content: '滚',
+            isMe: false
+          }
+        ]
+
+      },
+      methods: {
+        // 我和姐姐聊天
+        chat() {
+          // 去除首尾空格
+          this.inputVal = this.inputVal.trim()
+          // 为空不发送消息
+          if (this.inputVal === '') {
+            return
+          }
+          // 添加我的消息
+          this.messageList.push({
+            content: this.inputVal,
+            isMe: true
+          })
+
+          // 根据我的消息，请求得到姐姐的消息
+          $.ajax({
+            type: 'post',
+            url: 'http://www.tuling123.com/openapi/api',
+            data: {
+              key: 'a618e456f0744066840ceafb6a249d9d',
+              info: this.inputVal
+            },
+            success: (res) => {
+              // 添加姐姐的消息
+              this.messageList.push({
+                content: res.text,
+                isMe: false
+              })
+
+              Vue.nextTick(function () {
+                // 姐姐消息添加后，且dom更新完，强制让滚动条滚到底部
+                $('.main').scrollTop(99999)
+              })
+
+              this.$nextTick(() => {
+                $('.main').scrollTop(99999)
+              })
+
+              // 强制让滚动条滚到底部
+              // setTimeout(() => {
+              //   $('.main').scrollTop(99999)
+              // }, 0)
+            }
+          })
+
+          // 清空我的消息
+          this.inputVal = ''
+        }
+      },
+      updated() {
+        // console.log('updated')
+        // $('.main').scrollTop(99999)
+      },
+    })
+  </script>
+
+</body>
+
+</html>

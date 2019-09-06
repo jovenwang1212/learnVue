@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        <!-- 相当于是Tab栏 -->
+        <router-link to="/music">发现音乐</router-link>
+        <router-link to="/myMusic">我的音乐</router-link>
+        <router-link to="/friend">朋友</router-link>
+        <router-link to="/download">下载客户端</router-link>
+      </p>
+      <!-- Tab content 内容区-->
+      <router-view></router-view>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-router.js"></script>
+    <script>
+      // 1. 组件注册的简洁写法
+      const Music = { template: '<div><img src="./images/music.png"></div>' }
+      const MyMusic = { template: '<div><img src="./images/me.png"></div>' }
+      const Friend = { template: '<div><img src="./images/friend.png"></div>' }
+      const Download = { template: '<div><img src="./images/download.png"></div>' }
+
+      // 2. 定义路由规则
+      // 数组里面包含 path与组件关系
+      const routes = [
+        { path: '/music', component: Music },
+        { path: '/myMusic', component: MyMusic },
+        { path: '/friend', component: Friend },
+        { path: '/download', component: Download },
+      ]
+
+      // 3. 创建 router 实例
+      // 把路由规则传过来
+      const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+      })
+
+      // 4. 创建根实例。
+      // 传了路由实例
+      const app = new Vue({
+        el:'#app',
+        router
+      })
+      // .$mount('#app')相当 el:'#app'
+
+      // 现在，应用已经启动了！
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      li span {
+        font-size: 30px;
+      }
+      [v-cloak]{
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>天气查查查--<span v-cloak>{{city}}</span></h2>
+      <input type="text" placeholder="请输入查询的城市" v-model.trim="city" @keyup.enter="queryWeather"/>
+      <ul v-cloak>
+        <li v-for="(item, index) in forecastList" :key="index">
+          {{item.date}} {{item.high}} {{item.low}} {{item.type}}
+          <span v-if="item.type.includes('云')">🌥️</span>
+          <span v-else-if="item.type.includes('雨')">🌧️</span>
+          <span v-else>🌞</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 jquery.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- jQuery -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+   new Vue({
+     el:'#app',
+     data:{
+       //获取用户输入的城市名
+       city:'',
+       //天气信息数组
+       forecastList:[]
+     },
+     methods: {
+      //  查询天气
+      queryWeather(){
+        $.ajax({
+          url:`http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`,
+          
+          // url:"http://wthrcdn.etouch.cn/weather_mini?city="+this.city,
+
+          dataType:'json',
+          // success:function(res){
+            // 如果不想绑定this
+            success:(res)=>{
+            // console.log(res.data.forecast)
+            this.forecastList = res.data.forecast
+          }
+        })
+      }
+     },
+   })
+</script>

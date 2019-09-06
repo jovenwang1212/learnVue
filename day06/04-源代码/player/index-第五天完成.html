@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="stylesheet" href="./css/iconfont.css" />
+  <link rel="stylesheet" href="./css/results.css" />
+  <link rel="stylesheet" href="./css/player.css" />
+  <link rel="stylesheet" href="./css/comment.css" />
+  <link rel="stylesheet" href="./css/video.css" />
+</head>
+
+<body>
+  <div id="player">
+    <h2 class="title">黑云音乐</h2>
+    <div class="search">
+      <input type="text" @keyup.enter="queryMusic" v-model="keywords" />
+      <button @click="queryMusic">
+        <span class="iconfont icon-search"></span>
+      </button>
+    </div>
+    <div class="tab-wrapper">
+      <!-- tab栏 -->
+      <div class="tab-bar">
+        <router-link to="/results" class="bar-item">搜索结果</router-link>
+        <router-link to="/player" class="bar-item">歌曲播放</router-link>
+        <router-link to="/video" class="bar-item">mv</router-link>
+        <router-link to="/comment" class="bar-item">歌曲评论</router-link>
+      </div>
+      <!-- 对应的内容区域 -->
+      <div class="tab-content">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div>
+  <!-- 引入vue.js跟vue-router.js -->
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-router.js"></script>
+  <script src="./lib/axios.js"></script>
+
+  <!-- 歌曲列表html -->
+  <script type="text/x-template" id="results_tpl">
+    <div class="result-wrapper">
+          <div class="song" v-for="(item, index) in songList" :key="item.id">
+            <div class="name">
+              <span class="iconfont icon-play" @click="toPlayer(item.id)"></span>
+              <a href="" @click.prevent="toComment(item.id)">{{item.name}}</a>
+              <span class="iconfont icon-editmedia" v-show="item.mvid" @click="playMV(item.mvid)"></span>
+            </div>
+            <div class="singer">{{item.artists|formatSinger}}</div>
+            <div class="album">《{{item.album.name}}》</div>
+            <div class="time">{{item.duration|formatTime}}</div>
+          </div>
+        </div>
+    </script>
+
+  <script type="text/x-template" id="player_tpl">
+    <div class="player">
+          <div class="left">
+            <img class='disc' src="./img/disc.png" alt="">
+            <img class='cover' src="./img/cover.png" alt="">
+          </div>
+          <div class="right">
+            <div class="title"><img src="./img/tag.png" alt=""><span>放个大招给你看</span> </div>
+            <div class="singer">歌手: <span>尼古拉斯赵四</span></div>
+            <div class="album">所属专辑: <span>我就是我</span></div>
+            <audio class='audio' controls :src="musicUrl?musicUrl:''"></audio>
+            <ul class='lyric-container'>
+              <li class='lyric'>难以忘记</li>
+              <li class='lyric'>初次见你</li>
+              <li class='lyric'>那双迷人的小眼睛</li>
+            </ul>
+          </div>
+        </div>
+    </script>
+
+  <script type="text/x-template" id="video_tpl">
+    <div class="video" v-if="isInit">
+          <div class="title-wrapper">
+            <span class='tag'>MV</span>
+            <span class='title'>{{mvDetail.name}}</span>
+            <span class='artist'>{{mvDetail.artistName}}</span>
+          </div>
+          <video :src="mvDetail.brs['720']" controls></video>
+        </div>
+    </script>
+  <script type="text/x-template" id="comment_tpl">
+    <div class="comment-wrapper">
+          <div class="items" v-for="(item, index) in hotComments" :key="item.commentId">
+            <div class="item">
+              <div class="left">
+                <img :src="item.user.avatarUrl" alt="">
+              </div>
+              <div class="right">
+                <div class="top">
+                  <span class='user'>{{item.user.nickname}}</span>
+                  <span class='content'>{{item.content}}</span>
+                </div>
+                <div class="bottom">
+                  <div class="time">{{item.time|formatTime}}</div>
+                  <div class="like-wrapper">
+                      <span>👍</span>({{item.likedCount}})
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </script>
+  <script>
+    //  组件的注册
+    const Results = {
+      template: '#results_tpl',
+      data() {
+        return {
+          // 歌曲搜索结果列表
+          songList: []
+        }
+      },
+      // 尽早发请求，初始化数据
+      created() {
+        // console.log('mounted')
+        axios
+          .get(`https://autumnfish.cn/search?keywords=${this.$route.params.keywords}`)
+          .then(res => {
+            // console.log(res.data.result.songs)
+            this.songList = res.data.result.songs
+          })
+      },
+      filters: {
+        // 毫秒数->02:27
+        formatTime(msec) {
+          // 总的秒数
+          let totalSec = msec / 1000
+          // 分
+          let min = Math.floor(totalSec / 60)
+
+          // 剩余的秒
+          let sec = Math.floor(totalSec % 60)
+
+          let minStr = min < 10 ? '0' + min : min + ''
+          let secStr = sec < 10 ? '0' + sec : sec + ''
+          return `${minStr}:${secStr}`
+        },
+        // 将歌手名字以/拼在一起返回
+        formatSinger(singers) {
+          // let str = ''
+          // for (let i = 0; i < singers.length; i++) {
+          //   str += singers[i].name + '/'
+          // }
+          // return str.substr(0,str.length-1)
+          let arr = []
+          for (let i = 0; i < singers.length; i++) {
+            arr.push(singers[i].name)
+          }
+          return arr.join('/')
+        }
+      },
+      methods: {
+        // 显示mv组件，并且传递mvid
+        playMV(mvid) {
+          // 编程式导航
+          router.push(`/video/${mvid}`)
+        },
+        // 跳转到评论,并传参
+        toComment(id) {
+          router.push(`/comment/${id}`)
+        },
+        // 跳转到歌曲播放,并传参
+        toPlayer(id) {
+          router.push(`/player/${id}`)
+        }
+      },
+    }
+    const Player = {
+      template: '#player_tpl',
+      data() {
+        return {
+          // 歌曲的地址
+          musicUrl: ''
+        }
+      },
+      created() {
+        axios.get(`https://autumnfish.cn/song/url?id=${this.$route.params.id}`)
+          .then(res => {
+            // console.log(res)
+            this.musicUrl = res.data.data[0].url
+          })
+      }
+    }
+    const Video = {
+      template: '#video_tpl',
+      data() {
+        return {
+          // mv的地址
+          mvDetail: {},
+          //在数据回来前隐藏
+          isInit: false
+        }
+      },
+      created() {
+        axios.get(`https://autumnfish.cn/mv/detail?mvid=${this.$route.params.mvid}`)
+          .then(res => {
+
+            this.mvDetail = res.data.data
+            this.isInit = true;
+            //  console.log(ret)
+            // console.log(this.mvDetail.brs['720'])
+          })
+      }
+    }
+    const Comment = {
+      template: '#comment_tpl',
+      data() {
+        return {
+          // 热评列表
+          hotComments: []
+        }
+      },
+      created() {
+        axios.get(`https://autumnfish.cn/comment/hot?id=${this.$route.params.id}&type=0`)
+          .then(res => {
+            this.hotComments = res.data.hotComments
+          })
+      },
+      filters: {
+        // 124244431234=> 2017年7月20日
+        formatTime(time) {
+          // 处理数据
+          let d = new Date(time)
+
+          // 返回数据
+          return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`
+        }
+      }
+    }
+
+    const route = [{
+        path: '/results/:keywords',
+        component: Results
+      },
+      {
+        path: '/player/:id',
+        component: Player
+      },
+      {
+        path: '/video/:mvid',
+        component: Video
+      },
+      {
+        path: '/comment/:id',
+        component: Comment
+      }
+    ]
+
+    const router = new VueRouter({
+      // routes
+      routes: route,
+      linkActiveClass: 'active'
+    })
+    const app = new Vue({
+      el: '#player',
+      router,
+      data: {
+        keywords: '北京欢迎你'
+      },
+      methods: {
+        // 显示搜索组件
+        queryMusic() {
+          // 编程式导航，切到搜索组件
+          router.push(`/results/${this.keywords}`)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

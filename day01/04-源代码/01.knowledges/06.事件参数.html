@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="sayHello">点我呀</button>
+      <button @click="call()">括号</button>
+      <button @click="bigger(77)">逼格</button>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+      /*
+      方法默认接受一个事件对象，比较少使用
+      */
+      const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+          sayHello(event){
+            // alert('hello')
+            console.log(event)
+          },
+          call(event){
+            console.log(event) //undefined
+          },
+          bigger(num){
+            alert(num*55)
+          }
+        },
+      });
+      </script>
+  </body>
+</html>

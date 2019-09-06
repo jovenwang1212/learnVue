@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      li span {
+        font-size: 30px;
+      }
+      [v-cloak]{
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2 v-cloak>天气查查查--{{ city }}</h2>
+      <input
+        type="text"
+        placeholder="请输入查询的城市"
+        v-model.trim="city"
+        @keyup.enter="searchWeather"
+      />
+      <ul>
+        <li v-for="it in weatherList">
+          {{ it.date + it.high + it.low + it.type }}
+          <span v-if="it.type.indexOf('云')!=-1">🌥️</span>
+          <span v-else-if="it.type.indexOf('雨')!=-1">🌧️</span>
+          <span v-else>🌞</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 jquery.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- jQuery -->
+<script src="./js/jquery-1.12.4.min.js"></script>
+<!-- 
+  需求
+    1.输入内容 点击回车 查询数据 数据查询到之后 渲染到页面上
+    2.vue
+        v-model
+        @keyup.enter
+        v-for
+      jQuery
+        $.ajax
+    3.接口地址
+      http://wthrcdn.etouch.cn/weather_mini?city=  get请求
+ -->
+<script>
+  // 实例化
+  let app = new Vue({
+    el: '#app',
+    data: {
+      city: '',
+      // 天气数组
+      weatherList: []
+    },
+    methods: {
+      // 查询天气
+      searchWeather() {
+        // this
+        let that = this
+        // 调用接口 ajax
+        $.ajax({
+          // 1左边那个 `
+          url: `http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`,
+          dataType: 'json',
+          // type:'',
+          // data:"",
+          // success:function(backData){
+          // 创建时 上下文中的this是谁 内部就是谁并且不会改变
+          success: backData => {
+            // console.log(backData);
+            // that.weatherList = backData.data.forecast;
+            this.weatherList = backData.data.forecast
+          }
+        })
+      }
+    }
+  })
+</script>

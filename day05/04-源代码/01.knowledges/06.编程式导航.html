@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="toSing">点我去唱歌</button>
+      <p>
+        <!-- 相当于是Tab栏 -->
+        <router-link to="/sing">唱</router-link>
+        <router-link to="/jump">跳</router-link>
+        <router-link to="/rap">Rap</router-link>
+      </p>
+      <!-- Tab content 内容区-->
+      <router-view></router-view>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      const Song = { template: '<div>西湖的水，我的泪。。。。</div>' }
+      const Bar = { template: '<div>跳起来了。。。。</div>' }
+      const Rap = { template: '<div>这碗面又大又圆</div>' }
+
+
+      const routes = [{ path: '/sing', component: Song,name:'Sing' }, { path: '/jump', component: Bar },{
+        path:'/rap',
+        component:Rap
+      }]
+
+      const router = new VueRouter({
+        routes 
+      })
+
+
+      const app = new Vue({
+        el:'#app',
+        router,
+        methods: {
+          toSing(){
+            // alert('sing')
+            router.push({
+              path:'/jump'
+            }).catch(err=>{})
+            // router.push({
+            //   name:'Sing'
+            // })
+          }
+        },
+      })
+    </script>
+  </body>
+</html>

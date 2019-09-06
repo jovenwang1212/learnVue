@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{date}}</h2>
+      <!-- 我想输入 2019.05.07 -->
+      <h2>过滤器的方式</h2>
+      <h2>{{date|formatTime}}</h2>
+      <h2>{{date2|formatTime}}</h2>
+      <h2>计算属性</h2>
+      <h2>{{formatDate}}</h2>
+      <h2>{{formatDate2}}</h2>
+      <input type="text" v-model="date">
+
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/moment.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          date:'2019-8-26',
+          date2:'2017-11-12'
+        },
+        filters:{
+          formatTime(d){
+            // 对日期格式化
+            return moment(d).format('YYYY.MM.DD')
+          }
+        },
+        computed: {
+          formatDate(){
+            return moment(this.date).format('YYYY.MM.DD')
+          },
+          formatDate2(){
+            return moment(this.date2).format('YYYY.MM.DD')
+          }
+        },
+      });
+      </script>
+  </body>
+</html>

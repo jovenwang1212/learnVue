@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+    .news-wrapper{
+      width: 400px;
+      height: 200px;
+      border: 1px solid green;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <news></news>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script type="text/x-template" id="tpl">
+      <div class="news-wrapper">
+        <h2>还是吃得太饱</h2>
+        <h2>{{message}}</h2>
+        <input type="text" v-model="message">
+        <button @click="suibian">鹏鹏</button>
+
+      </div>
+    </script>
+    <script>
+      // 注册组件
+      Vue.component('news', {
+        template:'#tpl',
+        data(){
+          return {
+            message:'hello'
+          }
+        },
+        methods: {
+          suibian(){
+            alert('biu biu biu....')
+          }
+        },
+        beforeMount() {
+          console.log('beforeMount')
+        },
+        mounted() {
+          console.log('mounted')
+        },
+        updated() {
+          console.log('updated')
+        },
+      })
+      const app = new Vue({
+        el: '#app',
+        data: {
+          
+        }
+      })
+    </script>
+  </body>
+</html>

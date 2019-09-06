@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #wrapper {
+      width: 400px;
+      height: 200px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="add()">添加</button>
+  <div id="wrapper">
+    <ul>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+      <li>还是吃得太饱</li>
+    </ul>
+  </div>
+
+  <script src="./lib/iscroll.js"></script>
+  <script>
+    var myScroll = new IScroll('#wrapper');
+
+    function add() {
+      let liDom = document.createElement('li')
+      liDom.textContent = '还是吃得太饱'
+      document.querySelector('#wrapper ul').appendChild(liDom)
+      myScroll.refresh()
+    }
+  </script>
+</body>
+
+</html>

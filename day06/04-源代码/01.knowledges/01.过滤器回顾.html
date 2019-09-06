@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{date}}</h2>
+    <!-- 2019.8.7 -->
+    <h2>格式化后：{{date|formatTime}} </h2>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        date: '2019-8-28'
+      },
+      // 过滤器
+      filters: {
+        formatTime(d) {
+          // 处理数据
+          let str = d.replace(/\-/g, '.')
+          // 返回数据
+          return str
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
