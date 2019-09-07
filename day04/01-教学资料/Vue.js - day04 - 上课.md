@@ -59,13 +59,41 @@
 
 [中文文档传送门](http://caibaojian.com/iscroll-5/)
 
+iScroll是一个比较好用的滚动插件
+
+使用方法
+
+1. 导包 引入iscroll.js
+
+2. 三层嵌套结构，最外层的高度必须比内容高度小
+
+3. 实例化IScroll
+
+   ```js
+   //构造函数里面传的是选择器
+   var myScroll = new IScroll('#wrapper');
+   
+   //构造函数里面传的是dom
+   var wrapper = document.getElementById('wrapper');
+   var myScroll = new IScroll(wrapper);
+   ```
+
 
 
 #### 注意点
 
+​	iScroll必须知道内容的高度才能滚动。所以如果内容增加了，得用refresh通知不iScroll重新计算内容高度
+
+```js
+myScroll.refresh()
+```
+
 
 
 ## iScroll结合Vue使用
+
+1. iScroll实例时，保证内容已经渲染好了。
+2. 内容有改变时，调用refresh
 
 
 
@@ -75,15 +103,30 @@
 
 [$refs属性传送门](https://cn.vuejs.org/v2/api/#vm-refs)
 
+ref与$refs是Vue推荐的获取Dom的方式
+
+1. ref标记dom  ref="dom别名"
+2. $refs包含所有ref标记的dom `vm.$refs.dom别名`可以取到ref所在的dom
+3. 如果两个标签的ref值是一样的，那么后者会覆盖前者
+
 
 
 ## Vue生命周期钩子 - mounted
 
+mounted钩子函数，**初始化阶段最早在这里获取到dom**
 
+mounted只会执行一次。
+
+应用场景：一般在Vue和第三方插件结合时，第三方插件的初始化需要dom，初始化就放在mounted里面。
 
 
 
 ## iScroll结合Vue优化
+
+1. 在mounted里面实例化IScroll，最早能在mounted获取到dom
+2. ref与$refs操作dom
+3. 数组新增后，在nextTick里面iscroll refresh
+4. 页面渲染无关的属性，最好添加为Vue实例的属性
 
 
 

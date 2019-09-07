@@ -74,7 +74,7 @@
    
 2. 导包，引入iscroll.js
 
-4. new IScroll('选择器')
+4. 实例化IScroll
 
    ```js
    //构造函数传选择器
@@ -350,7 +350,8 @@ Vue官方推荐获取dom的方式
 > 1. 为了保证iScroll实例时滚动内容已经渲染完成，我们把iscroll的实例化放在底部，如果内容足够多，其实并不能保证的。滚动内容的的渲染是由Vue来做的。而Vue从创建到销毁过程中经历8个重要的节点，在节点时会以回调函数的形式通知我们。那么大家觉得滚动内容渲染完，Vue会不会通知我们呢
 > 2. 我们看Vue生命周期图示,从上到下正好是Vue实例从创建到销毁的过程, 我们先看前面四个，依次是beforeCreate,created,beforeMount,mounted，翻译成中文的意思是创建前，创建后，挂载前，挂载后，前面两个好理解，挂载是什么鬼呢？可以理解为DOM解析前和DOM解析后。
 > 3. 举例，依次打印this.$refs.txt 最早能在mounted钩子函数里面获取到dom
-> 4. 这里胡子语法解析完成就会触发mounted，那么大家觉得mounted会触发几次？一次，只会触发一次。
+> 4. 断点
+> 5. 这里胡子语法解析完成就会触发mounted，那么大家觉得mounted会触发几次？一次，只会触发一次。
 
 
 
@@ -358,7 +359,8 @@ Vue官方推荐获取dom的方式
 
 1. iScroll的实例化放在mounted钩子函数里面，保证dom解析完全
 2. ref和$refs获取DOM
-3. 无须在DOM里面使用变量，最好直接添加为Vue实例的属性
+3. 增加数据后，在nextTick里面iscroll refresh
+4. 无须在DOM里面使用变量，最好直接添加为Vue实例的属性
 
 ```html
 <!DOCTYPE html>

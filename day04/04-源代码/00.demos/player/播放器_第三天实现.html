@@ -243,7 +243,7 @@
           <!-- <img src="./images/cover.png" alt=""> -->
           <img :src="coverURL?coverURL:'./images/cover.png'" class="cover autoRotate" :class="{playing:isPlaying}" />
         </div>
-        <div class="comment_list" ref="commentWrapper">
+        <div class="comment_list">
           <div>
             <dl v-for="(item, index) in hotComments" :key="item.commentId">
               <dt>
