@@ -222,6 +222,17 @@
     /* .song_wrapper::-webkit-scrollbar {
             display: none;
         } */
+
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 1s;
+    }
+
+    .list-enter,
+    .list-leave-to {
+      opacity: 0;
+      transform: translateX(30px);
+    }
   </style>
 </head>
 
@@ -234,18 +245,20 @@
       </div>
       <div class="center_con">
         <div class="song_wrapper">
-          <ul class="song_list">
-            <li v-for="(item, index) in songList" :key="item.id" @dblclick="playMusic(item.id)">
+          <transition-group tag="ul" name="list" class="song_list" @leave="leave">
+            <li v-for="(item, index) in songList" :key="item.id" @dblclick="playMusic(item.id)"
+              :style="{transitionDelay: 10*index+'ms'}">
+              <a href="" v-show="item.mvid" @click.prevent="playMV(item.mvid)">mv</a>
               {{ item.name }}--{{ item.artists[0].name }}
             </li>
-          </ul>
+          </transition-group>
         </div>
         <div class="player_con">
-          <img src="images/player_bar.png" class="play_bar playing" />
+          <img src="images/player_bar.png" class="play_bar" :class="{playing:isPlaying}" />
           <!-- 黑胶碟片 -->
-          <img src="images/disc.png" class="disc autoRotate playing" />
+          <img src="images/disc.png" class="disc autoRotate" :class="{playing:isPlaying}" />
           <!-- <img src="./images/cover.png" alt=""> -->
-          <img :src="coverURL?coverURL:'./images/cover.png'" class="cover autoRotate playing" />
+          <img :src="coverURL?coverURL:'./images/cover.png'" class="cover autoRotate" :class="{playing:isPlaying}" />
         </div>
         <div class="comment_list" ref="commentWrapper">
           <div>
@@ -262,7 +275,8 @@
         </div>
       </div>
       <div class="audio_con">
-        <audio :src="musicUrl" controls loop class="myaudio" autoplay></audio>
+        <audio :src="musicUrl" controls loop class="myaudio" autoplay @play="isPlaying=true"
+          @pause="isPlaying=false"></audio>
       </div>
     </div>
   </div>
@@ -275,7 +289,7 @@
       el: '#music-player',
       data: {
         // 搜歌
-        keywords: '梦中的婚礼',
+        keywords: '岁月神偷',
         //搜索到的歌曲列表
         songList: [],
         //  歌曲的Url
@@ -283,11 +297,15 @@
         //  歌曲封面
         coverURL: '',
         //  热门评论
-        hotComments: []
+        hotComments: [],
+        // 播放状态
+        isPlaying: false
       },
       methods: {
         //搜索歌曲
         querySong() {
+          // 清空数组，让动画重新生效
+          this.songList = []
           axios
             .get(`https://autumnfish.cn/search?keywords=${this.keywords}`)
             .then(res => {
@@ -315,6 +333,19 @@
             // console.log(res.data.hotComments)
             this.hotComments = res.data.hotComments
           })
+        },
+        // 在新窗口中打开MV
+        playMV(mvid) {
+          axios.get(`https://autumnfish.cn/mv/url?id=${mvid}`)
+            .then(res => {
+              // console.log(res.data.data.url)
+              window.open(res.data.data.url)
+            })
+
+        },
+        leave(el, done) {
+          // 不需要元素离开的动画
+          done()
         }
       }
     })
