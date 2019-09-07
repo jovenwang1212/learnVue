@@ -451,9 +451,11 @@ console.log(app.message, app.username)
 
 1. 引入iscroll
 2. 三层嵌套结构
-3. 高度也满足
-4. new IScroll
-5. 重新计算内容的高度refresh
+3. 实例化IScroll
+   1. 在mounted里面实例化
+   2. ref与$refs获取dom
+4. 数据长度有变化时，需要refresh
+   1. nextTick里面去refresh
 
 
 
@@ -461,30 +463,45 @@ console.log(app.message, app.username)
 
 [传送门](https://cn.vuejs.org/v2/guide/components.html)
 
-组件是包括html、js、css，是一个独立的功能模块。一次抽取，到处使用。
+组件就是一个独立的功能模块，包括html，js,css。 
 
-组件的注册
+一次注册，到处使用。
 
-1. `Vue.component("组件名",{template})`
+组件的使用
 
-2. 在页面中直接把组件名当标签名使用即可
+1. 注册组件 `Vue.component(组件名,{template})`
 
-3. template属性是组件Dom结构
+   1. template是组件的dom结构
 
-   1. template:'html 字符串' 不推荐
-   2. template:'id选择器' 
+      1. dom结构必须有根元素包裹
 
-   ```html
-   <script type="text/x-template" id="tpl">
-   </script>
-   <script>
-   	template:'#tpl'
-   </script>
-   ```
+      2. template:'html字符串' 不推荐
+
+      3. 推荐用定义模板的方式
+
+         ```html
+         <script type="text/x-template" id="模板id">
+         template:'模板id'
+         ```
+
+2. 组件名在Vue的dom中当标签使用。可以使用N次。
+
+   
+
+> 1. 接着我们来学习Vue世界里的一个重要的概念，组件。那么组件是什么呢？
+> 2. 我们去京东看看，两个页面URL是不一样的，但是有同样的地址选择，地址选择长得一样，功能也一样。
+> 3. 如果大家来做这两个页面，两个页面是不是两份HTML文件呢？地址选择功能由它的html,css,js组成的，两个HTML里面有相同的地址选相关的代码。 这样要写的时候，写两份，改的时候改两份，还好是吧，京东其他页面还会有地址选择，比如说10个页面有地址选择，会不会很恶心呢？
+> 4. 那么我们能否把地址选择相关的html,js,css抽离出来，其他需要用的地方引用就行。这样地址选择相关的代码就只有一份。这个抽离出来的东东就是组件。
+> 5. 我们之前做分期乐会员这块，支付组件十多页面都有，但是是共用一个组件，由一个人去维护就行。
+> 6. 所以组件是一独立的功能模块，包括html,js，css。一次抽取，到处使用。
+> 7. 组件的注册，当标签使用。查看dom结构。
+> 8. 多写点内容
+> 9. 多写几个标签
+> 10. 建议用template
+
+
 
 ### 方法和数据绑定
-
-
 
 1. 组件里面的方法和数据绑定和实例化Vue是一样
 2. 组件里面template属性是组件的dom结构

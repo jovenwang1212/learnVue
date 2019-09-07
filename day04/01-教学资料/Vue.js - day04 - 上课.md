@@ -146,7 +146,34 @@ mounted只会执行一次。
 
 [传送门](https://cn.vuejs.org/v2/guide/components.html)
 
-### 方法和数据绑定
+组件就是一个独立的功能模块，包括html，js,css。 
+
+一次注册，到处使用。
+
+组件的使用
+
+1. 注册组件 `Vue.component(组件名,{template})`
+
+   1. template是组件的dom结构
+
+      1. dom结构必须有根元素包裹
+
+      2. template:'html字符串' 不推荐
+
+      3. template:'#模板id' 推荐的方式
+
+         1. <script type="text/x-template" id="模板id">
+
+2. 组件名在Vue的dom中当标签使用。可以使用N次。
+
+   
+
+### 组件方法和数据绑定
+
+1. 方法和数据绑定同Vue实例化一样
+2. 不同的地方
+   1. template是组件的dom结构
+   2. data必须是一个函数，声明的属性要作为函数的返回值
 
 
 
