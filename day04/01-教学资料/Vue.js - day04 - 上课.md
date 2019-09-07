@@ -126,13 +126,19 @@ mounted只会执行一次。
 1. 在mounted里面实例化IScroll，最早能在mounted获取到dom
 2. ref与$refs操作dom
 3. 数组新增后，在nextTick里面iscroll refresh
-4. 页面渲染无关的属性，最好添加为Vue实例的属性
-
-
+4. 页面渲染无关的属性，最好添加为Vue实例的属性，不要放在data
 
 
 
 ## Demo-播放器结合iscroll
+
+1.  引入iscroll
+2. 三层嵌套结构
+3. 实例化IScroll
+   1. ref与$refs获取dom
+   2. 在mounted里面实例化
+4. 数据长度有变化时，需要refresh
+   1. nextTick里面去refresh
 
 
 
