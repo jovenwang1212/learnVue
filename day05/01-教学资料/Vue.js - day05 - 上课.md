@@ -2,90 +2,26 @@
 
 ## 反馈
 
-1. 老师,讲的好....
 
-2. 这些知识真的有点杂乱,要说什么都没讲吧,讲了一天,要说讲了什么吧,印象里就是iScroll的使用,mounted,组件,至于播放器的细节处理忘光光了
-
-3. 老师,第1次歌单滚动是正常的,但是再次搜索然后滚动歌单会滚动到下面空白的地方???
-
-<<<<<<< HEAD
-4. 不是说代码来源生活??? 老师讲的语法可以举生活例子来说明
-   这样知识点就会有更好的理解
-
-=======
-   1. TODO
-
-4. 不是说代码来源生活??? 老师讲的语法可以举生活例子来说明
-   这样知识点就会有更好的理解
-
-   1. mounted 最早能在这里获取到dom
-   2. ref与$refs 用Vue的方式来获取dom
-
->>>>>>> vue38
-5. 老师可以看出您的技术水平非常的丰厚,实战经历也非常的强,但是小的愚钝 需要您的帮助 问题:有时候并不知道老师讲到了哪个地方还是哪个概念!! 看法:因为老师您 在讲题的过程中几乎都是一个调调 知识点与知识点之间跳得太快
-   没有间隔 必须要精力十分的集中才能跟得上,才能知道是哪个概念 哪个知识点, 但是根据
-   科学研究 一节课45分钟 能保持高度集中三十分钟以上就已经是非常不错的了, 有时候真的需要您去
-   提醒我们一下, 这个知识点讲完了 开始进入下一个知识点 ,即使上一个知识点没弄清楚
-   也能在老师你不一样的语调当中帮助我们把灵魂出窍的自己拉回来 拉拉拉, 这样会好很多 比如:( 提高音调下面一个知识点 比较难啊, 大家注意听, 下面一个知识点只是了解, 企业用的并不多...)也可以让我们清晰的知道哪个知识点 相对重要 需要重点击破 (个人看法)
-
-<<<<<<< HEAD
-6. 元气满满的加油
-
-=======
-   1. 知识点 比较难啊, 大家注意听,
-
-6. 元气满满的加油
-
-   1. 加油
-
->>>>>>> vue38
-7. 知识点有点杂 , 要整理下
-
-8. 生命周期能在讲讲么,好懵啊,mounted没懂,钩子啥的真不清除
-
-9. 又是充满忧虑的一天 ,我太难了 rm -rf/*
-
-10. 加油
-
-11. 有点杂,不知道怎么管理,还是得多花点时间记知识点啊
-
-12. 讲真的很多时候其实我连需求都没搞明白,尤其是那种细节的需求搞不明白前后有什么区别,就开始分析用什么方法来解决了,怎么学啊.感觉越学越退步了,第三天和第四天真的很懵逼,勉强自己敲出来的代码悦听也能放歌了
-
-13. 今天的知识点有点难,得多敲几遍才行了,还好明天是自习
-
-    
 
 ## 回顾
 
-1. mounted
-
-   Vue实例从被创建到销毁过程中，有8个重要的的阶段，其中data里面的数据被解析完成后，会触发mounted回调函数。在mounted回调函数里面我们可以自定义逻辑
 
 
-
-2. ref与$refs
-
-<<<<<<< HEAD
-   ref="dom别名"标记dom，vm.$refs.dom别名就可以访问到dom了。
-=======
-   **用Vue的方式来获取DOM**
-   
-   ref="dom别名"标记dom
-   
-   vm.$refs[dom别名] 就可以访问到dom了。
->>>>>>> vue38
+## 锚链接与hash
 
 
-3. 组件基本使用
 
-<<<<<<< HEAD
-=======
-   1. template 这个结构
-   2. data必须是一个函数
-   3. methods 注册事件，钩子函数，双向数据绑定，都是一样的
-   4. 先注册再使用
+## SPA与MPA
 
->>>>>>> vue38
+1. SPA(Single-Page Application) 单页应用
+
+2. MPA(Multi-Page Applicatoin) 多页应用
+
+
+
+
+## hash实现SPA
 
 
 
@@ -93,115 +29,213 @@
 
 [传送门](https://router.vuejs.org/zh/)
 
-<<<<<<< HEAD
-=======
-**Vue路由就是用来做高级的Tab栏**
 
-vue-router.js不在vue.js里面，需要单独去引用
 
->>>>>>> vue38
+### Vue路由高仿网易云音乐
+
+
+
 
 
 ## Demo-高级播放器-路由整合
 
 ### 实现步骤
 
-<<<<<<< HEAD
-=======
-1. 路由整进来，4个组件，就只有文字，有切换效果即可
-   1. a link换成了router-link
-   2. router-view来显示tab content
-2. 整搜索歌曲组件
-   1. 把results.html里面内容放到组件里面
-   2. template模板的方式 `template:'#xx_tpl'`
-   3. 内容是放在<script type="text/x-template" id="xx_tpl">
-   4. 对应的样式了要引入
-3. 所有的组件都整进来
-   1. 跟上边一样
+1. 整合路由
+   1. tab切换使用的是vue-router(路由)
+   2. 显示的是组件
+   3. 整合 多个页面，抽取为组件，使用路由的方式维护显示和隐藏
+   4. git提交
+2. 整合组件
+   1. 把index隔壁的那些文件，结构，样式全部都整到index.html
+   2. 抽取为组件
+3. 为了晚上看代码简洁，删除了除index.html之外所有文件
 
->>>>>>> vue38
+> 1. 演示功能，黑云音乐，会讲路由传参及过滤器
+> 2. 查看模板，搜索结果，播放，mv播放及评论分别是四个页面
+> 3. 我们先来结合学习过的路由知识，完成点击Tab bar切换内容的功能
+> 4. 然后是不是应该把四个页面作为组件引入到index.html. 检查四个页面的结构，script template引入，样式引入。
+> 5. 所有码都放在index.html中
+> 6. 有没有同学有冲动想用外链的方式把模板引入呢？[template不支持引部引用](https://vuejs.org/2015/10/28/why-no-template-url/)  结尾我们再来讲用什么方案来优化它。
+
 
 
 ## 路由高亮样式
 
-[传送门](https://router.vuejs.org/zh/api/#active-class )
+[传送门](https://router.vuejs.org/zh/api/#linkactiveclass)
 
-<<<<<<< HEAD
-=======
-1. vue-router在切换router-link时，默认会添加和移除一个高亮的类名
+1. vue-router 在我们切换`router-link`时，默认会自动的添加移除一个高亮的类名，
+2. `linkActiveClass:"自定义全局router-link高亮样式"`
 
-2. 实例化VueRouter里面可以设置linkActiveClass=“自定义高亮样式”
+```js
+const router = new VueRouter({
+  routes,
+  linkActiveClass:'active'
+})
+```
 
-   ```js
-   const router = new VueRouter({
-     // routes 
-     routes:route,
-     linkActiveClass:'active'
-   })
-   ```
+> 1. 大家看现在我们切换Tab的时候，无法知道当前选中的是哪个tab。，
+> 2. 看HTML结构，有一个active，可以控制是否选中。另外router-link给我们添加了一个router-link-active的类。router给我们添加了当前选中的标签栏的样式，只是不是我们想要的样式。如果能自定义这个类，那就完美了。查看文档，解释
+> 3. 改active-class成功
 
-   
-
->>>>>>> vue38
 
 
 ## 编程式导航
 
 [传送门](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
-<<<<<<< HEAD
-=======
-就是用来切换路由的
-
 1. 编程式导航的本质是
 
-   ```js
-   router.push('/sing')
-   ```
+```
+router.push('地址')
+```
 
-2. 声明式导航的本质
+2. 声明式导航的本质是
 
-   ```html
-   <router-link to="/sing"></router-link>
-   ```
+```
+<router-link to='/run'>去跑步</router-link>
+```
 
 3. 适用情景
-   1. 声明式导航：点了就跳转，没有任何逻辑，类似于 `<a href>` 写在html里面
-   2. 编程式导航: 可以添加一些逻辑. 写在js里面的。类似location.href
+   1. 声明式导航：点了就跳转，没有任何逻辑 类似于(a标签设置了href)。 可以由编程式实现
+   2. 编程式导航：跳转的同时有其他逻辑需要执行
 
-![1566875326472](Vue.js - day05 - 上课.assets/1566875326472.png)
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- tab - nav 导航 声明式导航  -->
+      <router-link to="/music1">歌曲1</router-link>
+      <router-link to="/bar">歌曲2</router-link>
+      <router-link to="/run">边唱歌鞭炮</router-link>
+      <h2>编程式导航</h2>
+      <input type="button" value="点我去唱歌" @click="toSing">
 
->>>>>>> vue38
+      <!-- tab - content -->
+      <router-view></router-view>
+    </div>
+  </body>
+</html>
+<!-- 放上面会影响页面的接在 js加载完毕之后页面是看不到的 -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+  // 1. 定义组件 简化的写法
+  const Foo = { template: '<div>foo</div>' }
+  const Bar = { template: '<div>bar</div>' }
+  const run = { template: '<div>咔咔咔！！！！的跑！！！！</div>' }
+
+  // 2. 定义规则
+  // url和组件的对应关系
+  // const routes = [
+  const routers = [
+    { path: '/music1', component: Foo },
+    { path: '/bar', component: Bar },
+    { path: '/run', component: run }
+  ]
+
+  // 3. 把路由规则 设置给路由对象
+  const router = new VueRouter({
+    // routes // (缩写) 相当于 routes: routes
+    routes: routers // routers: routers
+  })
+
+  // 4. 创建和挂载根实例。
+
+  const app = new Vue({
+    el: '#app',
+    methods: {
+      // 跳转去唱歌
+      toSing(){
+        // console.log('唱歌去')
+        // 用路由对象跳转
+        // router.push('/bar')
+        router.push('/niubiliti')
+      }
+    },
+    router // router:router
+  })
+
+  // 现在，应用已经启动了！
+</script>
+
+```
+
+> 1. 回车的时候，是不是应该看到搜索结果呢？是。所以路由应该匹配到搜索结果，就像我们点击搜索结果Tab一样对吧。vue-router提供实现路由切换。
+> 2. 查看文档。
+> 3. 在之前路由例子上，增加一个按钮来切换路由。
+> 4. 声明式导航点了就跳转，没有逻辑，写在HTML里面。
+> 5. 编程式导航可以添加一些逻辑，写在JS里边
+
 
 
 ## 动态路由匹配
 
-<<<<<<< HEAD
 [传送门](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E5%93%8D%E5%BA%94%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%98%E5%8C%96)
 
+组件获取参数的一种方式
 
-=======
-[传送门](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E5%93%8D%E5%BA%94%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%98%E5%8C%96
+![1566830590800](Vue.js - day05 - 备课.assets/1566830590800.png)
 
-组件获取路由参数
+模式 、匹配路径及获取参数如上图
 
 ```html
-<router-link to="/user/qiqi"></router-link>
-// 路由规则
-const routes=[
-{
-	path:'/user/:username',
-	component:Song
-}
-]
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello App!</h1>
+      <p>
+        <router-link to="/music1">歌曲1</router-link>
+        <router-link to="/bar/Joven">歌曲2</router-link>
+      </p>
+      <router-view></router-view>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      const Foo = { template: '<div>foo</div>' }
+      const Bar = { template: '<div>{{$route.params.name}}</div>' }
+
+      const routes = [{ path: '/music1', component: Foo }, { path: '/bar/:name', component: Bar }]
+      const router = new VueRouter({
+        routes
+      })
+
+      const app = new Vue({
+        router,
+        methods: {
+          toSing() {
+            router.push('music1')
+          }
+        }
+      }).$mount('#app')
+    </script>
+  </body>
+</html>
 ```
 
-1. 路由规则的path  `/user/:key` key就是获取参数
-2. 导航里面 `/user/value` value就是获取值
-3. 最终在组件里面可以获取到传递的参数 `$route.params.key` 就是value
 
-![1566877734746](Vue.js - day05 - 上课.assets/1566877734746.png)
->>>>>>> vue38
+
+> 1. 黑云音乐，搜索结果是不是根据我的输入查询出来呢？如何传输入内容传到搜索结果组件呢？这里需要用动态路由匹配传参
+> 2. 看文档
+> 3. 来一个HTML例子
+> 4. 同时用vue-dev看到有data.$route有数据。
+> 5. $route和 $router
 
 
 
@@ -211,31 +245,47 @@ const routes=[
 
 ### 实现步骤
 
-<<<<<<< HEAD
-=======
-1. 输入框回车或者点击搜索按钮，显示歌曲搜索组件（路由切换搜索组件）
-   1. 编程式导航 router.push('/results')
-   2. 输入框回车或者点击搜索按钮 @keyup.enter/@click: queryMusic
-2. 输入关键字，传递关键字
-   1. 获取用户的输入 v-model:keywords
+1. 输入框回车或者点搜索，显示搜索组件
+   1. 回车或者点搜索 @keyup.enter/click:searchMusic
+   2. 编程式导航 `router.push('/songs')`
+2. 输入内容，回车或点搜索，传递关键字
+   1. 获取输入内容 v-model:keywords
    2. 动态路由匹配
-      1. 用哪个参数接受传递的值 模式 `/results` => `/results/:keywords`
-      2. 在url把上参数传过去  匹配路径  /results  => `/results/大碗宽面`
+      1. 修改路由规则模式 `/result`=>`/result/:keywords`
+      2. 修改路径 router.push('/result/${this.keywords}')
+      3. vue开发工具查看传参
 
->>>>>>> vue38
 ### 注意点
+
+1. 路由切换时需要携带数据，用的是`动态路由匹配`
+2. 代码的方式跳转，用的是`编程式导航`
+
+> 1. 首先我们获取用户的输入
+> 2. 回车或者点击搜索的事件里，编程式导航，实现切换路由到搜索结果
+> 3. 动态路由匹配，把用户输入的搜索关键词传递到搜索结果组件中
 
 
 
 ## 生命周期钩子 -created
 
-<<<<<<< HEAD
+最早能在created里面获取到data的属性
 
-=======
-`created`里面可以尽早地获取data里面的属性
+```js
+beforeCreate() {
+          console.log(this.message)
+        },
+          created() {
+            // 最早能在created里面获取到data的属性
+            console.log(this.message)
 
-mounted 在这里能尽早地获取到dom
->>>>>>> vue38
+          },
+```
+
+> 1. 大家看，哪个是最早的钩子。
+> 2. 搜索结果组件里，获取到搜索关键词后，是不是要根据搜索关键词，调接口搜歌呢？
+> 3. 那应该在什么时机去调接口搜歌呢？查看Dom结构，切换路由，每一次组件DOM都被移走了。是不是应该在组件创建过程中尽早地调接口搜索歌曲呢
+> 4. 我们已经学过updated和mounted生命周期钩子函数。
+> 5. 新建HTML，beforeCreate和created，前者无法获取data里面的值。
 
 
 
@@ -243,36 +293,106 @@ mounted 在这里能尽早地获取到dom
 
 ### 实现步骤
 
-<<<<<<< HEAD
+1. 当 result 组件创建出来之后（出现）之后，
+   1. 使用生命周期钩子created
+   2. 尽可能早一些执行的，让用户早一些看到数据
+2. 获取传递过来的关键字 `this.$route.params.键`
+3. 通过关键字调用接口， axios.get
+4. 接口 `<https://autumnfish.cn/search?keywords=海阔天空>`
+5. 数据获取到之后，渲染到页面上
+   1. then
+   2. v-for :musicList
+6. mvid为0,不展示mv
+   1. v-show条件渲染
+
+### 注意点
+
+由切换默认会移除dom，也就是组件重新创建。
+
+> 1. 那么在搜索结果组件的里面写created看搜索的时候，是不是都在调用。打印，可以的。
+> 2. created里面调接口，查询
+> 3. 渲染搜索结果
+
 
 
 ## 过滤器基本使用
 
 [过滤器](https://cn.vuejs.org/v2/guide/filters.html)
 
-=======
-1. 获取到搜索关键字，发请求，拿到数据，渲染
-   1. 搜索关键字的获取 `$route.params.keywords`
-   2. 发请求 axios.get() 在created里面发请求
-   3. 接口：[https://autumnfish.cn/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA](https://autumnfish.cn/search?keywords=海阔天空)
-   4. 列表我们用数组接受 songList
-   5. 渲染 v-for：songList
+Vue.js 允许你自定义过滤器，可被用于一些常见的**文本格式化**。过滤器可以用在两个地方：**双花括号插值和 v-bind 表达式** 。
 
+1. 定义的方式
+   
+   1. vue中fileters:{}
+   
+2. 一个过滤器一个方法
 
+3. 使用`{{ 数据 | 过滤器 }}`
 
-## 过滤器基本使用 
+4. 过滤器需要接收一个参数，参数就是处理的数据
 
-[过滤器](https://cn.vuejs.org/v2/guide/filters.html)
+5. 内部处理完毕之后
 
-**过滤器用来作文本格式化**
+6. return 出来页面会显示 返回出来的那个值
 
-1. {{原始文本|过滤器1}}
-2. 过滤器声明 filters:{过滤器1是一个方法}
-3. 过滤器1实参是原始文本
-4. 过滤器1 return的值就是{{}}需要显示的值
-5. 过滤器能接受参数，计算属性不能接受参数。
+7. 不会修改原始值
 
->>>>>>> vue38
+   
+
+```html 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>公历生日:{{formatDate1}}</h2>
+      <h2>农历生日:{{formatDate2}}</h2>
+      <h2>过滤器的方式</h2>
+      <h2>公历生日:{{date1|formatDate}}</h2>
+      <h2>农历生日:{{date2|formatDate}}</h2>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/moment.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          date1:'2019-8-13',
+          date2:'2019-7-13'
+        },
+        computed: {
+          formatDate1(){
+            return moment(this.date1).format('YYYY.MM.DD')
+
+          },
+          formatDate2(){
+            return moment(this.date2).format('YYYY.MM.DD')
+          }
+        },
+        filters:{
+          formatDate(date){
+            return moment(date).format('YYYY.MM.DD')
+          }
+        }
+      });
+      </script>
+  </body>
+</html>
+```
+
+>1. 搜索结果展示歌手，如果有多个歌手，歌手这间用/连接。这里需要用到过滤器。
+>2. 场景引入，如果我对农历出生日期和公历出日期按同样格式输出？怎么做？
+>3. 两个计算属性，计算逻辑是一致的？有没有更好的解决方案呢？我们能不 能把共同的计算逻辑提取出来呢
+>4. 参考文档，定义过滤器，解决日期的显示
+>5. 过滤器只能作在{{}}和v-bind里面
+>6. 解释过滤器的使用{{数据|过滤器}} 过滤器方法接受一个参数，就是它所作用的数据，在方法里面可以拿到这个数据，处理后，return，return的数据就是最终显示的数据
+>7. 有几个属性需要处理展示就用计算属性，每一个数据需要做同样的处理才展示用过滤器
+
 
 
 ## Demo-过滤器处理result中搜索的结果
@@ -281,118 +401,55 @@ mounted 在这里能尽早地获取到dom
 
 ### 实现步骤
 
-<<<<<<< HEAD
-=======
-1. 实现时长的处理
-
-   1. 过滤器 formatTime
-      1. 使用 {{duration|formatTime}}
-      2. 定义 filters:{formatTime(msec)}
-   2. 毫秒数转成 02:27这种格式
+1. 处理时间 毫秒数->4:30
+   1. 添加过滤器 处理 时间
+      1. {{item.duration |formatTime }}
+      2. filters:{ formatTime(time) }
+   2. 格式化时间的处理逻辑
       1. 毫秒->秒
-      2. 秒->分  Math.floor(秒/60)
-      3. 剩余的秒  Math.floor(秒%60)
-      4. 数字不足两位的话，补0  num<10?'0'+num:num
+      2. 算出分 60的整数倍 除
+      3. 剩余的部分作为秒 取余
 
-2. 显示歌手  [周冬雨](https://music.163.com/artist?id=11995107)/[熊梓淇](https://music.163.com/artist?id=12054395)/张天爱
+1. 显多个歌手名称
+   1. 添加过滤器 处理歌手 
+      2. {{ item.artists  | formatSinger }}
+      2. filters:{ formatSinger(arr) }
+   3. 过滤器内部逻辑
+      1. 循环数组，获取歌手的数组
+      2. 歌手数组.join('/')
 
-   1. 过滤器 formatSinger
-      1. 使用 {{artists|formatSinger}}
-      2. 定义 filters:{formatTime(msec)}
-
-   2. 取得artists数组里面每一个name，用/拼起来
-      1. 取出数组里面的name，用一个用数组存起来
-      2. arr.join('/')
-
->>>>>>> vue38
 ### 注意点
 
+1. 时间从毫秒转为 时分秒，
+   1. 先除  再取余
+2. 过滤器的特点是格式化文本
+3. 过滤器的使用 `|` 
+   1. 这个| 也叫 `管道符`
 
-
-## Demo-点击mv 播放MV
-
-### 实现步骤
-
-<<<<<<< HEAD
-### 重点
-
-实现步骤和 搜歌 类似 跳转，携带数据
-
-
-=======
-1. 点击歌曲的mv icon时，展示mv组件，同时传递mvid，在mv组件里面发请求，初始化video
-   1. 是否展示mv icon,有mvid才展示mv icon   v-show="mvid"
-   2. 点击歌曲的mv @click:playMV
-   3. 展示MV组件 编程式导航  router.push('/video')
-   4. 传递mvid 动态路由匹配
-      1. 模式 /video => /video/:mvid
-      2. 路径 /video => /video/24234223
-      3. 那么在mv组件里面就可以能过 $route.params.mvid
-   5. 尽早地发送请求
-      1. created里面发请求
-      2. 接口mv
-      3. 给 video 设置 :src=mvUrl
-   6. 接口  `/mv/detail?mvid=5436712`
-
-### 重点
-
-1. 设置isShow标记，在数据回来后置后true，控制页面的渲染。避免数据没回来前，渲染报错
-
-2. 编程式导航切换组件的显示
-
-3. 动态匹配路由，给组件传参
-
-   
->>>>>>> vue38
-
-## 待完成功能
-
-播放歌曲和评论
-
-
-
-<<<<<<< HEAD
-## Vue-cli 安装
-
-### 基本概念
-
-=======
-## 单文件组件
-
-[传送门](https://cn.vuejs.org/v2/guide/single-file-components.html)
-
-组件写在文件里面
-
-文件是以.vue结尾的
+> 1. 过滤器实现处理歌手名展示
+> 2. 过滤器实现 处理时间展示
 
 
 
 ## Vue-cli 安装
 
-[传送门](https://cli.vuejs.org/zh/)
-
 ### 基本概念
 
-1. .vue文件
+1. `脚手架`
 
-2. less->css
+2. 把.vue翻译成浏览器可以识别的内容
 
-3. js和css压缩
+3. 自动刷新浏览器
 
-4. css兼容性修复
+4. 自动压缩代码
 
-5. 代码修改保存后，浏览器自动刷新
+5. 自动的把js翻译为低版本的js
 
-6. 代理服务器
+6. 作为代理服务器
 
-   ````
+7. ....
+
    
-   ````
-
-有了这个脚手架我们可以更专注地写前端逻辑。
-
->>>>>>> vue38
-
 
 ### 安装
 
@@ -400,48 +457,173 @@ mounted 在这里能尽早地获取到dom
 
 [安装](https://cli.vuejs.org/zh/guide/installation.html)
 
-<<<<<<< HEAD
-### 注意点
+在小黑窗中输入`npm install -g @vue/cli`, 在任意的路径都可以
 
-=======
-安装命令 `npm install -g @vue/cli`
+为了让安装速度提升，设置npm包下载的镜像为taobao镜像
 
-设置npm源为 npm config set registry https://registry.npm.taobao.org 
-
-npm config list 查看npm源是不是设置正确了
-
-确认有没有安装成功  **vue --version**, 如果回显一个版本号的话就安装成功了。
+```html
+npm config set registry https://registry.npm.taobao.org/
+```
 
 ### 注意点
 
-1. 确认npm源是 https://registry.npm.taobao.org 
-2. 以管理员身份运行 
-3. npm cache clean -f 清除npm缓存
-4. 不要用powerShell
-5. Mac提示权限，我们sudo npm install -g @vue/cli
-6. 4G，或者换千兆网
+1. ![1562484863670](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562484863670.png)
 
->>>>>>> vue38
+   1. 第一次安装，安装成功了
 
+2. ![1562484834790](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562484834790.png)
+
+   1. 已经安装过，重新安装
+
+3. ![1562484911994](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562484911994.png)
+
+   1. 类似于这样的一堆`err!`安装失败了
+
+   2. 解决方案:
+
+      1. ```
+         npm config set registry http://registry.npmjs.org 
+         ```
+
+      2. 更换网络环境，可能网络不稳定
+
+      3. 更换安装的工具
+
+         1. `cnpm` ：`cnpm install -g @vue/cli`
+
+      4. 清除npm缓存之后，重新安装
+
+         1. `npm cache clean -f`
+         2. 重新执行安装的命令
+
+4. 命令查看是否成功
+
+   1. `vue --version`
+
+> 1. 四个组件全放在一个index里面，找个东东滚半天。可能大家在写的时候，就觉得这样很不方便了对吧。
+> 2. 应该把它抽到出来。但其实script type="text/x-template"并不支持。
+> 3. 单文件组件 组件.vue，html、js、css，包含 。但是浏览器不认识，需要结合一个工具来使用。
+> 4. vue官方的脚手架，也就是前端工程化，会解决这个问题
+> 5. 文件组件浏览器无法识别。可以类比于less文件，需要转化成css
+> 6. 需要工具来把.vue转化为浏览器识别的代码。工具叫`vue-cli`
+> 7. vue-cli能做的事情有很多，让我们可以专注于代码，其他杂事交给工具来解决
+> 8. 瞧官网，安装。同学们先安装
+> 9. 命令行安装，结尾提示added或者updated都是安装成功的意思
+> 10. 如果有一堆err!,是安装失败，那么可以排查一下。都安装好了吧？如果没有，一会私聊哈
+> 11. vue --version查看版本号，用来进一步确认安装成功。运行如果显示版本号的话，就说明安装成功。
+
+
+
+## 单文件组件
+
+1. 用一个文件能够包含组件的所有内容
+   1. 样式
+   2. 结构
+   3. 逻辑
+2. `.vue`
+3. 设置三个结构
+   1. 输入 `<vue>`就能够自动生成
+4. 复杂一点的项目都会使用单文件组件来开发，更加利于编码，利于后期维护，一个文件包含了所有的内容
+
+```vue
+<template>
+  <!-- 模板 结构 -->
+</template>
+
+<script>
+// 逻辑
+export default {
+  // 组件的属性
+  methods: {
+    
+  },
+  data(){}
+  // 。。。
+}
+</script>
+
+<style>
+/* 样式 */
+
+</style>
+
+```
+
+
+
+## Vue-cli 安装
 
 ## Vue-cli 项目创建
 
 [传送门](https://cli.vuejs.org/zh/guide/creating-a-project.html)
 
+
+
 ### 正常的流程
 
-<<<<<<< HEAD
-=======
-1. 执行 `vue create 项目名`
-   1. 给项目名取一个有意义的名字
-   2. 选项用默认的就行，一路回车
+1. 创建之后会多一个项目文件夹，路径不要乱选
+2. 项目名不要有中文，不要有大写字母，尽可能有意义
 
-2. cd到项目目录
-3. npm run serve
-4. 浏览器打开页面，这样，表示成功
-5. ![1566898846543](Vue.js - day05 - 上课.assets/1566898846543.png)
+```
+vue create 项目名
+```
 
->>>>>>> vue38
+3. 弹出的对话框先选择默认的选项
+
+![1562485415022](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562485415022.png)
+
+4. 稍等一会，等进度条走完 提示如下画面说明成功了
+
+![1562485530804](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562485530804.png)
+
+5. 进入项目文件夹
+   1. `cd 项目名` 直接根据提示即可 
+6. 运行项目
+   1. `npm run serve`
+7. 稍等片刻 ，出现如下效果说明成功了
+
+![1562485640647](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562485640647.png)
+
+
+
+### 报错的原因
+
+1. ![1562485820281](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562485820281.png)
+
+   创建的命令输入错误`create`输入成了`creat`
+
+2. ![1562485879426](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562485879426.png)
+
+   2. 终端的权限问题；新建管理员模式的终端
+   3. 当前这个文件夹，这个文件被其他软件占用：关闭所有可能影响的软件（重启）
+   4. npm包管理工具的问题:
+      2. 执行``npm cache clean -f`` 在重新创建项目
+
+3. ![1562486092416](../../day06/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562486092416.png)
+
+   创建项目是，又到了第三方模块，文件太多了git人为没有必要管，提示你一下
+
+   vue-cli创建项目是，已经设置了git忽略文件 就在`.gitignore`中
+
+> 1. 那么我们就可以用vue这个命令了。输入vue命令。可以看到vue create这个命令，就是创建项目，帮我们搭好一个Vue项目的架子。
+> 2. vue create 项目名，回车，中途会有弹出的对话框先选择默认的选项。直接回车，就选择了默认选项
+> 3. 提示successfully说明创建项目成功了。
+> 4. 提示cd 项目目录
+> 5. 运行npm run serve 
+> 6. 访问提示的路径
+> 7. 示successfully说明项目运行成功了。
+> 8. 单词拼写的错误，还有其他错误解决了
+> 9. git提示，也是表示成功了。那为什么有提示了呢。查看目录，发现.git文件夹，因为创建项目已经初始化了git仓库。第三方模块又巨多。vsode这个提示的意思是要不要忽略node_modules。但项目目录下有一个.gitignore文件，里面有忽略node_modules的配置。git status演示这个配置的功能。让git管不管这个文件夹。所以这个提示可以直接X掉
+
 
 
 ## 总结
+
+[脚手架](https://cli.vuejs.org/zh/guide/)
+
+[安装](https://cli.vuejs.org/zh/guide/installation.html)
+
+[创建项目](https://cli.vuejs.org/zh/guide/creating-a-project.html)
+
+> 1. 在黑云音乐这个项目中，有同学可能发现了，切换Tab数据会丢失。
+> 6. 另外大家有兴趣可以查查，vue-router试着解决Tab切换数据丢失的问题。
