@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 对象的方式
+    let data1 = {
+      a: 1,
+      b: 2
+    }
+
+    //组件实例化
+    let com1 = data1
+    let com2 = data1
+
+    com1.a = 666
+    // 对象的方式，组件的数据共享
+    console.log(com1, com2)
+
+    // 函数返回对象方式
+    function data2() {
+      return {
+        a: 1,
+        b: 2
+      }
+    }
+
+    //组件实例化
+    let com3 = data2()
+    let com4 = data2()
+    com3.a = 777
+    // 函数返回对象的方式，组件的数据独立
+    console.log(com3, com4)
+  </script>
+</body>
+
+</html>
