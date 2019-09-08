@@ -509,6 +509,51 @@ console.log(app.message, app.username)
 
 
 
+## 组件的data必须是一个函数
+
+[传送门](https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0)
+
+因此每个实例可以维护一份被返回对象的独立的拷贝
+
+函数返回对象相当于重新创建一个对象
+
+> 1. 很简单，不写成函数就会报错的！
+> 2. 看文档，解释。如果data不是一个函数的话，组件的数据是共享的，我们需要这个效果吗？大多数时候，我们使用组件数据是要独立的。
+> 3. 由于组件不写成函数，上面这个效果只能意淫了。
+> 4. 我们只需要理解为什么函数返回对象这种方式，可以做到数据不共享？
+
+```js
+let data1 = {
+  a: 1,
+  b: 2
+}
+
+let com1 = data1
+let com2 = data1
+console.log(com1 === com2)
+
+function data2() {
+  return {
+    a: 1,
+    b: 2
+  }
+}
+
+let com3 = data2()
+let com4 = data2()
+// 函数返回对象相当于重新创建了一个对象 com3并不是同一对象了
+console.log(com3 === com4) //false
+com3.a = 666
+// 改变com3,并不会影响com4
+console.log(com3, com4)
+```
+
+
+
+
+
+
+
 
 
 

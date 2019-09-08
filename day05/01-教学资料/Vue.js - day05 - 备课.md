@@ -8,75 +8,231 @@
 
 
 
-## Vue路由基本使用 
+## 锚链接与hash
 
-[传送门](https://router.vuejs.org/zh/)
+锚链接是一种超链接，能快速滚动页面某个位置
 
-**我们可以用Vue路由做一个高级的Tab栏**
-
-使用方法，大家只要**学会复制粘贴**就行。
-
-
+1. 可以在url上直接修改hash
+2. onhashchange能监听到hash改变
+3. location.hash获取到当前页面的hash
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-      <p>
-        <!-- 等同于 导航 tab nav 
-          to: 代码中的路由规则相匹配
-        -->
-        <!-- <a href="#/foo">自己写的A</a> -->
-        <router-link to="/foo">Go to Foo</router-link>
-        <router-link to="/bar">Go to Bar</router-link>
-      </p>
-      <!-- 等同于 tab-content -->
-      <router-view></router-view>
-    </div>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script>
-      // 1. 组件简写方式
-      const Foo = { template: '<div>foo</div>' }
-      const Bar = { template: '<div>bar</div>' }
 
-      // 2. 定义路由
-      // url和组件的对应关系
-      const routes = [{ path: '/foo', component: Foo }, { path: '/bar', component: Bar }]
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
 
-      // 3. 创建 router 实例
-      // 实例化 路由对象，把定义的规则 传递给他
-      const router = new VueRouter({
-        routes // (缩写) 相当于 routes: routes
-      })
+<body>
 
-      // 4. 创建和挂载根实例。
-      const app = new Vue({
-        el: '#app',
-        // 把路由 和Vue实例关联起来
-        // 挂载到Vue实例上
-        router
-      })
-      // .$mount('#app') 含义和el:#app一样
+  <h2 id="top">这里是页面顶部</h2>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  页面内容.........
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <a href="#top">滚动顶部</a>
+  <h2 id="bottom">这里是页面底部</h2>
+  <script>
+    // 可以用onhashchange监听到hash改变
+    window.onhashchange = function () {
+      //获取当前页面的hash
+      console.log(location.hash)
+    }
+  </script>
+</body>
 
-      // 现在，应用已经启动了！
-    </script>
-  </body>
 </html>
 ```
 
-> 1. 学生的作业引出Tab。Vue路由来做。网易云音乐看一下。
-> 2. 网易云音乐引出，url地址不变，页面切换。整个页面就类似于一个大的div是吧，这个切换效果就像是div的隐藏和显示而已。切换这个大的div，我们有一个vue插件专门来做这个，这个就是Vue的路由。
-> 3. vue-router.js并不包含在vue.js里面。渐进式，有些项目不用啊vue-router官方文档
-> 4. 解释一下代码。
-> 5. 修改url,修改组件，重新定义一个组件
+
+
+> 1. 接下来我们要学习一个重要的知识点，Vue路由。Vue路由是什么呢？这个得从锚点说起。
+> 2. 锚链接，也叫hash，是一种超链接，能快速滚动页面某个位置。可能有同学忘记了，来我们复习一下。
+> 3. 举例锚链接，能快速滚到顶部。注意到url上加了`#top`，这个是什么，就是我们的锚链接吧，在url上这个叫做hash.我们也可以直接修改hash来定位。增加一个bottom块。
+> 4. 用onhashchange监听到hash改变。location.hash获取当前页面的hash
+
+## SPA与MPA
+
+1. SPA(Single-Page Application) 单页应用
+
+   一个外壳页面和多个页面片段构成
+
+   	1. 切换页面不会打开新的页面，URL中只改变hash(hash是实现SPA的方案之一)
+    	2. 首屏加载慢，页面切换快
+    	3. 适就用于做后台管理端
+
+2. MPA(Multi-Page Applicatoin) 多页应用
+
+   多个完整的页面构成
+
+   1. 页面跳转会打开新的页面，URL改变
+   2. 首屏加载快，页面切换慢
+
+> 1. 接下来我们看SPA与MPA, 这个SPA并不是大家所理解的SPA.
+> 2. MPA就是我们传统的页面组织结构，比如百度搜索，一路都会打开新的页面，URL改变，且加载新的页面需要loading
+> 3. 而SPA就像是Tab栏页面，<https://taylorchen709.github.io/vue-admin>，这个是后端管理系统，当我们切换Tab栏的时候，注意一下url有变化吗？只有hash变了。页面加载速度怎么样？很快对吧。我们点菜单就像是在切换tab栏，点不同菜单展示不同的tab content.
+> 4. 所以SPA是一个外壳页面和多个页面片段构成的。
+> 5. 对于SPA我们得在页面初始化时加载所有页面片段的内容，后续切换页面就快了。所以首屏加载慢，但是页面切换快。这种特性，对于后台管理比较适合，一般在管理端几个页面上停留时间会很长，能接受首次打开慢，后续切换快。
+
+## hash实现SPA
+
+改变hash切换div显示
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+    }
+
+    .left {
+      width: 200px;
+      height: 800px;
+      background-color: #aaa;
+    }
+
+    .left li {
+      height: 50px;
+    }
+
+    .main>div {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="left">
+      <ul>
+        <li><a href="#tab1">导航1</a></li>
+        <li><a href="#tab2">导航2</a></li>
+        <li><a href="#tab3">导航3</a></li>
+      </ul>
+    </div>
+    <div class="main">
+      <div id="tab1">内容1</div>
+      <div id="tab2">内容2</div>
+      <div id="tab3">内容3</div>
+    </div>
+  </div>
+
+  <script>
+    window.onhashchange = function () {
+      document.querySelector('#tab1').style.display = 'none'
+      document.querySelector('#tab2').style.display = 'none'
+      document.querySelector('#tab3').style.display = 'none'
+      document.querySelector(location.hash).style.display = 'block'
+    }
+  </script>
+
+</body>
+
+</html>
+```
+
+> 1. 我们注意到，刚才的那个管理端，切换页面时hash在变。我们模仿一个改变hash，切换页面的效果呢
+> 2. 加了菜单和内容区，点菜单只定位到具体的div.这里我们需要只展示其中一个div.需要结合onhashchange
+> 3. 到此我们实现在改变hash，切换显示对应的div. 虽然比较简陋，但是这个就是SPA，一个外壳加多个页面片段，切换页面不用打开新的URL
+
+
+
+## Vue路由基本使用 
+
+[传送门](https://router.vuejs.org/zh/)
+
+Vue路由是用来构建单页应用
+
+使用方法，大家只要**学会复制粘贴**就行。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Hello App!</h1>
+    <p>
+      <!-- 菜单 -->
+      <!-- 相当于<a href="#foo"> -->
+      <router-link to="/foo">Go to Foo</router-link>
+      <router-link to="/bar">Go to Bar</router-link>
+    </p>
+    <!-- 内容 -->
+    <router-view></router-view>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 1. 声明组件
+    const Foo = {
+      template: '<div>foo</div>'
+    }
+    const Bar = {
+      template: '<div>bar</div>'
+    }
+
+    // 2. 定义路由
+    // hash和组件的映射关系
+    const routes = [{
+        path: '/foo',
+        component: Foo
+      },
+      {
+        path: '/bar',
+        component: Bar
+      }
+    ]
+
+    // 3. 创建 router 实例
+    // 实例化 路由对象,传递路由规则
+    const router = new VueRouter({
+      routes // (缩写) 相当于 routes: routes
+    })
+
+    // 4. 创建根实例
+    const app = new Vue({
+      el: '#app',
+      // 把路由 和Vue实例关联起来
+      router
+    })
+    //.$mount('#app') 相当于el:'#app'
+
+    // 现在，应用已经启动了！
+  </script>
+</body>
+
+</html>
+```
+
+> 1. 我们刚才用hash实现了一个丑陋的SPA，onhashchange这块实现页面切换，这个Vue路由的基本原理，只能Vue路由它更强大好用。
+> 2. Vue路由是用来构建单页应用
+> 3. vue路由是一个vue插件，vue-router.js并不包含在vue.js里面。渐进式，有些项目不用啊vue-router官方文档
+> 4. vue路由的官方文档，copy路由的代码，能看懂的代码不多，一块div,两个不认识的标签，引入lib,一大坨js是吧。我们先看效果。
+> 5. 效果比我们实现的SPA还丑陋，代码倒是挺多的。
+> 6. 解释代码
+> 7. to和路由规则是不是一一对应的，我们改一下呗。
+> 8. 再声明一个组件
+> 9. 大家学会复制粘贴就行，因为后面的课程基本上都会用路由，有得时间记哈。
 >
 
 
@@ -543,35 +699,6 @@ Vue.js 允许你自定义过滤器，可被用于一些常见的**文本格式�
 
 > 1. 过滤器实现处理歌手名展示
 > 2. 过滤器实现 处理时间展示
-
-
-
-## Demo-点击mv 播放MV
-
-### 实现步骤
-
-1. result组件中 生成mv按钮时，绑定点击事件 携带mvid 跳转到mv路由那
-   1. 点击事件@click:playMV
-   2. router.push('/mv/mv的id')
-   3. 路由规则`/mv`->`/mv/:mvid`
-2. mv组件中 
-   1. 获取mvid
-   2. axios接口调用 `https://autumnfish.cn/mv/detail?mvid=mvid`
-   3. 数据回来之后，渲染到页面上
-      1. 歌名：songName
-      2. 歌手名:singerName
-      3. mv的地址:mvUrl
-
-> 1. 搜索结果页面中，点击mv，绑定点击事件，携带mvid跳转到mv组件
-> 2. mv组件中获取mvid，created方法里面请求，展示数据
-
-### 注意点
-
-实现步骤和 搜歌 类似 跳转，携带数据
-
-#### 遗留功能
-
-播放歌曲和评论
 
 
 
