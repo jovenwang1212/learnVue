@@ -145,6 +145,18 @@
       // 去看评论
       toComment(id) {
         router.push(`/comment/${id}`)
+      },
+      queryMusic(search, callback) {
+        axios
+          .get(
+            `https://autumnfish.cn/search?keywords=${search}`
+          )
+          .then(backData => {
+            // console.log(backData)
+            // 保存歌曲列表
+            this.musicList = backData.data.result.songs
+            callback && callback()
+          })
       }
     },
     // 过滤器
@@ -185,19 +197,6 @@
         return min + ':' + sec
       }
     },
-    methods: {
-      queryMusic(search) {
-        axios
-          .get(
-            `https://autumnfish.cn/search?keywords=${search}`
-          )
-          .then(backData => {
-            // console.log(backData)
-            // 保存歌曲列表
-            this.musicList = backData.data.result.songs
-          })
-      }
-    },
     // 组件创建完毕
     created() {
       // 获取数据
@@ -206,7 +205,7 @@
       this.queryMusic(this.$route.params.search)
     },
     beforeRouteUpdate(to, from, next) {
-      this.queryMusic(to.params.search)
+      this.queryMusic(to.params.search, next)
     }
   }
   // 播放器组件

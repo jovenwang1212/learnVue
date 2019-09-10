@@ -68,15 +68,6 @@ Vue路由的使用只要求会copy改就行。
 
 
 
-
-## 路由高亮样式
-
-[传送门](https://router.vuejs.org/zh/api/#linkactiveclass)
-
-
-
-
-
 ## 编程式导航
 
 [传送门](https://router.vuejs.org/zh/guide/essentials/navigation.html)
