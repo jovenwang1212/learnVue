@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h2 id="top">这里是顶部</h2>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h2>内容</h2>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <h2 id="bottom">这里是底部</h2>
+  <a href="#top">滚动顶部</a>
+
+  <script>
+    window.onhashchange = function () {
+      // console.log('hash变了')
+      console.log(location.hash)
+    }
+  </script>
+</body>
+
+</html>

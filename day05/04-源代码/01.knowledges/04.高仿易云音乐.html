@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>
+      <!-- 菜单 -->
+      <!-- <a href="#/foo>xxx</a>" -->
+      <router-link to="/music">发现音乐</router-link>
+      <router-link to="/myMusic">我的音乐</router-link>
+      <router-link to="/friend">朋友</router-link>
+      <router-link to="/download">下载</router-link>
+    </p>
+    <!-- 内容-->
+    <router-view></router-view>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 1. 定义 (路由) 组件。
+    const Music = {
+      template: '<img src="./images/music.png"/>'
+    }
+    const MyMuSic = {
+      template: '<img src="./images/me.png"/>'
+    }
+    const Friend = {
+      template: '<img src="./images/friend.png"/>'
+    }
+    const Download = {
+      template: '<img src="./images/download.png"/>'
+    }
+
+    // 2. 定义路由
+    // hash和组件的映射关系
+    const routes = [{
+        path: '/music',
+        component: Music
+      },
+
+      {
+        path: '/myMusic',
+        component: MyMuSic
+      },
+      {
+        path: '/friend',
+        component: Friend
+      },
+      {
+        path: '/download',
+        component: Download
+      }
+
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    const router = new VueRouter({
+      routes // (缩写) 相当于 routes: routes
+      // routes: routes
+    })
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    const app = new Vue({
+      el: '#app',
+      router
+    })
+    //.$mount('#app')相当于是el:'#app'
+
+    // 现在，应用已经启动了！
+  </script>
+</body>
+
+</html>

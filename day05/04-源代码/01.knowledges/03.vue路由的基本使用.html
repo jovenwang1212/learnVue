@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Hello App!</h1>
+    <p>
+      <!-- 菜单 -->
+      <!-- <a href="#/foo>" -->
+      <router-link to="/sing">Go to Foo</router-link>
+      <router-link to="/bar">Go to Bar</router-link>
+      <router-link to="/rap">rap rap rap </router-link>
+    </p>
+    <!-- 内容-->
+    <router-view></router-view>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    // 1. 定义 (路由) 组件。
+    const Foo = {
+      template: '<div>唱歌</div>'
+    }
+    const Bar = {
+      template: '<div>bar</div>'
+    }
+    const Rap = {
+      template: '<div>biu biu biu</div>'
+    }
+
+    // 2. 定义路由
+    // hash和组件的映射关系
+    const routes = [{
+        path: '/sing',
+        component: Foo
+      },
+      {
+        path: '/bar',
+        component: Bar
+      },
+      {
+        path: '/rap',
+        component: Rap
+      }
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    const router = new VueRouter({
+      routes // (缩写) 相当于 routes: routes
+      // routes: routes
+    })
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    const app = new Vue({
+      el: '#app',
+      router
+    })
+    //.$mount('#app')相当于是el:'#app'
+
+    // 现在，应用已经启动了！
+  </script>
+</body>
+
+</html>

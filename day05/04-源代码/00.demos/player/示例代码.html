@@ -1,64 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <!-- 首页的样式 -->
-    <link rel="stylesheet" href="./css/index.css" />
-    <!-- 搜索的样式 -->
-    <link rel="stylesheet" href="./css/results.css" />
-    <!-- 播放器的样式 -->
-    <link rel="stylesheet" href="./css/player.css" />
-    <!-- video播放器的样式 -->
-    <link rel="stylesheet" href="./css/video.css" />
-    <!-- 评论的样式 -->
-    <link rel="stylesheet" href="./css/comment.css" />
-    <link rel="stylesheet" href="./css/iconfont.css" />
-  </head>
-  <body>
-    <div id="player">
-      <h2 class="title">黑云音乐</h2>
-      <div class="search">
-        <!-- 搜索框 双向数据绑定 按下回车 -->
-        <input type="text" v-model.trim="search" @keyup.enter="searchMusic" />
-        <button @click="searchMusic">
-          <span class="iconfont icon-search"></span>
-        </button>
-      </div>
-      <!-- tab（路由） -->
-      <div class="tab-wrapper">
-        <!-- tab-nav -->
-        <div class="tab-bar">
-          <!-- <a class="bar-item active"> -->
-          <router-link active-class="active" to="/result" class="bar-item">
-            搜索结果
-          </router-link>
-          <!-- </a> -->
-          <!-- <a class="bar-item"> -->
-          <router-link active-class="active" to="/player" class="bar-item">
-            歌曲播放
-          </router-link>
-          <!-- </a> -->
-          <!-- <a class="bar-item"> -->
-          <router-link active-class="active" to="/video" class="bar-item">
-            mv
-          </router-link>
-          <!-- </a> -->
-          <!-- <a class="bar-item"> -->
-          <router-link active-class="active" to="/comment" class="bar-item">
-            歌曲评论
-          </router-link>
-        </div>
-        <!-- 对应的内容区域 -->
-        <div class="tab-content">
-          <!-- 内容  -->
-          <router-view></router-view>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- 首页的样式 -->
+  <link rel="stylesheet" href="./css/index.css" />
+  <!-- 搜索的样式 -->
+  <link rel="stylesheet" href="./css/results.css" />
+  <!-- 播放器的样式 -->
+  <link rel="stylesheet" href="./css/player.css" />
+  <!-- video播放器的样式 -->
+  <link rel="stylesheet" href="./css/video.css" />
+  <!-- 评论的样式 -->
+  <link rel="stylesheet" href="./css/comment.css" />
+  <link rel="stylesheet" href="./css/iconfont.css" />
+</head>
+
+<body>
+  <div id="player">
+    <h2 class="title">黑云音乐</h2>
+    <div class="search">
+      <!-- 搜索框 双向数据绑定 按下回车 -->
+      <input type="text" v-model.trim="search" @keyup.enter="searchMusic" />
+      <button @click="searchMusic">
+        <span class="iconfont icon-search"></span>
+      </button>
+    </div>
+    <!-- tab（路由） -->
+    <div class="tab-wrapper">
+      <!-- 对应的内容区域 -->
+      <div class="tab-content">
+        <!-- 内容  -->
+        <router-view></router-view>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <!-- 组件1 搜索结果 -->
 <script type="text/html" id="resultTem">
@@ -79,55 +60,55 @@
 <!-- 组件2 音乐播放器 -->
 <script type="text/html" id="playerTem">
   <div class="player">
-      <div class="left">
-        <img class="disc" src="./img/disc.png" alt="">
-        <img class="cover" :src="coverUrl" alt="">
-      </div>
-      <div class="right">
-        <div class="title"><img src="./img/tag.png" alt=""><span>{{songName}}</span> </div>
-        <div class="singer">歌手: <span>{{singerName}}</span></div>
-        <div class="album">所属专辑: <span>{{albumName}}</span></div>
-        <audio class="audio" controls="" autoplay :src="musicUrl"></audio>
-        <ul class="lyric-container">
-          <li class="lyric" v-for="item in lyric">{{item}}</li>
-        </ul>
-      </div>
+    <div class="left">
+      <img class="disc" src="./img/disc.png" alt="">
+      <img class="cover" :src="coverUrl" alt="">
     </div>
+    <div class="right">
+      <div class="title"><img src="./img/tag.png" alt=""><span>{{songName}}</span> </div>
+      <div class="singer">歌手: <span>{{singerName}}</span></div>
+      <div class="album">所属专辑: <span>{{albumName}}</span></div>
+      <audio class="audio" controls="" autoplay :src="musicUrl"></audio>
+      <ul class="lyric-container">
+        <li class="lyric" v-for="item in lyric">{{item}}</li>
+      </ul>
+    </div>
+  </div>
 </script>
 <!-- 组件3 mv播放器 -->
 <script type="text/html" id="videoTem">
   <div class="video">
-      <div class="title-wrapper">
-        <span class="tag">MV</span>
-        <span class="title">{{mvName}}</span>
-        <span class="artist">{{mvArtist}}</span>
-      </div>
-      <video :src="mvUrl" autoplay controls=""></video>
+    <div class="title-wrapper">
+      <span class="tag">MV</span>
+      <span class="title">{{mvName}}</span>
+      <span class="artist">{{mvArtist}}</span>
+    </div>
+    <video :src="mvUrl" autoplay controls=""></video>
   </div>
 </script>
 <!-- 组件4 歌曲评论 -->
 <script type="text/html" id="commentTem">
   <div class="comment-wrapper">
-      <div class="items">
-        <div class="item" v-for="item in commentList">
-          <div class="left">
-            <img :src="item.user.avatarUrl" alt="">
+    <div class="items">
+      <div class="item" v-for="item in commentList">
+        <div class="left">
+          <img :src="item.user.avatarUrl" alt="">
+        </div>
+        <div class="right">
+          <div class="top">
+            <span class="user">{{item.user.nickname}}:</span>
+            <span class="content">{{item.content}}</span>
           </div>
-          <div class="right">
-            <div class="top">
-              <span class="user">{{item.user.nickname}}:</span>
-              <span class="content">{{item.content}}</span>
-            </div>
-            <div class="bottom">
-              <div class="time">2016年9月18日</div>
-              <div class="like-wrapper">
-                  <span>👍</span>({{item.likedCount}})
-              </div>
+          <div class="bottom">
+            <div class="time">2016年9月18日</div>
+            <div class="like-wrapper">
+              <span>👍</span>({{item.likedCount}})
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </script>
 <!-- 导入vue -->
 <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
@@ -204,20 +185,28 @@
         return min + ':' + sec
       }
     },
+    methods: {
+      queryMusic(search) {
+        axios
+          .get(
+            `https://autumnfish.cn/search?keywords=${search}`
+          )
+          .then(backData => {
+            // console.log(backData)
+            // 保存歌曲列表
+            this.musicList = backData.data.result.songs
+          })
+      }
+    },
     // 组件创建完毕
     created() {
       // 获取数据
       // console.log(this.$route.params.search)
       // axios接口调用
-      axios
-        .get(
-          `https://autumnfish.cn/search?keywords=${this.$route.params.search}`
-        )
-        .then(backData => {
-          // console.log(backData)
-          // 保存歌曲列表
-          this.musicList = backData.data.result.songs
-        })
+      this.queryMusic(this.$route.params.search)
+    },
+    beforeRouteUpdate(to, from, next) {
+      this.queryMusic(to.params.search)
     }
   }
   // 播放器组件
@@ -312,20 +301,32 @@
     },
     created() {
       axios.get(`https://autumnfish.cn/comment/hot?id=${this.$route.params.id}&type=0`)
-      .then(backData=>{
-        // console.log(backData);
-        this.commentList = backData.data.hotComments;
-      })
+        .then(backData => {
+          // console.log(backData);
+          this.commentList = backData.data.hotComments;
+        })
     }
   }
 
   // 2. 定义路由
   const routes = [
     // 为了能够传递数据 规则需要定义为/result/:xx
-    { path: '/result/:search', component: result },
-    { path: '/player/:id', component: player },
-    { path: '/video/:mvid', component: video },
-    { path: '/comment/:id', component: comment }
+    {
+      path: '/result/:search',
+      component: result
+    },
+    {
+      path: '/player/:id',
+      component: player
+    },
+    {
+      path: '/video/:mvid',
+      component: video
+    },
+    {
+      path: '/comment/:id',
+      component: comment
+    }
   ]
 
   // 3. 创建 router 实例，然后传 `routes` 配置
@@ -351,7 +352,9 @@
         // console.log('去搜索')
         // 获取search
         // 代码的方式切换 路由（编程式导航）
-        router.push(`/result/${this.search}`)
+        router.push({
+          path: `/result/${this.search}`
+        })
       }
     }
   })

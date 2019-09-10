@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+    }
+
+    .left {
+      width: 20%;
+      height: 800px;
+      background-color: #ccc;
+    }
+
+    .main>div {
+      height: 600px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="left">
+      <ul>
+        <li>
+          <a href="#menu1">菜单1</a>
+        </li>
+        <li>
+          <a href="#menu2">菜单2</a>
+        </li>
+        <li>
+          <a href="#menu3">菜单3</a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="main">
+      <div id="menu1">内容1</div>
+      <div id="menu2">内容2</div>
+      <div id="menu3">内容3</div>
+    </div>
+  </div>
+  <script>
+    // 改变hash,显示对应的div
+    window.onhashchange = function () {
+      // console.log(location.hash) //#menu1
+
+      document.querySelector('#menu1').style.display = 'none'
+      document.querySelector('#menu2').style.display = 'none'
+      document.querySelector('#menu3').style.display = 'none'
+
+      document.querySelector(location.hash).style.display = 'block'
+    }
+  </script>
+</body>
+
+</html>

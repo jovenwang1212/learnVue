@@ -10,24 +10,49 @@
 
 ## 锚链接与hash
 
+锚链接是超链接的一种，快速定位到页面某个位置
+
+1. 可以改变url的hash来定位到页面的某个位置，这个位置的id和hash一致
+2. window.onhashchange监听hash的改变
+3. location.hash获取hash
+
 
 
 ## SPA与MPA
 
 1. SPA(Single-Page Application) 单页应用
 
+   一个外壳和多个页面片段组件
+
+   1. 切换页面并不会打开新的页面, URL只是改变了hash
+   2. 首屏加载会慢，切换页面比较快
+   3. 适合用于后台管理
+
+   
+
 2. MPA(Multi-Page Applicatoin) 多页应用
 
+   多个完整的页面组件
 
+   1. 切换页面会打开新的页面，URL改变，loading
 
+   2. 首屏加载快，切换页面慢
+
+      
 
 ## hash实现SPA
+
+改变hash, 显示对应的div
 
 
 
 ## Vue路由基本使用 
 
 [传送门](https://router.vuejs.org/zh/)
+
+Vue路由就是用来做单页面应用的，不同的hash显示对应的组件
+
+Vue路由的使用只要求会copy改就行。
 
 
 
@@ -40,6 +65,8 @@
 ## Demo-高级播放器-路由整合
 
 ### 实现步骤
+
+
 
 
 ## 路由高亮样式
