@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="toSing">去唱歌</button>
+    <p>
+      <router-link to="/sing/qiqi">唱歌</router-link>
+    </p>
+    <router-view></router-view>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <script>
+    const Foo = {
+      template: '<div>{{$route.params.username}}唱歌</div>'
+    }
+
+
+    const routes = [{
+      path: '/sing/:username',
+      component: Foo
+    }]
+
+    const router = new VueRouter({
+      routes // (缩写) 相当于 routes: routes
+    })
+
+    const app = new Vue({
+      el: '#app',
+      router,
+      methods: {
+        toSing() {
+          router.push('/sing/joven')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

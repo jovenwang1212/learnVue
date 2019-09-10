@@ -58,7 +58,8 @@ Vue路由的使用只要求会copy改就行。
 
 ### Vue路由高仿网易云音乐
 
-
+1. 点击菜单显示对应的组件
+2. 组件就是一张图片
 
 
 
@@ -66,17 +67,50 @@ Vue路由的使用只要求会copy改就行。
 
 ### 实现步骤
 
+1. 整合Vue路由
+   1. 不同的hash展示不同的组件
+   2. 引入vue-router.js
+   3. router-view来展示组件
+   4. 使用vue路由js里面的一大坨copy过来改就行
+2. 整合组件
+   1. 把页面的html内容copy到组件的模板中
+   2. template关联到模板的id
 
 
-## 编程式导航
+
+## 编程式导航与声明式导航
 
 [传送门](https://router.vuejs.org/zh/guide/essentials/navigation.html)
 
+编程式导航和声明式导航就是用来**改变hash**，那么就可以显示对应的组件
 
+用法：
+
+1. 声明式导航相当于 `<a href>`
+
+   ```html
+   <router-link to="/sing">Go to Foo</router-link>
+   ```
+
+2. 编程式导航相当于 `location.href`10.
+
+   ```js
+   router.push('/sing')
+   ```
+
+   
 
 ## 动态路由匹配
 
 [传送门](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E5%93%8D%E5%BA%94%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%98%E5%8C%96)
+
+**组件从hash里面获取到参数**
+
+编程式导航和声明式导航传参
+
+| 模式            | 匹配路径   | $route.params          |
+| --------------- | ---------- | ---------------------- |
+| /user/:username | /user/evan | `{ username: 'evan' }` |
 
 
 
@@ -86,11 +120,26 @@ Vue路由的使用只要求会copy改就行。
 
 ### 实现步骤
 
+1. 输入关键字，回车/点搜索按钮, 展示搜索结果组件
+   1. 获取用户输入的关键字 v-model:keywords
+   2. 事件 @keyup.enter/@click:queryMusic
+   3. 编程式导航
+      1. router.push('/result')
+2. 输入关键字，回车/点搜索按钮，搜索结果组件获取到关键字
+   1. 动态路由匹配
+      1. `router.push('/result') `=> `router.push('/result/keywords')`
+      2. 模式 '/result'=> '/result/:keywords'
+      3. 确认组件获取到了关键字 Vue开发工具查看
+
 ### 注意点
+
+1. 展示搜索结果组件在事件处理方式里面做的，js的方式，所以要用编程式导航改变hash
 
 
 
 ## 生命周期钩子 -created
+
+最早能在这里获取到data的属性
 
 
 
@@ -98,13 +147,28 @@ Vue路由的使用只要求会copy改就行。
 
 ### 实现步骤
 
+1. 在搜索组件里面尽早地发请求，渲染搜索结果
+   1. created里面发请求
+   2. axios.get(url)
+   3. 接口： https://autumnfish.cn/search?keywords=海阔天空
+   4. 组件里面获取用户输入的关键词 this.$route.params.keywords
+   5. 获取请求数据 .then(res=>{})
+   6. 列表数组songList, 用vfor渲染
+   7. mvid不为0时，展示mv的图标
+
 ### 注意点
+
+1. 路由的组件切换，是重新创建了一个Vue实例
 
 
 
 ## 过滤器基本使用
 
 [过滤器](https://cn.vuejs.org/v2/guide/filters.html)
+
+过滤器，可被用于一些常见的文本格式化
+
+过滤器就是用来做**文本格式化**
 
 
 
