@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>实例1</h2>
+    <news></news>
+    <book></book>
+  </div>
+  <div id="app2">
+    <h2>实例2</h2>
+    <news></news>
+    <!-- <book></book> -->
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    // 全局注册，一次注册到处使用
+    Vue.component('news', {
+      template: '<h2>全局注册</h2>'
+    })
+
+    let Book = {
+      template: '<h2>局部注册</h2>'
+    }
+
+
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      //局部注册 哪里注册，就只能在哪里使用
+      components: {
+        book: Book
+      }
+    });
+
+    const app2 = new Vue({
+      el: "#app2",
+      data: {}
+    });
+  </script>
+</body>
+
+</html>
