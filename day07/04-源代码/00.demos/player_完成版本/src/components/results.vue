@@ -1,7 +1,8 @@
 <template>
   <div class="result-wrapper">
     <div class="song"
-         v-for="item in songs">
+         v-for="item in songs"
+         :key="item.id">
       <div class="name">
         <span class="iconfont icon-play"
               @click="toPlay(item.id)"></span>

@@ -1,12 +1,17 @@
 <template>
   <div class="player">
     <div class="left">
-      <img class="disc" src="../assets/img/disc.png" alt />
-      <img class="cover" :src="coverUrl?coverUrl:'../assets/img/cover.png'" alt />
+      <img class="disc"
+           src="../assets/img/disc.png"
+           alt />
+      <img class="cover"
+           :src="coverUrl?coverUrl:'../assets/img/cover.png'"
+           alt />
     </div>
     <div class="right">
       <div class="title">
-        <img src="../assets/img/tag.png" alt />
+        <img src="../assets/img/tag.png"
+             alt />
         <span>{{songName}}</span>
       </div>
       <div class="singer">
@@ -17,9 +22,14 @@
         所属专辑:
         <span>{{alName}}</span>
       </div>
-      <audio class="audio" autoplay controls :src="musicUrl"></audio>
+      <audio class="audio"
+             autoplay
+             controls
+             :src="musicUrl"></audio>
       <ul class="lyric-container">
-        <li class="lyric" v-for="item in lyric">{{item}}</li>
+        <li class="lyric"
+            v-for="(item,index) in lyric"
+            :key="index">{{item}}</li>
       </ul>
     </div>
   </div>
@@ -27,25 +37,25 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       musicUrl: "",
       arName: "",
       alName: "",
       songName: "",
-      coverUrl:"",
+      coverUrl: "",
       lyric: []
     };
   },
   // 获取数据
-  created() {
+  created () {
     // 调用方法
     this.searchMusic();
   },
   // 方法
   methods: {
     // 歌曲搜索
-    searchMusic() {
+    searchMusic () {
       // 歌曲url
       this.$axios
         .get(`/song/url?id=${this.$route.params.id}`)
@@ -59,7 +69,6 @@ export default {
       this.$axios
         .get(`/song/detail?ids=${this.$route.params.id}`)
         .then(backData => {
-          console.log(backData);
           // 封面
           this.coverUrl = backData.data.songs[0].al.picUrl;
           // 歌名
@@ -73,7 +82,7 @@ export default {
       this.$axios.get(`/lyric?id=${this.$route.params.id}`).then(backData => {
         // console.log(backData)
         this.lyric = backData.data.lrc.lyric.split("\n").map(v => {
-          return v.replace(/\[\d{2}\:\d{2}\.\d{2,3}\]/, "");
+          return v.replace(/\[\d{2}:\d{2}\.\d{2,3}\]/, "");
         });
       });
     }
