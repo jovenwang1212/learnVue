@@ -126,27 +126,49 @@
 
 ### 整合路由
 
+1. 安装包,就是安装第三方模块到node_modules 
+
+   1. ```bash
+      npm install vue-router
+      ```
+
+2. 导包
+
+   1. ```js
+      import VueRouter from 'vue-router'
+      ```
+
+3. 用包
+
+   1. 需要use,明确地安装路由功能
+
+      ```js
+      Vue.use(VueRouter)
+      ```
+
+   2. dom结构放在App.vue
+      1. router-link
+      2. router-view
+   3. js逻辑
+      1. 组件的创建在components
+      2. 在main.js里面引入组件
+      3. 定义路由规则 const routes=[{hash=>component}]
+      4. 实例化VueRouter,传递routes
+      5. 创建根实例，传递路由实例
+
 
 
 #### 编码位置
 
+1. 导入路由和注册路由都在main.js
+2. router-link和router-view放在App.vue
+3. components放组件
+4. assets静态资源
+
 ### 注意
 
-
-
-### Vue-cli路由项目整合player
-
-### 实现 步骤
-
-
-
-### 注意点
-
-
-
-## player-项目创建
-
-
+1. 项目在运行时，如果需要安装npm包，最好先停止项目，安装好了，再启动
+2. 一般引入第三方模块，尽量去官网找安装教程，npm install 模块名，这个模块名一定要确定好.
 
 
 
