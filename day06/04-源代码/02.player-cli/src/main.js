@@ -2,23 +2,24 @@ import Vue from 'vue'
 import App from './App.vue'
 // 引入vue-router
 import VueRouter from 'vue-router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
 
 Vue.use(VueRouter)
+Vue.use(ElementUI);
 
 
 // 引入组件
-import Foo from './components/Foo.vue'
-import Bar from './components/Bar.vue'
+import Slider from './components/Slider.vue'
 // 定义路由规则
 const routes = [{
-    path: '/foo',
-    component: Foo
-  },
-  {
-    path: '/bar',
-    component: Bar
-  },
-]
+  path: '/',
+  redirect: '/slider'
+}, {
+  path: '/slider',
+  component: Slider
+}]
 
 // 实例化VueRouter
 

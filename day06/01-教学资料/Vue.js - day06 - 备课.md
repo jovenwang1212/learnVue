@@ -251,17 +251,26 @@ player-搜索区域整合
 
 ### 轮播图组件使用 
 
-1. 下包 npm i element-ui -S
-   1. 展示轮播图
-      1. slider组件初始化尽早初始化
-      2. created请求接口初始化
-      3. axios.get调用接口https://autumnfish.cn/banner 
-      4. 要用axios
-         1. 安装axios
-         2. 引入
-         3. 使用
-      5. 渲染页面上
-      6. 可能还需要调整轮播图的样式
+1. 安装包 `npm i element-ui -S`
+
+2. 引入element-ui
+
+   ```js
+   import ElementUI from 'element-ui';
+   import 'element-ui/lib/theme-chalk/index.css';
+   Vue.use(ElementUI);
+   ```
+
+3. copy走马灯示例代码到Slider.vue
+4. 尽早发请求初始化轮播图组件
+   1. created请求接口初始化
+   2. axios.get调用接口https://autumnfish.cn/banner 
+   3. 要用axios
+      1. 安装axios
+      2. 引入
+      3. 使用
+   4. 渲染页面上 拿到数据 banners 结合vfor渲染
+   5. 可能还需要调整轮播图的样式
 
 > 1. 那么element-ui怎么使用呢？看文档
 > 2. 安装，引入和使用
@@ -271,7 +280,6 @@ player-搜索区域整合
 > 6. 查文档，调接口，和网易云音乐对比
 > 7. 组件初始化就要获取数据，哪个钩子可以做到呢？created
 > 8. 安装axios，引入，使用
-> 9. 调整样式，自定义一个class.修改样式
 
 #### 注意点
 

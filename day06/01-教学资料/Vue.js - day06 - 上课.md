@@ -205,13 +205,78 @@
 
 
 
+## player-轮播图
+
+### 整合轮播图组件
+
+1. 在components里面新建一个Slider.vue单文件组件
+   1. 在template写一个方案代表是slider
+2. 在mian.js引入Slider.vue
+3. 修改路由规则 {path:'/slider',component:Slider}
+
+### 注意：
+
+1. 直接在url上修改hash，检验路由设置是否正确
 
 
-## player-路由整合
 
-### 注意
+### 路由重定向
 
+[传送门](https://router.vuejs.org/zh/guide/essentials/redirect-and-alias.html)
 
+当访问hash1时，跳转到hash2
+
+使用方法:
+
+```js
+const routes = [{
+  path: '/',
+  redirect: '/slider'
+}, {
+  path: '/slider',
+  component: Slider
+}]
+```
+
+1. 在main.js添加路由规则
+
+### 饿了么ui 介绍
+
+[传送门](https://element.eleme.cn/#/zh-CN)
+
+1. 非常流行的pc端Vue组件库
+2. 饿了么ui有很多现成的组件供我们使用,Datepicker,button，tab,disalog,message...
+3. Vue全家桶
+   1. vue
+   2. vue-router
+   3. axios
+   4. element-ui
+   5. vuex
+
+### 轮播图组件使用 
+
+1. 安装包 `npm i element-ui -S`
+
+2. 引入element-ui
+
+   ```js
+   import ElementUI from 'element-ui';
+   import 'element-ui/lib/theme-chalk/index.css';
+   Vue.use(ElementUI);
+   ```
+
+3. copy走马灯示例代码到Slider.vue
+4. 尽早发请求初始化轮播图组件
+   1. created发请求
+   2. axios.get()
+      1. 安装  `npm install axios`
+      2. Slider.vue 引入
+   3. url <https://autumnfish.cn/banner>
+   4. 拿到数据 banners 结合vfor渲染
+
+#### 注意点
+
+1. 走马灯组件的示例代码里面默认是h3标签来显示文案，我们可以改变图片
 
 ## 总结
 
