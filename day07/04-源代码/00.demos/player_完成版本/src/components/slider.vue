@@ -18,7 +18,7 @@ export default {
   },
   // 获取轮播图数据
   created() {
-    this.$axios.get(`/banner`).then(backData => {
+    this.$axios.get(`/banner?t=${Date.now()}`).then(backData => {
       // console.log(backData)
       // 设置上去
       this.banners = backData.data.banners;

@@ -12,14 +12,20 @@ Vue.use(ElementUI);
 
 // 引入组件
 import Slider from './components/Slider.vue'
+import SongList from './components/SongList.vue'
 // 定义路由规则
 const routes = [{
-  path: '/',
-  redirect: '/slider'
-}, {
-  path: '/slider',
-  component: Slider
-}]
+    path: '/',
+    redirect: '/slider'
+  }, {
+    path: '/slider',
+    component: Slider
+  },
+  {
+    path: '/search/:keywords',
+    component: SongList
+  }
+]
 
 // 实例化VueRouter
 

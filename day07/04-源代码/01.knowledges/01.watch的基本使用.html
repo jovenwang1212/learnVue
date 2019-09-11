@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <input type="text" v-model="message">
+    <h2>你的名字: {{user.name}}</h2>
+    <button @click="changeName">改名字</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: '这是一个寂寞的天',
+        user: {
+          name: 'Joven'
+        }
+      },
+      methods: {
+        changeName() {
+          this.user.name = "Sam"
+        }
+      },
+      watch: {
+        // message: function () {
+
+        // }
+        message() {
+          console.log('改变了')
+        },
+        'user.name'() {
+          console.log('改变了')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
