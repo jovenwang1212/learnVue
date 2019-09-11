@@ -774,7 +774,7 @@ export default {
    npm install -g @vue/cli
    ```
 
-4. 确定vue-cli是否安装成功. 显示版本号表示成功
+4. 确定vue-cli是否安装成功. 显示版本号表示成功，保证版本号在3.0以上
 
    ```md
    vue --version
