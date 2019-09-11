@@ -166,9 +166,20 @@ Vue路由的使用只要求会copy改就行。
 
 [过滤器](https://cn.vuejs.org/v2/guide/filters.html)
 
-过滤器，可被用于一些常见的文本格式化
+自定义过滤器，可被用于一些常见的文本格式化
 
-过滤器就是用来做**文本格式化**
+过滤器大部分时候用来做**文本格式化**
+
+1. 使用方法
+   1. {{数据|过滤器名字}}
+   2. `|`管道符
+2. 定义
+   1. 过滤器作为一个方法声明在filters属性，filters和methods,el,data,computed,mounted,updated,created平级的
+   2. 过滤器方法默认接受一个参数，就是过滤器作用的数据
+   3. 过滤器方法必须返回一个值，这个值就是最终显示的值
+3. 过滤器只能用在{{}}和v-bind指令，大部分时候是前者，大部分时候是用于文本格式化
+
+![1568102618676](Vue.js - day05 - 上课.assets/1568102618676.png)
 
 
 
@@ -178,8 +189,47 @@ Vue路由的使用只要求会copy改就行。
 
 ### 实现步骤
 
+1. 处理时长 毫秒->04:03
+   1. 使用{{数据|formatTime}}
+   2. 定义
+      1. filters:{formatTime}
+      2. 处理逻辑
+         1. 毫秒->总秒数   `毫秒/1000`
+         2. 总秒数->分  ` Math.floor(总秒数/60)`
+         3. 总秒数-秒   `Math.floor(总秒数%60)`
+         4. 分和秒保持两位，小于10的话，补0
+2. 把歌手列表的name以`|`拼接起来
+   1. 使用{{数据|formatSinger}}
+   2. 定义
+      1. filters:{formatSinger}
+      2. 处理逻辑
+         1. 遍历歌手列表，取得name拼接
 
 ### 注意点
+
+1. arr.join(拼接符)把arr里面的每一项用拼接符边接
+2. 过滤器就是对文本格式化
+
+
+
+## Demo-参数改变重新触发请求
+
+[导航守卫](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#全局前置守卫)
+
+`beforeRouteUpdate`可以监听到hash里面的参数改变
+
+1. to可以接受新的参数
+2. from是旧的路由
+3. this.$route也是旧的路由
+4. next()一定要调用，不然hash不会变
+
+## TODO
+
+1. 点MV插放MV
+2. 点播放icon，播放音乐
+3. 点歌名，展示评论
+
+
 
 
 

@@ -43,9 +43,9 @@
             {{item.name}}
             <span class="iconfont icon-editmedia" v-show="item.mvid"></span>
           </div>
-          <div class="singer">韩红|孙楠</div>
+          <div class="singer">{{item.artists|formatSinger}}</div>
           <div class="album">《{{item.album.name}}》</div>
-          <div class="time">{{item.duration}}</div>
+          <div class="time">{{item.duration|formatTime}}</div>
         </div>
       </div>
   </script>
@@ -145,6 +145,38 @@
           // 歌曲搜索列表
           songList: []
         }
+      },
+      filters: {
+        formatTime(time) {
+          // 毫秒->04：03
+          // 取得总秒数
+          let totalSec = Math.floor(time / 1000)
+          // 取得分 总秒数->分
+          let min = Math.floor(totalSec / 60)
+          // 总秒数->秒
+          let sec = totalSec % 60
+          return `${min>=10?min:'0'+min}:${sec>=10?sec:'0'+sec}`
+        },
+        formatSinger(artists) {
+          // let str = ''
+          // for (let artist of artists) {
+          //   str += artist.name + '|'
+          // }
+          // return str.substr(0, str.length - 1)
+          let arr = []
+          for (let artist of artists) {
+            arr.push(artist.name)
+          }
+          return arr.join('|')
+        }
+      },
+      beforeRouteUpdate(to, from, next) {
+        axios.get(`https://autumnfish.cn/search?keywords=${to.params.keywords}`)
+          .then(res => {
+            // console.log(res)
+            this.songList = res.data.result.songs
+            next()
+          })
       },
       created() {
         // console.log('ok')
