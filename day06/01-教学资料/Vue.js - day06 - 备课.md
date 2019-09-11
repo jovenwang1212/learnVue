@@ -103,7 +103,9 @@
 
    1. 用名字作为标签
 
-   
+> 1. 说是components里面可以写组件的吧，我们来写一个
+> 2. 别的地方需要使用，需要注册吧。那注册分为全局注册和局部注册
+> 3. 
 
 ## 局部组件的注册
 
@@ -169,7 +171,13 @@ Vue官方推荐每个组件都给一个name属性
 
 
 
-## player-界面分析
+##  player-界面分析
+
+1. 项目准备
+   1. 新建一个02.player-cli文件夹
+   2. copy usevue-router的项目，除了node_modules
+   3. 在02.player-cli下npm install 
+   4. npm run serve运行 02.player-cli项目
 
 ![1562655721263](../../day07/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562655721263.png)
 
@@ -178,38 +186,7 @@ Vue官方推荐每个组件都给一个name属性
 
 
 
-### Vue-cli路由项目整合player
-
-### 实现 步骤
-
-1. 导航栏
-   1. 把index.html的dom结构 放到App.vue的template里面
-   2. App.vue的style里面引入css
-   3. 设置声明式导航router-link 在App.vue
-   4. 同时设置内容区 router-view
-2. main.js 
-   1. 修改了路由规则 /results =>Results
-   2. 引入了Results这个组件
-3. 搜索组件
-   1. 新建一个results.vue单文件组件
-   2. 把原来results.html的html代码copy过来
-   3. 在results.vue里面引入样式
-5. 歌曲播放组件
-   1. 新建一个player.vue单文件组件
-   2. 把原来player.html代码copy到template里面
-   3. 在player.vue引入样式
-   4. 声明式导航和路由规则要匹配
-6. mv组件和comment组件
-
-
-
-### 注意点
-
-1. 导航栏和内容区都在App.vue
-2. 跟路由规则，路由初始化都在main.js
-3. 搜索歌曲，播放歌曲，mv，评论分别是四个单文件组件
-
-
+player-搜索区域整合
 
 ## player-搜索区域抽取为组件
 
@@ -229,7 +206,7 @@ Vue官方推荐每个组件都给一个name属性
 ### 整合轮播图组件
 
 1. 创建轮播图组件 02.slider.vue
-2. main.js中导入组件
+2. main.js中导入组件 
    1. path:"/slider"
    2. component:slider
 

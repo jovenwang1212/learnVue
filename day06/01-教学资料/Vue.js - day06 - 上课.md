@@ -174,15 +174,34 @@
 
 ## player-界面分析
 
-![1562655721263](../../day07/01-%E6%95%99%E5%AD%A6%E8%B5%84%E6%96%99/assets/1562655721263.png)
+1. 项目准备
+   1. 新建一个02.player-cli文件夹
+   2. copy usevue-router的项目，除了node_modules
+   3. 在02.player-cli下npm install 
+   4. npm run serve运行 02.player-cli项目
+
+
+
+![1568190120063](Vue.js - day06 - 上课.assets/1568190120063.png)
 
 
 
 ## player-搜索区域整合
 
+1. copy index.html到App.vue
+2. 在App.vue导入样式
+3. 添加router-view
+
 
 
 ## player-搜索区域抽取为组件
+
+1. 新建一个search.vue
+2. 抽取搜索区域的html到search.vue的template
+3. 局部注册，因为组件主要是在App.vue使用
+   1. 引入组件 import Search from './components/Search'
+   2. 设置给App.vue的components属性
+   3. 在template里面当标签使用
 
 
 
