@@ -88,15 +88,6 @@
                 isMe: false
               })
 
-              Vue.nextTick(function () {
-                // 姐姐消息添加后，且dom更新完，强制让滚动条滚到底部
-                $('.main').scrollTop(99999)
-              })
-
-              this.$nextTick(() => {
-                $('.main').scrollTop(99999)
-              })
-
               // 强制让滚动条滚到底部
               // setTimeout(() => {
               //   $('.main').scrollTop(99999)
@@ -110,7 +101,7 @@
       },
       updated() {
         // console.log('updated')
-        // $('.main').scrollTop(99999)
+        $('.main').scrollTop(99999)
       },
     })
   </script>
