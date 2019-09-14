@@ -92,6 +92,15 @@
               // setTimeout(() => {
               //   $('.main').scrollTop(99999)
               // }, 0)
+              // Vue.nextTick(() => {
+              //   // dom更新了
+              //   // console.log('更新了')
+              //   $('.main').scrollTop(99999)
+              // })
+              this.$nextTick(() => {
+                // $('.main').scrollTop(99999)
+                console.log('变更了，nexttick')
+              })
             }
           })
 
@@ -101,7 +110,8 @@
       },
       updated() {
         // console.log('updated')
-        $('.main').scrollTop(99999)
+        // $('.main').scrollTop(99999)
+        console.log('变更了，updated')
       },
     })
   </script>
