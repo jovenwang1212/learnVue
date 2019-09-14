@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="arr.reverse()">反转</button>
+    <ul ref="ulRef">
+      <li v-for="item in arr" :test="item.test" :key="item.id">
+        {{item.name}}
+        <input type="text">
+      </li>
+    </ul>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        arr: [{
+            name: 'aaa',
+            id: 2434,
+            test: 1111
+          },
+          {
+            name: 'bbb',
+            id: 4444,
+            test: 2222
+          }
+        ]
+      },
+      mounted() {
+        this.ulref = this.$refs.ulRef.children[0]
+      },
+      updated() {
+        console.log(this.ulref === this.$refs.ulRef.children[0])
+      }
+    });
+  </script>
+</body>
+
+</html>
