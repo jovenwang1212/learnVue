@@ -1,0 +1,16 @@
+<script>
+  function Vue() {
+
+  }
+  Vue.prototype.$router = {
+    push() {
+      console.log('能访问到$router的push方法')
+    }
+  }
+
+  const app = new Vue()
+  // Vue实例上访问属性，如果找不到的话，会去prototype上去找
+  app.$router.push()
+
+  app.name = 'Joven' //对象上添加属性
+</script>

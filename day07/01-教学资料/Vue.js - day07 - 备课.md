@@ -18,7 +18,7 @@
 ```js
 {
   path: '/search',
-    component: SongList
+   component: SongList
 }
 ```
 
@@ -55,10 +55,32 @@
   });
 ```
 
+```html
+<script>
+  function Vue() {
+
+  }
+  Vue.prototype.$router = {
+    push() {
+      console.log('能访问到$router的push方法')
+    }
+  }
+
+  const app = new Vue()
+  // Vue实例上访问属性，如果找不到的话，会去prototype上去找
+  app.$router.push()
+
+  app.name = 'Joven' //对象上添加属性
+</script>
+```
+
 > 1. 点击搜索，显示搜索组件，并携带输入的关键字
 > 2. router.push切换路由会报错。改成this.$router能解决问题，为什么呢
 > 3. 看源码 $router设置给Vue的原型，那么Vue实例里面就可以访问到$router
 > 4. 所有的组件都是Vue实例，所以this.$router就可以访问到。
+> 5. 补充js原型回顾，对象上访问属性，如果找不到的话，会去原型上寻找。
+
+
 
 ### 03 - 搜索路由传参
 
@@ -138,18 +160,18 @@ filters:formatSinger(singers)\{ return}
 
 1. 使用
 
-```
+```html
 {{数据|formatTime}}
 ```
 
 2. 定义过滤器
    	1. 组件的filters属性里面声明一个formatTime的方法
-   	2. formatTime方法接受一个time，time就是过滤作用的数据
-   	3. 数据处理 毫秒->04:03
-        	1. 总秒数 = 毫秒/1000
-        	2. 分= Math.floor(总秒数/60)
-        	3. 秒= Math.floor(总秒%60)
-   	4. return数据处理结果，是最终渲染结果
+      	2. formatTime方法接受一个time，time就是过滤器作用的数据
+              	3. 数据处理 毫秒->04:03
+                	1. 总秒数 = 毫秒/1000
+                    	2. 分= Math.floor(总秒数/60)
+                        	6. 秒= Math.floor(总秒%60)
+                                  7. return数据处理结果，是最终渲染结果
 
 
 
@@ -180,17 +202,14 @@ watch: {
 }
 ```
 
-
-
->看文档，解析它的用法，watch里面包一个方法，方法名为监听的属性名
->
->双向数据绑定，watch侦听到message的变化。
->
->watch一个没有定义在data里面的属性，无法侦听到变化
+>1. 黑云音乐结合路由的案例里面，我们解决再次输入关键词搜索用的是beforeRouteUpdate，来获取路由参数的变化，然后触发重新搜索解决问题。
+>2. 但是动态路由匹配路径有变化时，其实可以通过Vue开发工具查看到data.$route.params.keywords是有变化的，所以我们只需要监听到这个data属性有变化，然后重新触发搜索就行。监听data属性变化时，需要用到侦听器watch。
+>3. 先来看监听message的变化，再来看监听user.name，语法上不行。因为我们用的是方法简写，其实对象的，作为方法名要符合key的命名规范。
+>4. watch和beforeRouteUpdate两种方案都行，但是beforeRouteUpdate只能用在路由里，watch可以监听所有data的属性的变化，这个知识点应用更广泛些。
 
 
 
-### 09 - 重复搜索功能实现
+### 09 - 再次搜索bug修复
 
 1. 当search改变时重新调用接口
 2. created中已经实现了接口调用
@@ -210,7 +229,7 @@ watch: {
 
 ### 01 - 点击去播放器
 
-1. 在03.results.vue的歌曲列表的 左侧播放按钮上绑定 点击事件
+1. 在SongList.vue歌曲列表的 左侧播放按钮上绑定 点击事件
 2. 点击事件中获取歌曲的id
 3. 触发之后，使用编程式导航跳转去播放器 放歌，携带id
 4. 动态路由匹配 main.js
@@ -222,34 +241,96 @@ watch: {
 > 2. 思路分析
 > 3. 实现逻辑同上
 
+### 02-Vue全局使用axios与axios基地址设置
 
+1. Vue全局使用axios
 
-### 02-axios抽取 基地址设置
+   1.  在main.js中把axios设置给Vue的原型
 
-1.  main.js中 把axios设置给
-   1. `Vue.prototype.$axios=axios`
-2. 所有的组件都可以使用了
-3. 基础地址一样，没有必要每次都写，可以直接抽取出来
-4. `axios.defaults.baseURL = '设置的基地址';`
-5. main.js中
+   ```js
+   Vue.prototype.$axios = axios
+   ```
+
+   2. 所有组件可以访问到axios
+
+      ```js
+      this.$axios
+      ```
+
+2. 设置axios基地址，使用axios的地方url可以略基地址
+
+   1. 在mian.js设置axios的基地址
+
+   ```js
+   axios.defaults.baseURL = '设置的基地址';
+   ```
 
 #### 注意
 
 1. $的目的是和自己的属性区分，这是一个大伙都遵守的约定 
 2. 设置了之后，所有的组件内部都可以通过`this.$axios`访问axios
 3. axios设置了基地址之后，请求有2种情况
-   1. 请求的地址是完整的,`https://autumnfish.cn/song/search?id=123`
+   1. 请求的地址是完整的,`https://autumnfish.cn/banner`
       1. 不会去拼接基地址
-   2. 请求的地址只有一部分：`/song/url?id=123`
+   2. 请求的地址只有一部分：`/banner`
       1. axios就会自动补全基地址部分
-4. 绝大多数的项目中，后台接口部署在一台服务器上，基地址是一样的，设置一次即可
-   1. 对于不同基地址的接口，直接给完整地址
 
-> 1. 现在的代码每个组件里面，都导入一次axios，能不能让设置为全局变量，让其他组件能共享呢？ 设置到Vue的原型
-> 2. Vue.prototype.axios = axios,先在player中访问一下
-> 3. axios.get的url前面部分都一样，能不能省去呢。查看文档
-> 4. 设置axios.default.baseURL 基地址
-> 5. 找到播放歌曲的歌词
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="search">查询banner</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/axios.js"></script>
+  <script>
+    // 把axios设置给Vue的原型
+    Vue.prototype.$axios = axios
+    // 设置基地址
+    axios.defaults.baseURL = 'https://autumnfish.cn';
+
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        search() {
+          // 如果url是相对地址，url=基地址+相对地址
+          // 如果url是完整的,  不会拼接基地址
+          this.$axios.get('https://autumnfish.cn/banner')
+            .then(res => {
+              console.log(res)
+            })
+        }
+      },
+    });
+  </script>
+</body>
+</html>
+```
+
+
+
+> 1. 现在每个组件需要请求都要引入一次axios, 那我能不能全局引入一次呢。想一想路由实例是怎么做到，router并不需要在组件里引入吧。它是设置到Vue的原型上，对不对。
+> 2. 举例说明，在方法里面打印this.$axios，接着完成发请求
+> 4. 为什么设置给原型的变量要用$axios呢，约定上对象原型上的属性用$开头, 比如$router,$message
+> 5. 另外我们整个案例访问的接口都是以`https://autumnfish.cn`开头，能不能告诉axios，我给一个相对址，每次请求的时候，你自动帮我把`https://autumnfish.cn`拼上去。是可以的。`https://autumnfish.cn`叫基地址。
+> 6. 查看文档，设置基地址的用法
+> 7. 如果使用的url是完整的会怎么样
+
+
+
+### 03-Vue全局使用axios与axios基地址设置整合
+
+
 
 ### 03 - 歌曲信息显示
 
@@ -272,14 +353,24 @@ created中 调用 歌曲url接口，歌曲封面接口，及 歌词接口即可
 
 ### 01 - 歌曲评论路由设置
 
-1. main.js 路由规则
-   1. 05.comment.vue
-   2. path:/comment/:id
-   3. component:comment
+1. 在components里面声明组件`Comment.vue`
+   1. 把comment.html的html copy到`Comment.vue`
+2. 在main.js里面引入Comment.vue
+3. 添加路由规则
+
+```js
+{
+  path: '/comment',
+  component: Comment
+}
+```
+
+
 
 ### 02-点击携带歌曲id去评论组件
 
-1. 在 04.player.vue组件中
+1. 在 SongList.vue组件中，添加点击事件
+   1. @click:toComment
 2. 为歌名 绑定点击或者双击事件(dblclick)
 3. 编程式导航`this.$router.push('/comment/${id}')`
 

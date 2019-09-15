@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="search">查询banner</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/axios.js"></script>
+  <script>
+    // 把axios设置给Vue的原型
+    Vue.prototype.$axios = axios
+    // 设置基地址
+    axios.defaults.baseURL = 'https://autumnfish.cn';
+
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        search() {
+          // 如果url是相对地址，url=基地址+相对地址
+          // 如果url是完整的,  不会拼接基地址
+          this.$axios.get('https://autumnfish.cn/banner')
+            .then(res => {
+              console.log(res)
+            })
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>
