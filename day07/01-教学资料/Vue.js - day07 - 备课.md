@@ -10,28 +10,44 @@
 
 ### 01 - 搜索路由
 
-1. 写组件 03.results.vue
-2. 注册路由规则
-   1. path:'/search'
-   2. component:search
+1. 在components里面声明组件`SongList.vue`
+   1. 把results.html的htmlcopy到SongList.vue
+2. 在main.js里面引入SongList.vue
+3. 添加路由规则
 
-#### 注意
+```js
+{
+  path: '/search',
+    component: SongList
+}
+```
 
-路由规则测试直接url输入地址即可，对于动态路由匹配，地址`/results/内容`
+4. 改变hash看是否能访问到SongList.vue
 
-> 1. 输入内容，是不是得搜歌呢。是不是要展示歌曲搜索这个组件呢
-> 2. 新建一个歌曲搜索按钮，路由规则，换地址，可以切换到搜索组件。稍调整样式。
+> 1. 输入关键字，是不是得搜歌呢，准确来说是展示搜索歌曲列表，也就是要展示歌曲搜索这个组件。
+> 2. 怎么展示？我们说在路由里边，hash控制组件的显示对吧。那么就得改变hash，也就是声明式导航或者编程式导航。这里用编程式导航。
+> 3. 新建一个歌曲搜索组件，路由规则，改变hash，可以切换到搜索组件
 
 ### 02 - 搜索路由切换
 
-1. 01.search.vue
-2. 点击搜索
-3. 按下回车时
-4. 携带输入的内容 修改路由地址
-5. `router.push('/results/搜索关键字')`
-6. vue-router源码中的关键部分
-7. 把$router设置给Vue的原型，所有的Vue实例就都可以使用这个属性了
-8. 组件中编程式导航，this.$router.push('地址')
+输入关键字，回车/点击搜索按钮，显示搜索结果列表组件
+
+1. 获取用户输入的关键字 v-model:keywords
+
+2. 事件 @keyup.enter/@click:toSongList
+
+3. js的方式去改变hash为/search。编程式导航
+
+   ```js
+   this.$router.push('/search')
+   ```
+
+### 注意点
+
+1. 为什么子组件里面可以能过this.$router拿到路由的实例
+   1. import from 'node_modules文件夹名'，实际上引入的是文件夹下package.json里面main属性指向的js
+   2. 子组件方法中的this访问$router时，其实就是拿到路由实例
+   3. Vue实例上访问属性，如果找不到的话，会去prototype上去找
 
 ```js
   Object.defineProperty(Vue.prototype, '$router', {
@@ -44,62 +60,69 @@
 > 3. 看源码 $router设置给Vue的原型，那么Vue实例里面就可以访问到$router
 > 4. 所有的组件都是Vue实例，所以this.$router就可以访问到。
 
+### 03 - 搜索路由传参
+
+动态路由匹配
+
+1. 参数传到hash里面 
+
+   ```js
+   this.$router.push('/search/keywords')
+   ```
+
+2. 修改路由规则
+
+   ```js
+   path: '/search' ==> '/search/:keywords'
+   ```
+
+3. 在Vue开发工具里面查看搜索结果列表组件的数据$route
+
+#### 注意点
+
+1. this.$router是路由实例与this.$route这是路由数据
 
 
-### 03 - 饿了么ui 弹框
 
-1. [传送门](https://element.eleme.cn/#/zh-CN/component/message)
-2. 使用方式`  this.$message('这是一条消息提示'); `
-3. 需要弹框的时候，调用上述的代码，即可弹出一个普通的消息提示框
-4. 如果要弹出一些比较高级的框
+### 04 - 饿了么ui 为空消息提示
+
+[传送门](https://element.eleme.cn/#/zh-CN/component/message)
+
+使用方法
 
 ```js
-this.$message({
-  message: '恭喜你，这是一条成功消息',
-  type: 'success'
-});
-  this.$message({
-  message: '警告哦，这是一条警告消息',
-  type: 'warning'
-});
-  this.$message.error('错了哦，这是一条错误消息');
+this.$message('这是一条消息提示');
 ```
+
+注意点：
+
+1. 为什么Vue实例可以访问到$message
+
+   ```js
+     Vue.prototype.$loading = packages_loading.service;
+     Vue.prototype.$msgbox = message_box;
+     Vue.prototype.$alert = message_box.alert;
+     Vue.prototype.$confirm = message_box.confirm;
+     Vue.prototype.$prompt = message_box.prompt;
+     Vue.prototype.$notify = notification;
+     Vue.prototype.$message = packages_message;
+   ```
 
 > 1. 先来一个优化一个用户体验，用户输入的关键字为空，提示。我们原来调用alert，很丑。实际工作中，从来不会用alert，一般调第三方框的弹框提示，或者按公司内部的标准去设置弹框。
 >
 > 2. 看文档，演示基本例子。有哪些使用方法
 
-### 04 - 搜索结果非空判断
-
-1. 01.search.vue
-2. 点击搜索，或者是按下回车
-3. 判断搜索关键字是否为空
-4. 不为空跳转
-5. 为空，提示用户
-6. 使用饿了么的弹框，只需要在需要的使用调用方法即可
-7. ![1562663475563](assets/1562663475563.png)
-
-#### 注意点
-
-1. $message之所以可以使用是因为设置给vue的原型
-2. 在![1562663523452](assets/1562663523452.png)直接搜索`$message`即可找到
-
-> 1. 接着，我们在搜索关键字为空的时候，提示用户。
-> 2. this.$message哪来的呢。我们看element-ui源码
-> 3. element-ui把一些常用的组件设置给了Vue.prototype
-
 
 
 ### 05 - 渲染搜索结果
 
-1. 通过路由获取数据
-2. axios调用接口 created  <https://autumnfish.cn/search?keywords=
-3. 数据获取到之后
-4. 渲染到页面上
+尽早发请求，获取数据，渲染搜索结果
 
-#### 注意
-
-1. created 很多时候都可以用来获取初始的数据 
+1. created里面发请求
+2. axios.get()  https://autumnfish.cn/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA
+3. 关键词在路由数据里面
+4. songs结合v-for遍历数组，渲染列表
+5. mv图标的展示 mvid不为0时
 
 > 1. 拿数据，渲染到页面上
 > 2. 找到接口
@@ -111,9 +134,22 @@ filters:formatSinger(singers)\{ return}
 
 ### 07 - 过滤器时间处理
 
-filters:formatTIme(time){ return}
+自定义过滤器
 
- 定义和用法类似，但是内部的逻辑需要根据需求来调整
+1. 使用
+
+```
+{{数据|formatTime}}
+```
+
+2. 定义过滤器
+   	1. 组件的filters属性里面声明一个formatTime的方法
+   	2. formatTime方法接受一个time，time就是过滤作用的数据
+   	3. 数据处理 毫秒->04:03
+        	1. 总秒数 = 毫秒/1000
+        	2. 分= Math.floor(总秒数/60)
+        	3. 秒= Math.floor(总秒%60)
+   	4. return数据处理结果，是最终渲染结果
 
 
 
@@ -121,13 +157,26 @@ filters:formatTIme(time){ return}
 
 [传送门](https://cn.vuejs.org/v2/guide/computed.html#%E4%BE%A6%E5%90%AC%E5%99%A8)
 
-data里面的属性有改变，就会触发一下方法
+ 侦听器就是用来监听data属性的变化
+
+1. 使用方法
+   1. watch和el、data是平级的属性
+   2. 在watch里面，要监听的属性是一个方法，方法名为属性名
+   3. 如果要监听的属性是不符合变量规则，比如有-或者.的话，加引号
+
+1. watch相比于updated，updated是所有的data属性改变都会触发，watch可以自定义一些属性改变时触发
 
 ```js
-watch:{
-  属性名(){
-    console.log('变化了')
-  }
+watch: {
+  // message: function () {
+
+  // }
+  message() {
+    console.log('改变了')
+  },
+    'user.name'() {
+      console.log('改变了')
+    }
 }
 ```
 
