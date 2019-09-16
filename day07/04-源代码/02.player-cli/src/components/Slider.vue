@@ -9,8 +9,6 @@
 </template>
 
 <script>
-// 引入axios
-import axios from 'axios'
 
 export default {
   name: 'Slider',
@@ -22,7 +20,7 @@ export default {
   },
   created () {
 
-    axios.get('https://autumnfish.cn/banner')
+    this.$axios.get('/banner')
       .then(res => {
         /* eslint-disable */
         // console.log(res)
