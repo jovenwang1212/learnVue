@@ -32,7 +32,7 @@ const routes = [{
     path: '/search/:keywords',
     component: SongList
   }, {
-    path: '/comment',
+    path: '/comment/:id',
     component: Comment
   }
 ]

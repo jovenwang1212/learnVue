@@ -5,7 +5,7 @@
          :key="index">
       <div class="name">
         <span class="iconfont icon-play"></span>
-        <span @click="toComment">{{item.name}}</span>
+        <span @click="toComment(item.id)">{{item.name}}</span>
         <span class="iconfont icon-editmedia"
               v-show="item.mvid"></span>
       </div>
@@ -36,8 +36,8 @@ export default {
           this.songs = res.data.result.songs
         })
     },
-    toComment () {
-      this.$router.push('/comment')
+    toComment (id) {
+      this.$router.push(`/comment/${id}`)
     }
   },
   created () {
