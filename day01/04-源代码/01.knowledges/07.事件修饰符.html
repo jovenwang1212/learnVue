@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-      <input type="text" value="hello" @input="inputHandler" @keyup="keyupHandler" />
-      <input type="text" value="world" @keyup.enter="enterHandler" />
-    </div>
-    <script src="./lib/vue.js"></script>
-    <script>
-      const app = new Vue({
-        el: '#app',
-        data: {},
-        methods: {
-          inputHandler() {
-            // console.log('....')
-          },
-          keyupHandler(event) {
-            // enter键抬起才触发
-            if (event.keyCode === 13) {
-              console.log(event.target.value)
-            }
-          },
-          enterHandler(event){
-            console.log(event.target.value)
-          }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <a href="http://www.baidu.com" @click.prevent="clickHandler">百度</a>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+      使用方法: v-on:事件名.修饰符 = "事件处理方法"
+      常用的三个事件修饰符
+        1. @keyup.enter enter键抬起时触发
+        2. .stop阻止事件冒泡
+        3. .prevent阻止默认事件
+     */
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        clickHandler(event) {
+          //阻止默认事件
+          // event.preventDefault();
+          alert('Cool')
         }
-      })
-    </script>
-  </body>
+      }
+    })
+  </script>
+</body>
+
 </html>

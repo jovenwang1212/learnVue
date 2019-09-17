@@ -1,72 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width= , initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <style>
-      h2{
-        text-align: center;
 
-      }
-      body{
-        text-align: center;
-      }
-      input{
-        width: 300px;
-        height: 30px;
-        border-radius: 5px;
-        font-size: 22px;
-        padding-left: 10px;
-        outline: none;
-        border: 1px solid #000;
-      }
-      .items{
-        list-style: none;
-        padding: 0;
-        width: 300px;
-        margin: 0 auto;
-      }
-      .items .item{
-        font-size: 25px;
-        text-align: left;
-        cursor:pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 模板 -->
-    <div id="app">
-      <h2>小黑记事本</h2>
-      <input type="text" @keyup.enter="addList" v-model="todo" placeholder="请输入要记录的内容" />
-      <ul class='items'>
-        <li @dblclick="delOne(index)" v-for="(item,index) in list" class='item'>{{item}}</l>
-      </ul>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width= , initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    h2 {
+      text-align: center;
+    }
+
+    body {
+      text-align: center;
+    }
+
+    input {
+      width: 300px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 22px;
+      padding-left: 10px;
+      outline: none;
+      border: 1px solid #000;
+    }
+
+    .items {
+      list-style: none;
+      padding: 0;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .items .item {
+      font-size: 25px;
+      text-align: left;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 模板 -->
+  <div id="app">
+    <h2>小黑记事本</h2>
+    <input type="text" placeholder="请输入要记录的内容" v-model="inputVal" @keyup.enter="addTodo" />
+    <ul class="items">
+      <li class="item" v-for="(item, index) in todoList" :key="index" @dblclick="delTodo(index)">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</body>
+
 </html>
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-<script src="./lib/vue.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.3.1/dist/vue.js"></script>
 <!-- 编码 -->
 <script>
   // 创建Vue实例
   var app = new Vue({
-    el:"#app",
-    data:{
-      todo:'',
-      list:[
-        '吃饭饭','睡觉觉'
-      ]
+    el: '#app',
+    data: {
+      // 列表的数据
+      todoList: ['打豆豆', '睡觉觉'],
+      // 输入的任务
+      inputVal: ''
     },
     methods: {
-      addList(){
-        this.list.push(this.todo)
-        this.todo =''
+      addTodo() {
+        // 为空提示
+        // 去空格
+        this.inputVal = this.inputVal.trim()
+        if (this.inputVal === '') {
+          alert('哥们写点啥呗')
+          this.inputVal = null
+          return
+        }
+        // if(this.inputVal===''){
+        if (!this.inputVal) {
+          alert('哥们写点啥呗')
+          return
+        }
+        //添加任务
+        this.todoList.push(this.inputVal)
+        // 清空
+        this.inputVal = ''
       },
-      delOne(index){
-        this.list.splice(index,1)
+      // 删除任务
+      delTodo(index) {
+        this.todoList.splice(index, 1)
       }
-    },
+    }
   })
 </script>

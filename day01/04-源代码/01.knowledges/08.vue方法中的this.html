@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-      <h3>{{ message }}</h3>
-      <button @click="sayHello">点我呀</button>
-    </div>
-    <script src="./lib/vue.js"></script>
-    <script>
-      /*
-        方法中的this就是Vue实例
-        Vue把data和methods里面属性直接设置到Vue实例上 app.  
-        改变data值，对应的视图会响应
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h3>{{ message }}</h3>
+    <button @click="sayHello">点我呀</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+      方法中的this就是Vue实例
+      Vue把data和methods里面属性直接设置到Vue实例上 app.  
+      改变data值，对应的视图会响应
+      方法声明建议用方法的简洁写法
       */
-      const app = new Vue({
-        el: '#app',
-        data: {
-          message: '这是一个寂寞的天',
-          person: {
-            name: 'Joven',
-            age: 30
-          }
-        },
-        methods: {
-          sayHello(event) {
-            // alert('hello')
-            // console.log(this === app) //true
-            this.message='是兄弟，就来玩贪玩蓝月'
-            console.log(this.message)
-            this.print()
-          },
-          print(){
-            console.log('biu biu biu')
-          }
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '这是一个寂寞的天',
+        person: {
+          name: 'Joven',
+          age: 30
         }
-      })
-      console.log(app)
-    </script>
-  </body>
+      },
+      methods: {
+        sayHello() {
+          // alert('hello')
+          // console.log(this === app) //true
+          this.message = '是兄弟，就来玩贪玩蓝月'
+          console.log(this.message)
+        },
+        // sayHello: () => {
+        //   console.log(this) //window
+        // }
+      }
+    })
+    console.log(app)
+  </script>
+</body>
+
 </html>
