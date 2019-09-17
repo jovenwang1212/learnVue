@@ -94,3 +94,5 @@
 1. 几种js代码风格
 2. 并没添加vuex
 3. .browserlistrc文件
+4. git status可以用vscode查看
+5. 需要补充自定义指定和组件传参
