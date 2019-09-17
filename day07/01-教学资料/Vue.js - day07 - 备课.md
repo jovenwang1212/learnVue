@@ -18,7 +18,7 @@
 ```js
 {
   path: '/search',
-   component: SongList
+  component: SongList
 }
 ```
 
@@ -84,15 +84,15 @@
 
 ### 03 - 搜索路由传参
 
-动态路由匹配
+动态路由匹配:组件从hash里获取参数
 
-1. 参数传到hash里面 
+1. Search.vue参数传到hash里面  
 
    ```js
    this.$router.push('/search/keywords')
    ```
 
-2. 修改路由规则
+2. main.js 修改路由规则
 
    ```js
    path: '/search' ==> '/search/:keywords'
@@ -152,11 +152,23 @@ this.$message('这是一条消息提示');
 
 ### 06 - 过滤器歌手处理
 
+自定义过滤器formatSinger
+
+1. 定义过滤器
+
+2. 使用
+
+   ```html
+   {{数屈打}}
+   ```
+
+   
+
 filters:formatSinger(singers)\{ return}
 
 ### 07 - 过滤器时间处理
 
-自定义过滤器
+自定义过滤器formatTime
 
 1. 使用
 
@@ -168,9 +180,9 @@ filters:formatSinger(singers)\{ return}
    	1. 组件的filters属性里面声明一个formatTime的方法
       	2. formatTime方法接受一个time，time就是过滤器作用的数据
               	3. 数据处理 毫秒->04:03
-                	1. 总秒数 = 毫秒/1000
+                     	1. 总秒数 = 毫秒/1000
                     	2. 分= Math.floor(总秒数/60)
-                        	6. 秒= Math.floor(总秒%60)
+                             	6. 秒= Math.floor(总秒%60)
                                   7. return数据处理结果，是最终渲染结果
 
 

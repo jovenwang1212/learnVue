@@ -5,7 +5,7 @@
          :key="index">
       <div class="name">
         <span class="iconfont icon-play"></span>
-        {{item.name}}
+        <span @click="toComment(item.id)">{{item.name}}</span>
         <span class="iconfont icon-editmedia"
               v-show="item.mvid"></span>
       </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
 
   name: 'SongList',
@@ -31,11 +30,14 @@ export default {
   methods: {
     querySong () {
       // console.log(this.$route.params.keywords)
-      axios.get(`https://autumnfish.cn/search?keywords=${this.$route.params.keywords}`)
+      this.$axios.get(`/search?keywords=${this.$route.params.keywords}`)
         .then(res => {
           // console.log(res)
           this.songs = res.data.result.songs
         })
+    },
+    toComment (id) {
+      this.$router.push(`/comment/${id}`)
     }
   },
   created () {
