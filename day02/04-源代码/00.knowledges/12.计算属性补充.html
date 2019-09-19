@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-      <h3>你成为京东plus会员的日期{{date}}</h3>
-      <h3>成为会员{{vipDays}}天</h3>
-      <input type="text" v-model="date">
-      
-    </div>
-    <script src="./lib/vue.js"></script>
-    <script>
-      const app = new Vue({
-        el: "#app",
-        data: {
-          date:'2019-8-21'
-        },
-        computed:{
-          vipDays(){
-            // (当前时间的毫秒数-成为会员日期的毫秒数)/(每天的毫秒数)
-            //'2019/8/21
-            return Math.ceil((Date.now()-new Date(this.date.replace(/\-/g,'/')).getTime())/(24*60*60*1000))
-          }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h3>你成为京东plus会员的日期{{date}}</h3>
+    <h3>成为会员{{vipDays}}天</h3>
+    <input type="text" v-model="date">
+
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        date: '2019-8-21'
+      },
+      computed: {
+        vipDays() {
+          // (当前时间的毫秒数-成为会员日期的毫秒数)/(每天的毫秒数)
+          //'2019/8/21
+          return Math.ceil((Date.now() - new Date(this.date.replace(/\-/g, '/')).getTime()) / (24 * 60 * 60 * 1000))
         }
-      });
-      </script>
-  </body>
+      }
+    });
+  </script>
+</body>
+
 </html>

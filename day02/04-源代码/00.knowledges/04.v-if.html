@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="app">
-        <h1 v-if="awesome">Vue is awesome!</h1>
-        <h2 v-else>very bad</h2>
-    </div>
-    <script src="./lib/vue.js"></script>
-    <script>
-      const app = new Vue({
-        el: "#app",
-        data: {
-          awesome:false
-        }
-      });
-      </script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="awesome=!awesome">切换</button>
+    <h1 v-if="awesome">Vue is awesome!</h1>
+    <h1 v-else>very bad</h1>
+
+    <h2>---------------------------</h2>
+    <h2>老弟，你今年{{age}}岁了</h2>
+    <input type="text" v-model="age">
+    <!-- 不同年龄做的事情 -->
+    <h2 v-if="age<18">去网吧</h2>
+    <h2 v-else-if="age<25">来黑马学习</h2>
+    <h2 v-else>晚婚了</h2>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        awesome: false,
+        age: 18
+      }
+    });
+  </script>
+</body>
+
 </html>
