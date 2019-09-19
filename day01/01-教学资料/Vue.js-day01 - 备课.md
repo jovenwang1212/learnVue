@@ -72,7 +72,7 @@
 
 
 
-### Vue基本使用解析
+### *Vue基本使用解析
 
 使用Vue步骤
 
@@ -160,7 +160,7 @@
 
 
 
-## Vue指令
+## *Vue指令
 
 [传送门](https://cn.vuejs.org/v2/guide/syntax.html#%E6%8C%87%E4%BB%A4)
 
@@ -169,6 +169,8 @@
 **Vue指令是提供给HTML标签新增的属性**
 
 使用是`v-text="值"`
+
+Vue指令的作用: 作用在它所在的标签上，具体的作用跟是什么指令有关           
 
 ```html
 <img src="" title="鼠标悬停文案" v-text="js表达式(值)">
@@ -288,7 +290,7 @@
 
 
 
-## v-on指令
+## *v-on指令
 
 [基本使用](https://cn.vuejs.org/v2/guide/events.html)
 
@@ -397,7 +399,7 @@
 
 
 
-### 事件修饰符
+### *事件修饰符
 
 [传送门](https://cn.vuejs.org/v2/guide/events.html#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6)
 
@@ -722,7 +724,7 @@ js表达式里面的变量是Vue实例的属性
 
 
 
-## 表单输入绑定 v-model
+## *表单输入绑定 v-model
 
 [传送门](https://cn.vuejs.org/v2/guide/forms.html)
 
@@ -757,7 +759,7 @@ js表达式里面的变量是Vue实例的属性
 
 
 
-## v-for指令
+## *v-for指令
 
 [传送门](https://cn.vuejs.org/v2/guide/list.html)
 
