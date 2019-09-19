@@ -44,7 +44,7 @@
   <!-- 模板 -->
   <div id="app">
     <h2>小黑记事本</h2>
-    <input type="text" placeholder="请输入要记录的内容" v-model="inputVal" @keyup.enter="addTodo" />
+    <input type="text" placeholder="请输入要记录的内容" v-model.trim="inputVal" @keyup.enter="addTodo" />
     <ul class="items">
       <li class="item" v-for="(item, index) in todoList" :key="index" @dblclick="delTodo(index)">
         {{ item }}
@@ -71,8 +71,6 @@
     methods: {
       addTodo() {
         // 为空提示
-        // 去空格
-        this.inputVal = this.inputVal.trim()
         if (this.inputVal === '') {
           alert('哥们写点啥呗')
           this.inputVal = null
