@@ -3,8 +3,8 @@
 
 <head>
   <title>手机品牌管理</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       margin: 0px;
@@ -29,7 +29,7 @@
       line-height: 60px;
       font-weight: normal;
       color: #f1f1f1;
-      letter-spacing:1px;
+      letter-spacing: 1px;
       float: left;
     }
 
@@ -43,39 +43,43 @@
       border: 0px;
       outline: none;
     }
-    .tb_title{
-      width:960px;
-      height:40px;
-      margin:20px auto 0;
+
+    .tb_title {
+      width: 960px;
+      height: 40px;
+      margin: 20px auto 0;
       background-color: #3366cc;
       overflow: hidden;
-      border-top-left-radius:4px;
-      border-top-right-radius:4px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
     }
-    .tb_title h3{
-      margin:0px;
-      padding:0px;
-      line-height:40px;
-      font-size:16px;
-      font-weight:normal;
-      text-indent:15px;
+
+    .tb_title h3 {
+      margin: 0px;
+      padding: 0px;
+      line-height: 40px;
+      font-size: 16px;
+      font-weight: normal;
+      text-indent: 15px;
       float: left;
-      color:#fff;
+      color: #fff;
     }
-    .tb_title a{     
+
+    .tb_title a {
       float: right;
-      text-decoration:none;
+      text-decoration: none;
       background-color: #f3cd57;
-      color:#2c2203;
-      padding:5px 10px;
-      font-size:12px;
-      border-radius:4px;
-      margin:7px 15px 0 0;
+      color: #2c2203;
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 4px;
+      margin: 7px 15px 0 0;
     }
-    .tb_title a:hover{
-      border:1px solid rgba(255,255,255,0.6);
-      background-color:transparent;
-      color:#fff;
+
+    .tb_title a:hover {
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background-color: transparent;
+      color: #fff;
     }
 
     .tb {
@@ -87,22 +91,24 @@
     .tb th {
       background-color: #f1f1f1;
       color: #333;
-      font-size:14px;
+      font-size: 14px;
     }
 
     .tb td,
     .tb th {
-      padding:10px 0;
+      padding: 10px 0;
       border: 1px solid #999;
       text-align: center;
     }
-    .tb td{
-      color:#666;
-      font-size:14px;
+
+    .tb td {
+      color: #666;
+      font-size: 14px;
     }
-    .del{
-      text-decoration:none;
-      color:#f90
+
+    .del {
+      text-decoration: none;
+      color: #f90;
     }
 
     .add {
@@ -115,195 +121,207 @@
       height: 200px;
       background-color: #fff;
       border: 1px solid #999;
-      border-radius:4px;
-      z-index:100;
+      border-radius: 4px;
+      z-index: 100;
     }
 
-    .add h3{
-      padding:0px;
-      margin:0px;
+    .add h3 {
+      padding: 0px;
+      margin: 0px;
       background-color: #3366cc;
-      color:#fff;
-      font-size:16px;
-      font-weight:normal;
-      line-height:40px;
-      text-indent:15px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 40px;
+      text-indent: 15px;
     }
 
-    .add_form{
-      margin:30px 0 0 50px;
+    .add_form {
+      margin: 30px 0 0 50px;
     }
 
-    .add_form label{
-      font-size:14px;
-      padding-right:10px;
+    .add_form label {
+      font-size: 14px;
+      padding-right: 10px;
     }
-    .add_form input{
-     width:200px;
-     height:24px;
-     border:1px solid #ccc;
-     outline:none;
-     text-indent:10px;
-     border-radius:4px;
+
+    .add_form input {
+      width: 200px;
+      height: 24px;
+      border: 1px solid #ccc;
+      outline: none;
+      text-indent: 10px;
+      border-radius: 4px;
     }
-    .btns{
-      border-top:1px solid #ccc;
-      margin-top:50px;
-      padding-right:10px;
+
+    .btns {
+      border-top: 1px solid #ccc;
+      margin-top: 50px;
+      padding-right: 10px;
     }
-    .btns input{
-      width:62px;
-      height:30px;
-      border:1px solid #dadce0;
-      border-radius:4px;
+
+    .btns input {
+      width: 62px;
+      height: 30px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
       background-color: #fff;
-      float:right;
-      margin:10px 10px 0 0;
-      outline:none;
-      cursor: pointer;;
-    }
-    .btns input:last-child{
-      background-color: #669df6;
-      color:#fff;
-      border-color:#5793f6;
+      float: right;
+      margin: 10px 10px 0 0;
+      outline: none;
+      cursor: pointer;
     }
 
-    .mask{
+    .btns input:last-child {
+      background-color: #669df6;
+      color: #fff;
+      border-color: #5793f6;
+    }
+
+    .mask {
       position: fixed;
-      left:0px;
-      top:0px;
-      width:100%;
-      height:100%;
-      background-color: rgba(0,0,0,0.3);
-      z-index:99;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 99;
+    }
+
+    [v-cloak] {
+      display: none;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-
     <div class="header_con">
       <div class="header">
         <h1>手机品牌管理</h1>
-        <input type="text" v-model="search" placeholder="请输入搜索条件">
+        <input type="text" placeholder="请输入搜索条件" v-model.trim="keyword" />
       </div>
     </div>
 
     <div class="tb_title">
-       <h3>品牌列表</h3>
-       <a href="javascript:;" @click="isShow=true">新增品牌</a>
+      <h3>品牌列表</h3>
+      <a href="javascript:;" @click="isShow=true">新增品牌</a>
     </div>
 
-    <table class="tb">
+    <table class="tb" v-cloak>
       <tr>
         <th>编号</th>
         <th>品牌名称</th>
         <th>创立时间</th>
         <th>操作</th>
       </tr>
-      <tr v-for="(item, index) in newList">
+      <tr v-for="(item,index) in filterBrandList">
         <td>{{ index + 1 }}</td>
         <td>{{ item.name }}</td>
-        <td>{{ item.time | timeporcess }}</td>
+        <td>{{ item.time }}</td>
         <td>
-          <a href="#" @click.prevent="del(index)" class="del">删除</a>
+          <a href="#" class="del" @click="delBrand(index)">删除</a>
         </td>
       </tr>
-      <tr v-show="newList.length == 0">
-        <td colspan="4">没有品牌数据</td>
+      <tr>
+        <td colspan="4" v-show="filterBrandList.length===0">没有品牌数据</td>
       </tr>
     </table>
 
     <!-- 新增品牌弹框 -->
-    <div class="add_con" v-show="isShow">
+    <div class="add_con" v-show="isShow" v-cloak>
       <div class="add">
         <h3>新增品牌</h3>
         <div class="add_form">
           <label>品牌名称:</label>
-          <input type="text" v-model="addName">          
+          <input type="text" v-model.trim="inputVal" @keyup.enter="addBrand" />
         </div>
         <div class="btns">
-            <input type="button" value="取消" @click="isShow=false">
-            <input type="button" @click="add" value="添加">            
-        </div>      
+          <input type="button" value="取消" @click="isShow=false" />
+          <input type="button" value="添加" @click="addBrand" />
+        </div>
       </div>
       <div class="mask"></div>
     </div>
-
   </div>
 </body>
-<!-- 
-  使用计算属性完成搜索功能：
-    1.0 定义一个计算属性：
-    2.0 计算属性依赖于 搜索 框中的数据
-      2.1 只要搜索框中的数据发生了改变，就应该重新生成计算属性
-      2.2 计算属性中的内容来源于数据源 list, 只要 list 中包含了 搜索框中的内容，我们就将里面的内容取出放到计算属性中
- -->
 
 </html>
-<script src="js/vue.js"></script>
-<script src="js/moment.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="./js/moment.js"></script>
 <script>
-  // 定义全局过滤器
-  Vue.filter('timeporcess', function (value) {
-    // 将时间戳转为具体的日期
-    return moment(value).format('YYYY-MM-DD hh:mm:ss a')
-  })
-
-  //  创建一个 vm 对象
-  var vm = new Vue({
+  new Vue({
     el: '#app',
     data: {
-      // 准备 M 层数据
-      list: [
-        { name: '华为', time: Date.now() },
-        { name: '小米', time: Date.now() },
-        { name: '红米', time: Date.now() },
-        { name: 'oppo', time: Date.now() },
-        { name: 'vivo', time: Date.now() },
-        { name: '坚果', time: Date.now() }
+      brandList: [{
+          name: '华为',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        },
+        {
+          name: '小米',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        },
+        {
+          name: '诺基亚',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        },
+        {
+          name: '红米',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        },
+        {
+          name: '三星',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        },
+        {
+          name: '坚果Pro',
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        }
       ],
-      addName: '', // 新增输入框中的内容
-      search: '', // 搜索框中的内容
-      isShow:false // 设置弹框的显示和隐藏
+      //控制弹框显示与隐藏
+      isShow: false,
+      // 获取用户输入的品牌
+      inputVal: '',
+      // 用户输入的搜索关键字
+      keyword: ''
     },
     methods: {
-      add() {
-        // 判断输入框是否为空
-        if(this.addName==''){
-           return;
+      //删除一项
+      delBrand(index) {
+        if (confirm('你确定删除吗？')) {
+          this.brandList.splice(index, 1)
         }
-        // 1.0 得到新增框中的数据
-        // 2.0 添加数据到 list 中
-        this.list.push({
-          name: this.addName,
-          time: Date.now()
-        })
-        // 3.0　清空新增框中的内容
-        this.addName = '';
-        this.isShow = false;
       },
-      del(index) {
-        if (confirm('您确定删除吗')) {
-          // 删除 index 对应的数据
-          this.list.splice(index, 1)
+      // 新增品牌
+      addBrand() {
+        //为空提示
+        if (!this.inputVal) {
+          return
         }
+        // 数组增加一项
+        this.brandList.push({
+          name: this.inputVal,
+          time: moment().format('YYYY-MM-DD HH:mm:ss a')
+        })
+
+        //隐藏弹层
+        this.isShow = false
+        this.inputVal = ''
       }
     },
-
     computed: {
-      // 添加一个计算属性，用来保存包含搜索内容的数据源
-      newList: function () {
-        // 只要 search 改变，就要重新生成 newList
-        var listarr = this.list.filter(item => {
-          // 判断当前项中的 name 属性是否包含 search
-          return item.name.includes(this.search)
-        })
-        console.log(listarr)
-        return listarr
+      filterBrandList() {
+        //遍历brandList里面的每一项，如果某一项的品牌名称包含keyword,这一项就应该添加到新数组里面
+        let arr = []
+        for (let i = 0; i < this.brandList.length; i++) {
+          let brand = this.brandList[i]
+          // 如果品牌名称包含关键字，匹配成功的
+          if (brand.name.includes(this.keyword)) {
+            arr.push(brand)
+          }
+        }
+        return arr
       }
-    }
+    },
   })
-
 </script>
