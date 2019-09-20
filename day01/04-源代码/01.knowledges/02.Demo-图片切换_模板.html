@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width= , initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>图片切换</title>
+  <style>
+    .title {
+      background-color: skyblue;
+      color: white;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 0 20px hotpink;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 模板 -->
+  <div id="app">
+    <h2 class="title">图片切换</h2>
+    <img alt="" :src="imgList[index]" />
+    <br />
+    <input type="button" value="上一张" @click="pre" />
+    <input type="button" value="下一张" @click="next" />
+  </div>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="./lib/vue.js"></script>
+  <!-- 编码 -->
+  <script>
+    /*
+      1. 显示图片
+        1.很多张图片 图片数组imgList:[img1,img2,img3,img4]
+        2.数组下标 index:0
+        3.取图片数组中的一张 imgList[index]
+        4.显示其中一张图片 :src="imgList[index]"
+      2.点击上一张，显示上一张;点击下一张，显示下一张
+        1. 上一张 @click:pre 
+          1.index--
+        2. 下一张 @click:next
+          1. index++
+      3.点上一张，如果当前是第一张，去到最后一张; 点下一张，当前如果最后一张，回到第一张
+        1. pre index:0=>最后一张length-1
+        2. next index:length-1->0
+    */
+
+    /*
+    img src的值来自于图片数组其中的一项
+    */
+  </script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        // 图片数组
+        imgList: [
+          './img/01.png',
+          './img/03.png',
+          './img/boy.png',
+          './img/girl.png',
+          './img/cat.gif',
+          './img/05.gif',
+        ],
+        index: 0
+      },
+      methods: {
+        // 上一张
+        pre() {
+          // 当前是第一张，去到最后一张
+          if (this.index === 0) {
+            this.index = this.imgList.length - 1
+            return
+          }
+          this.index--
+
+        },
+        // 下一张
+        next() {
+          // 当前如果最后一张，回到第一张
+          if (this.imgList.length - 1 === this.index) {
+            this.index = 0
+            return
+          }
+          this.index++
+
+          // this.index++
+          // 当前如果最后一张，回到第一张
+          // if (this.imgList.length === this.index) {
+          //   this.index = 0
+          // }
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

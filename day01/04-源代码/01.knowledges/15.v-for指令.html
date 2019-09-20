@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in songList">{{item}} {{index}}</li>
+    </ul>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+      v-for 指令基于一个数组来渲染一个列表
+      v-for遍历数组，生成列表
+      用法
+        1. v-for放在需要重复元素上
+        2. v-for="元素别名 in 数组"， v-for="（元素别名,下标） in 数组"
+        3.在标签之间或者标签上，都可以使用元素别名和下标
+      */
+    const app = new Vue({
+      el: "#app",
+      data: {
+        songList: [
+          '说好不哭',
+          '放学别走',
+          '等我下课',
+          '一路向北'
+        ]
+      }
+    });
+  </script>
+</body>
+
+</html>

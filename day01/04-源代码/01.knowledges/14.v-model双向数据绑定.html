@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <input type="text" v-model="message">
+    <button @click="changeData">改变data</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+        v-model: 你可以用 v-model 指令在表单 <input>、<textarea> 及 <select>  
+        1. v-model只能用在表单元素上
+        2. v-model 获取用户输入
+        双向数据绑定
+          1. 获取用户输入 value->data 
+          2. 设置value   data->value
+      */
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: '这是一个寂寞的天,下着有些伤心的雨'
+      },
+      methods: {
+        changeData() {
+          this.message = '坏得很'
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

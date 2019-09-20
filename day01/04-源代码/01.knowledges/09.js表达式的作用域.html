@@ -11,41 +11,38 @@
 <body>
   <div id="app">
     <h2>{{message}}</h2>
-    <button @click="showLove">点我呀</button>
+    <h2>{{person.name}}</h2>
+    <button @click="message = '是兄弟，就一起玩贪玩蓝月'">点我呀</button>
+    <!-- <button onclick="console.log(555)">555</button> -->
+    <button @click="print">打印</button>
   </div>
   <script src="./lib/vue.js"></script>
   <script>
     /*
-    1.方法中的this是Vue实例
-    2.方法中的this可以直接访问到data和methods里面的属性。this.
-    3. data里面属性改变，对应的视图会响应
+    这些表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析。
+      dom使用的变量只能来自于data或者methods
+      在dom里面使用变量时，不用加this
     */
+
+    window.name = 24234
+
     const app = new Vue({
       el: "#app",
       data: {
         message: '中分带波浪，是不是很萌',
         person: {
-          name: 'Joven',
-          age: 'secret'
+          name: 'Joven'
         }
       },
       methods: {
-        // 推荐用简洁写法
         showLove() {
-          // alert('我愿意')
-          // console.log(this === app)
-          // console.log(this.person)
-          this.message = '词穷。。。'
+          this.message = '是兄弟，就一起玩贪玩蓝月'
         },
-        // showLove: () => {
-        //   console.log(this) //window
-        // },
         print() {
-          console.log('biu biu')
+          console.log(555)
         }
       },
     });
-    console.log(app)
   </script>
 </body>
 

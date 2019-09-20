@@ -42,7 +42,7 @@
 使用Vue步骤
 
 1. 导入vue.js
-2. dom结构:Vue管理的容器
+2. dom结构:Vue管理的容器, 推荐用id属性
 3. 实例化new Vue({})
    1. el:'id选择器' 关联到Vue管理的容器
    2. data的值是对象，是可以通过{{}}在Vue管理的容器里面进行渲染。
@@ -222,7 +222,7 @@ Vue指令的作用: 作用在它所在的标签上，具体的作用跟是什么
 注册事件
 
 1. 使用方法 v-on:事件名=“事件处理方法”
-2. 简写@，推荐用简写
+2. 简写@（at），推荐用简写
 3. 事件名和原生html标签里注册事件的事件名是一样的。可以是click,dblclick,mouseover,mouseenter,keyup,keydown,keypress,blur,focus
 4. methods是el、data是平级的
 5. 事件处理方法应该声明在methods里面
@@ -425,7 +425,7 @@ Vue指令的作用: 作用在它所在的标签上，具体的作用跟是什么
 
 js表达式里面的变量是Vue实例的属性
 
-1. data和methods的属性在表达式里可以直接使用，不要加this
+1. **data和methods的属性在表达式里可以直接使用，不要加this**
 
 ```html
 <div id="app">
@@ -678,9 +678,9 @@ js表达式里面的变量是Vue实例的属性
 1. v-model的修饰符
    - [`.lazy`](https://cn.vuejs.org/v2/guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件
    - [`.number`](https://cn.vuejs.org/v2/guide/forms.html#number) - 输入字符串转为有效的数字
-   - [`.trim`](https://cn.vuejs.org/v2/guide/forms.html#trim) - 输入首尾空格过滤
+   - [`.trim`](https://cn.vuejs.org/v2/guide/forms.html#trim) - **输入首尾空格过滤**
 
-2. arr.splice(从哪一项开始删除，删除多少项)
+2. **arr.splice(从哪一项开始删除，删除多少项)**
 
    
 

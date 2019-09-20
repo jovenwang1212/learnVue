@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <img v-bind:src="imgUrl" alt="">
+    <img :src="imgUrl2" alt="" @click="changeImg">
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+    v-bind使用 html标签的属性不是写死的，就使用v-bind
+      v-bind:src="js表达式"
+      简写: :src="js表达式"
+    */
+    const app = new Vue({
+      el: "#app",
+      data: {
+        imgUrl: './img/03.png',
+        imgUrl2: './img/01.png'
+      },
+      methods: {
+        changeImg() {
+          this.imgUrl2 = './img/cat.gif'
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

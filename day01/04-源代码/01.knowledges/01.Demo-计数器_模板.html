@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>计数器</title>
+  <style>
+    .input-num {
+      width: 180px;
+      height: 40px;
+      border: 1px solid gray;
+      display: flex;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .input-num button {
+      width: 50px;
+      height: 100%;
+      font-size: 25px;
+      color: gray;
+      cursor: pointer;
+    }
+
+    .input-num span {
+      height: 100%;
+      border: 1px solid gray;
+      flex: 1;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    .input-num button.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 计数器 -->
+    <div class="input-num">
+      <button @click="sub" :disabled="num===0" :class="num==0?'disabled':''">
+        -
+      </button>
+      <span>{{num}}</span>
+      <button @click="add" :disabled="num===10" :class="num==10?'disabled':''">
+        +
+      </button>
+    </div>
+  </div>
+</body>
+
+</html>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- 编码 -->
+<script>
+  /*
+    1. 显示数字
+      1. data.num:0
+      2. {{num}}
+    2.点击+,数字+1;点击-,数字-1
+      1. 事件@click:add 
+        1. num++
+      2.点击事件@click:sub
+        2. num--
+    3. 数字的范围是0~10
+      1.当数字为0时,-按钮会添加disabled属性，class="disabled"
+        1. v-bind:disabled="num===0"
+        2. v-bind:class="num==0?'disabled':''"
+      2.当数字为10时,+按钮会添加disabled属性，class="disabled"
+        1. v-bind:disabled="num===10"
+        2. v-bind:class="num==10?'disabled':''"
+   */
+
+  /*
+   v-bind:disabled="true/false"
+     1. true会添加disabled属性
+     2. false移走disalbed属性
+   v-bind:class="类名"
+  */
+
+  new Vue({
+    el: '#app',
+    data: {
+      //  数字
+      num: 0
+    },
+    methods: {
+      add() {
+        this.num++
+      },
+      sub() {
+        this.num--
+      }
+    },
+  })
+</script>
