@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <button @click="showLove">点我呀</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+    1.方法中的this是Vue实例
+    2.方法中的this可以直接访问到data和methods里面的属性。this.
+    3. data里面属性改变，对应的视图会响应
+    */
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: '中分带波浪，是不是很萌',
+        person: {
+          name: 'Joven',
+          age: 'secret'
+        }
+      },
+      methods: {
+        showLove() {
+          // alert('我愿意')
+          // console.log(this === app)
+          // console.log(this.person)
+          this.message = '词穷。。。'
+        },
+        print() {
+          console.log('biu biu')
+        }
+      },
+    });
+    console.log(app)
+  </script>
+</body>
+
+</html>

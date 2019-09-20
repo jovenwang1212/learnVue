@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- dom结构 -->
+  <div id="wrapper">
+    <h2>{{info}}</h2>
+    <h2>{{number*77}}</h2>
+    <h2>{{sex ? '男' : '女'}}</h2>
+    <h2>{{1+1}}</h2>
+    <!-- <h2>{{const PI=3.141592653}}</h2> -->
+  </div>
+
+  <!-- 导包 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 实例化Vue -->
+  <script>
+    /*
+      js表达式的意思：是一个js语句，而且有返回值
+      mustache语法，胡子语法，{{}}语法，插值语法都是一个概念。
+    */
+    new Vue({
+      el: '#wrapper',
+      data: {
+        info: '还是吃得太饱',
+        number: 99,
+        sex: true
+      }
+    })
+  </script>
+
+</body>
+
+</html>

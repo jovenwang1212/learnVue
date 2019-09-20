@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="showLove">点我呀</button>
+    <button @click="showLove()">括号</button>
+    <button @click="bigger(99)">逼格</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+    1. 事件处理方法默认会接受一个事件对象，有些时间会用到
+    2. 括号调用事件处理方法的方式，是没有事件对象
+    3.事件处方法的传参和原来js的方法没什么不一样
+    */
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        // e是事件对象
+        showLove(e) {
+          console.log(e)
+          alert('我们不合适')
+        },
+        bigger(num) {
+          alert(num * 77)
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

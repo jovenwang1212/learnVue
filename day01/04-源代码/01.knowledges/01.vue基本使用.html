@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- {{ message }} -->
+  <div id="container" class="app">
+    <!-- js模板引擎，art-template -->
+    {{ message }}
+    {{info}}
+  </div>
+
+  <!-- 开发环境版本，包含了有帮助的命令行警告 jquery.js 开发时出发错误，提示更多的错误信息-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!-- 生产环境版本，优化了尺寸和速度 jquery.min.js 压缩的，更适应发上线-->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script>
+    /*
+      1.导入vue.js
+      2. dom结构,推荐有一个id属性
+      3. Vue实例化
+        1. el:'id选择器'，关联到Vue管理的容器
+        2. data值是一个对象，对象里面的属性可以在dom结构里面et{{}}渲染。
+    */
+    var app = new Vue({
+      el: '#container',
+      // el: '.app',
+      // el: 'div',
+      data: {
+        message: 'Hello World',
+        info: '今天天气如何'
+      }
+    })
+  </script>
+</body>
+
+</html>

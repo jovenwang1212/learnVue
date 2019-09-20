@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- dom结构 -->
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2 v-text="message"></h2>
+    <h2 v-text="message">标签之间的文本</h2>
+    <h2>之前的文本--{{message}}--之后的文本</h2>
+    {{alink}}
+  </div>
+  <!-- 导包 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <!-- Vue实例化 -->
+  <script>
+    /*
+      v-text指令把值作为文本插入到标签之间,Vue内部实现是用textContent,会覆盖掉标签之间的文本
+      {{}}是v-text的简写，推荐用简写，不会覆盖标签之间的文本
+      v-text不能解析html
+      使用得很频繁，{{}}
+    */
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        message: '这是一个寂寞的天',
+        alink: '<a href="http://www.baidu.com">百度</a>'
+      }
+    })
+  </script>
+</body>
+
+</html>

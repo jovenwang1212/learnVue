@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button onclick="sayhello()">点我呀</button>
+    <button v-on:click="sayHello">Vue注册事件</button>
+    <button v-on:dblclick="sayHello">双击</button>
+    <button @click="sayHello">简写</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    /*
+      v-on是用来注册事件
+      使用方法:
+        1. v-on:事件名="事件处理方法"
+        2.事件名和原来HTML里面注册事件的事件名是一样的。dblclick,focus,keyup,keypress,keydown,mouseover,mouseenter... 
+        3.事件处理方法声明在methods里面
+        4.methods和el、data是平级的
+        5.推荐用方法的简写方式
+        6.当然用简写@(at)
+        
+    */
+    function sayhello() {
+      alert('ok')
+    }
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        // sayHello: function () {
+        //   alert('方法的原始写法')
+        // },
+        // sayHello: ()=> {
+        //   alert('方法的原始写法')
+        // }
+        // 方法的简写
+        sayHello() {
+          alert('Vue的方法处理')
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>
