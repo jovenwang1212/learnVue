@@ -2,9 +2,150 @@
 
 ## 反馈
 
+1. 希望多出一些练习题,巩固一下每天的内容
+   1. 放心，今天会有练习题
+   2. 大家也可以把jquery的案例，用Vue来实现
+2. 希望老师明天能重点讲下form表单的事件修饰符 以及 vue中的this 和 vue中箭头函数的this,包括我,有部分学员也不太明白
+   1. v-model及修饰符
+   2. vue方法中的this再讲一下
+3. 老师的逻辑很清楚 但是表达不是很好
+4. 老师讲的很好
+5. 老师 , 建议讲课时候突出一下重点和了解内容 , 注重强调一下"必须掌握"的重点和"仅需了解"的知识点 , 一节课下来感觉什么都看得懂 , 但是似乎抓不到重点 , 第一天接触vue , 还没有形成对这个框架的概念
+   1. 重点的知识点，会有一个*，总结的时候，我也会重点提的
+   2. 讲知识点的时候会提，是否是重点呢
+6. 感觉老师有点紧张还是怎么啦 说话稍微有点顿挫 放开来讲老师 然后感觉老师授课有点平淡 老师语气可以适当的高低起伏一点 哈哈 不知道是老师性格原因还是什么 我们班可是最活跃的一个班 上过我们的讲师都知道我们最活跃 不知道今天咋了 都不说话了 老师加油 我们可能听课入迷了
+   1. 昨天下午气氛还可以哈，熟悉了就好，迷之自信
+7. 老师别太紧张哈,气氛不好可能是因为刚开始的知识挺简单,同学们都有预习,等到后面就好了,或者老师可以考虑适当增加点扩展的内容,比如es6的新语法 promise函数 async 函数 之类的
+   1. 气氛挺好的
+   2. promise和async也不适合在现阶段讲，
+8. 希望老师多备一下课，多讲一下细节点，例如MVVM，否则 vue是怎么起作用都不知道，毕竟不能一直看其他老师的视频学习，vue基础要是没打好，后面就更难
+   1. 总之是想多学一点
+   2. 整个班一起学习，得有一个整体的节奏，讲了MVVM不能保证所有的人听懂。
+   3. MVVM是一个思想上的转变，需要练习中慢慢体会到，先熟悉Vue的语法
+9. 关于v-model这个指令感觉不是很清楚,希望老师明天再做个复习咯~~~
+
+
+
+## v-model指令
+
+获取用户的输入
+
+用法:
+
+```html
+<input type="text" v-model="message">
+```
+
+双向数据绑定
+
+1. 给input框设置值 data-> value
+2. 获取用户的输入 value-> data
+
+```html
+<body>
+  <div id="app">
+    <h2>--{{message}}--</h2>
+    <input type="text" v-model.trim="message">
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: '哈哈'
+      }
+    });
+  </script>
+</body>
+```
+
+> 1. v-model指令就是用来获取用户的输入的
+> 2. 既然获取用户的输入，得有一个变量来接受用户的输入吧。这个变量就声明在data里面
+> 3. 这个message到底有没有获取到用户的输入，我们无法知道，那显示一下呗。
+> 4. 输入框输入，显示的文字跟着变化。再解释一下，怎么发生的。message获取用户的输入，随着用户的输入message会变，然后对应的显示也会变化。
+> 5. 双向数据绑定
+> 6. trim去空格
+
+
+
+## 方法中的this
+
+1. 方法中的this就是Vue实例
+2. 方法中this可以直接访问到data和methods的属性 this.
+3. methods里面可以使用箭头函数的话，this是window,建议用方法的简洁写法
+
+```html
+<div id="app">
+  <button @click="sayHello">点我呀</button>
+  <button @click="arrowFun">箭头函数</button>
+</div>
+<script src="./lib/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'Hello'
+    },
+    methods: {
+      sayHello() {
+        // this就是Vue实例
+        console.log(this === app)
+        // this可以直接访问到data和methods里面的属性
+        console.log(this.message)
+      },
+      arrowFun: () => {
+        console.log(this) //window
+      }
+    },
+  });
+</script>
+```
+
 
 
 ## 回顾
+
+1. vue基本使用
+2. vue指令
+
+```html
+<!-- Dom结构 -->
+<div id="app">
+  <h2>{{ message }}</h2>
+  <!-- <h2 v-text="message"></h2> -->
+  <h2 v-html="alink"></h2>
+  <button @click="sayHello">点我呀</button>
+  <div :class="isRed?'red':''" @click="isRed=!isRed"></div>
+  <ul>
+    <li v-for="(song,index) in songList">{{song}}--{{index}}</li>
+  </ul>
+</div>
+<!-- 导包 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- 实例化Vue -->
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: '这是一个寂寞的天',
+      alink:'<a href="http://www.baidu.com">百度</a>',
+      isRed:true,
+      songList:[
+        '两只蝴蝶',
+        '两只老虎',
+        '单身情歌',
+        '分手快乐'
+      ]
+    },
+    methods: {
+      sayHello(){
+        alert('ok')
+      }
+    },
+  })
+</script>
+```
 
 
 
@@ -12,7 +153,7 @@
 
 [传送门](https://cn.vuejs.org/v2/guide/conditional.html)
 
-是否渲染当前的DOM
+根据条件决定是否渲染当前的DOM
 
 1. v-if="是否渲染当前的dom"
 2. v-else-if="是否渲染当前的dom"
@@ -21,7 +162,7 @@
 ```html
 <div id="app">
   <button @click="awesome=!awesome">切换</button>
-  <h1 v-if="awesome">Vue is awesome!</h1>
+  <h1 v-if="sex">Vue is awesome!</h1>
   <h1 v-else>very bad</h1>
 
   <h2>---------------------------</h2>
@@ -46,6 +187,7 @@
 
 > 1. 看官方文档。js里边if是啥意思？条件满足就执行以下语句对吧。v-if是条件满足就渲染当前的dom
 > 2. 来看一下官方的例子，再复习一下，举例不同年龄干的事情
+> 3. v-if v-else-if v-else
 
 
 
@@ -53,7 +195,7 @@
 
 [传送门](https://cn.vuejs.org/v2/guide/conditional.html#v-show)
 
-`v-show` 只是简单地切换元素的 CSS 属性 `display`。
+根据条件决定显示或者隐藏当前dom
 
 使用方法 v-show="是否展示当前dom"
 
@@ -64,10 +206,11 @@
 ```html
 <div id="app">
   <button @click="isShow=!isShow">切换显示与隐藏</button>
-  <h2>使用v-if</h2>
-  <p v-if="isShow">这是一个寂寞的天</p>
   <h2>使用v-show</h2>
   <p v-show="isShow">这是一个寂寞的天</p>
+  <h2>使用v-if</h2>
+  <p v-if="isShow">这是一个寂寞的天</p>
+  
 </div>
 <script src="./lib/vue.js"></script>
 <script>
@@ -83,6 +226,9 @@
 > 1. v-show指令和v-if非常像，都是条件满足显示当前DOM, 但是原理上有区别
 > 2. 看文档，初步了解到v-show是改变样式。
 > 3. v-if隐藏元素会移走DOM，v-show隐藏元素css display:none
+> 4. 控制元素的显示与隐藏
+> 5. 使用方法
+> 6. 
 
 
 
@@ -144,23 +290,26 @@
 > 2. vue.js换成线上版本的，disabled cache和slow 3G
 > 3. 所以为什么会有胡子语法一闪而过呢。代码是从上往下执行的，vue.js解析前，页面是有胡子语法的
 > 4. 怎么解决呢？有同学说把vue.js的引入放在最上边？会阻塞页面的渲染。
-> 5. 这里就需要用到v-cloak指令，查看文档。
+> 5. 这里就需要用到v-cloak指令结合css样式
 > 6. 在html里面添加v-cloak，表现是添加了v-cloak这个指令后，Vue解析完，会移除这个属性
 > 7. 我们来看，如何利用这个指令，解决问题。画图说明。
 > 8. 说明disabled cache和slow 3g的作用
 
 
 
-## v-once（了解）
+## v-once与v-pre（了解）
 
 [传送门](https://cn.vuejs.org/v2/api/#v-once)
 
-只渲染元素和组件**一次**。
+v-once只渲染一次
+
+v-pre不解析
 
 ```html
 <div id="app">
   <h2>{{message}}</h2>
   <h2 v-once>{{message}}</h2>
+  <h2 v-pre>{{message}}</h2>
   <input type="text" v-model="message">
 </div>
 <script src="./lib/vue.js"></script>
@@ -175,28 +324,6 @@
 ```
 
 > 看文档，举例说明。
-
-
-
-## v-pre（了解）
-
-Vue不解析，原样输出
-
-```html
-<div id="app">
-  <h2>{{message}}</h2>
-  <h2 v-pre>{{message}}</h2>
-</div>
-<script src="./lib/vue.js"></script>
-<script>
-  const app = new Vue({
-    el: "#app",
-    data: {
-      message: '这是一个寂寞的天'
-    }
-  });
-</script>
-```
 
 
 
@@ -337,20 +464,6 @@ Vue不解析，原样输出
 
 
 
-## template结合v-if
-
-[传送门](https://cn.vuejs.org/v2/guide/conditional.html#%E5%9C%A8-lt-template-gt-%E5%85%83%E7%B4%A0%E4%B8%8A%E4%BD%BF%E7%94%A8-v-if-%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%88%86%E7%BB%84)
-
-把一个 `<template>` 元素当做不可见的包裹元素，并在上面使用 `v-if`。最终的渲染结果将不包含 `<template>` 元素。
-
-1. template是Vue提供的标签，有包裹元素的功能，和div
-2. 最终不会渲染
-3. template雷锋
-
-> 1. v-bind:表达式里面的逻辑重复，在div包裹，并在div上用v-if判断更好 
-> 2. div可能有副作用，用template更好 
-> 3. 查看template文档，解释，用template替换div，总结
-
 
 
 ## 滚动底部-Vue异步更新
@@ -365,7 +478,7 @@ Vue会把数据的更新，缓冲起来，批量地进行更新DOM
 
 ```js
 setTimeout(()=>{
-  $('.content').scrollTop(88888)
+  $('.main').scrollTop(99999)
 },0)
 ```
 
@@ -420,8 +533,6 @@ document.write(moment().format('YYYY-MM-DD HH:mm:ss a'))
 
 [传送门](https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7)
 
-对于任何复杂逻辑，你都应当使用**计算属性**。
-
 对于data里面的属性，如果不想原样的输出，都应该使用计算属性
 
 使用
@@ -434,23 +545,20 @@ document.write(moment().format('YYYY-MM-DD HH:mm:ss a'))
 
 ```html
 <div id="app">
-  <h2>{{message}}</h2>
-  <input type="text" v-model="message">
-  <h2>字符的长度{{messageLen}}</h2>
-
+  <h2>老弟的生日是{{birthday}}</h2>
+  <input type="text" v-model="birthday">
+  <h2>老弟{{age}}岁了</h2>
 </div>
 <script src="./lib/vue.js"></script>
 <script>
   const app = new Vue({
     el: "#app",
     data: {
-      message: '这是一个寂寞的天，'
+      birthday: '2018-11-11'
     },
     computed: {
-      //message的长度
-      messageLen() {
-        console.log('我执行了。。。')
-        return this.message.length
+      age() {
+        return new Date().getFullYear() - new Date(this.birthday).getFullYear()
       }
     },
   });

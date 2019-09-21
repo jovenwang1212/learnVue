@@ -10,16 +10,22 @@
 
 <body>
   <div id="app">
-    <h2>{{message}}</h2>
-    <h2 v-pre>{{message}}</h2>
+    <h2>成为京东plus会员{{date}}</h2>
+    <h2>您已经成为会员{{vipDays}}天了</h2>
+    <input type="text" v-model="date">
   </div>
   <script src="./lib/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
       data: {
-        message: '这是一个寂寞的天'
-      }
+        date: '2019-9-20'
+      },
+      computed: {
+        vipDays() {
+          return Math.ceil((Date.now() - new Date(this.date).getTime()) / (24 * 3600 * 1000))
+        }
+      },
     });
   </script>
 </body>

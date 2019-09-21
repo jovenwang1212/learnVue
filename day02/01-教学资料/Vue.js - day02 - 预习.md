@@ -2,6 +2,21 @@
 
 ## 反馈
 
+1. 希望多出一些练习题,巩固一下每天的内容
+   1. 放心，今天会有练习题
+   2. 大家也可以把jquery的案例，用Vue来实现
+2. 希望老师明天能重点讲下form表单的事件修饰符 以及 vue中的this 和 vue中箭头函数的this,包括我,有部分学员也不太明白
+   1. 
+3. 老师的逻辑很清楚 但是表达不是很好
+4. 老师讲的很好
+5. 老师 , 建议讲课时候突出一下重点和了解内容 , 注重强调一下"必须掌握"的重点和"仅需了解"的知识点 , 一节课下来感觉什么都看得懂 , 但是似乎抓不到重点 , 第一天接触vue , 还没有形成对这个框架的概念
+6. 感觉老师有点紧张还是怎么啦 说话稍微有点顿挫 放开来讲老师 然后感觉老师授课有点平淡 老师语气可以适当的高低起伏一点 哈哈 不知道是老师性格原因还是什么 我们班可是最活跃的一个班 上过我们的讲师都知道我们最活跃 不知道今天咋了 都不说话了 老师加油 我们可能听课入迷了
+7. 老师别太紧张哈,气氛不好可能是因为刚开始的知识挺简单,同学们都有预习,等到后面就好了,或者老师可以考虑适当增加点扩展的内容,比如es6的新语法 promise函数 async 函数 之类的
+8. 希望老师多备一下课，多讲一下细节点，例如MVVM，否则 vue是怎么起作用都不知道，毕竟不能一直看其他老师的视频学习，vue基础要是没打好，后面就更难
+9. 关于v-model这个指令感觉不是很清楚,希望老师明天再做个复习咯~~~
+
+v-model指令
+
 ## 回顾
 
 1. vue基本使用
@@ -11,65 +26,66 @@
    ```html
    <!DOCTYPE html>
    <html lang="en">
-     <head>
-       <meta charset="UTF-8" />
-       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-       <title>Document</title>
-       <style>
-         #app > div {
-           width: 100px;
-           height: 100px;
-           border: 1px solid #666;
-           margin: 10px;
-         }
-       </style>
-     </head>
-     <body>
-       <div id="wrapper">
-         <h2>{{ message }}</h2>
-         <!-- <h2 v-text="message"></h2> -->
-         <h2 v-html="alink"></h2>
-         <input type="button" value="点我呀" @click="sayHello" />
-         <div :class="{'red':isRed}" @click="isRed=!isRed"></div>
-         <input type="text" v-model="message" />
-         <input type="button" value="改变data" @click="changeData" />
-         <ul>
-           <li v-for="(song,index) in songList">
-               {{ song }}--{{ index }}
-           </li>
-         </ul>
-         <p v-if="isShow">这是一个寂寞的天，下着有些伤心的雨</p>
-         <p v-show="isShow">这是一个寂寞的天，下着有些伤心的雨</p>
-       </div>
-       <!-- 引入vue.js -->
-       <script src="./lib/vue.js"></script>
-       <!-- 实例化Vue -->
-       <script>
-         /*
-           Vue的指令是vue提供给HTML标签的属性
-         */
-         new Vue({
-           el: "#wrapper",
-           data: {
-             message: "还是吃得太饱",
-             alink: '<a href="http://www.baidu.com">百度</a>',
-             isRed: true,
-             songList: ["两只蝴蝶", "终于等到你", "可惜不是你"],
-          isShow:true
-           },
-           methods: {
-             sayHello() {
-               alert("ok");
-             },
-             changeData() {
-               this.message = "李晨又又分手了";
-             }
+   
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+     <style>
+       #app>div {
+         width: 100px;
+         height: 100px;
+         border: 1px solid #ccc;
+       }
+   
+       .red {
+         background-color: red;
+       }
+     </style>
+   </head>
+   
+   <body>
+   
+     <!-- dom结构-->
+     <div id="app">
+       {{message}}
+       <h2 v-text="message"></h2>
+       <p v-html="alink"></p>
+       <button @click="sayHello">点我呀</button>
+       <div :class="bgRed"></div>
+       <input type="text" v-model="message">
+       <ul>
+         <li v-for="(item,index) in movieList">{{item}} -- {{index}}</li>
+       </ul>
+     </div>
+     <!-- vue.js的引入 -->
+     <script src="./lib/vue.js"></script>
+     <!--实例化Vue-->
+     <script>
+       new Vue({
+         el: '#app',
+         data: {
+           message: '这是一个寂寞的天',
+           alink: '<a href="http://www.baidu.com">百度</a>',
+           bgRed: 'red',
+           movieList: [
+             '哪吒',
+             '战狼1',
+             '战狼2',
+             '战狼3'
+           ]
+         },
+         methods: {
+           sayHello() {
+             alert('ok')
            }
-         });
-       </script>
-     </body>
-   </html
+         },
+       })
+     </script>
+   </body>
+   
+   </html>
    ```
    
 

@@ -1,0 +1,97 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>聊天机器人</title>
+   <link rel="stylesheet" href="css/reset.css">
+   <link rel="stylesheet" href="css/main.css">
+ </head>
+
+ <body>
+   <div class="wrap" id="app">
+     <div class="header">
+       <h3>知心姐姐</h3>
+       <img src="img/person01.png" alt="icon" />
+     </div>
+     <div class="main">
+       <ul class="talk_list">
+         <li :class="item.isme?'right_word':'left_word'" v-for="item in messageList">
+           <img :src="item.isme?'img/person02.png':'img/person01.png'" /> <span>{{item.content}}</span>
+         </li>
+       </ul>
+     </div>
+     <div class="footer">
+       <img src="img/person02.png" alt="icon" />
+       <input type="text" placeholder="说的什么吧..." class="input_txt" v-model.trim="inputVal" @keyup.enter="chat" />
+       <input type="button" value="发 送" class="input_sub" @click="chat" />
+     </div>
+   </div>
+   <script src="./js/vue2.0.js"></script>
+   <script src="./js/jquery-1.12.4.min.js"></script>
+   <script>
+     new Vue({
+       el: '#app',
+       data: {
+         messageList: [{
+             content: '你好',
+             isme: true
+           },
+           {
+             content: '好呀',
+             isme: false
+           },
+           {
+             content: '吃了吗',
+             isme: true
+           },
+           {
+             content: '滚',
+             isme: false
+           }
+         ],
+         inputVal: ''
+       },
+       methods: {
+         chat() {
+           if (!this.inputVal) {
+             return
+           }
+           this.messageList.push({
+             content: this.inputVal,
+             isme: true
+           })
+
+           $.ajax({
+             url: 'http://www.tuling123.com/openapi/api',
+             data: {
+               key: 'a618e456f0744066840ceafb6a249d9d',
+               info: this.inputVal
+             },
+             type: 'post',
+             success: (res) => {
+               //  console.log(res)
+               this.messageList.push({
+                 content: res.text,
+                 isme: false
+               })
+               //  setTimeout(() => {
+               //    $('.main').scrollTop(99999)
+               //  }, 100)
+             }
+           })
+
+           this.inputVal = ''
+         }
+       },
+       updated() {
+         $('.main').scrollTop(99999)
+       },
+     })
+   </script>
+
+ </body>
+
+ </html>

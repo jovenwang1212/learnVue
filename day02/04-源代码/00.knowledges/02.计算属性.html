@@ -10,24 +10,22 @@
 
 <body>
   <div id="app">
-    <button @click="awesome=!awesome">切换</button>
-    <h2 v-if="awesome">Vue is awesome</h2>
-    <h2 v-else>bad</h2>
-    <h2>--------------------------</h2>
-    <h2>老弟，你今年{{age}}岁了</h2>
-    <input type="text" v-model="age">
-    <h2 v-if="age<18">去网吧</h2>
-    <h2 v-else-if="age<25">来黑马学习</h2>
-    <h2 v-else>晚婚了</h2>
+    <h2>老弟的生日是{{birthday}}</h2>
+    <input type="text" v-model="birthday">
+    <h2>老弟{{age}}岁了</h2>
   </div>
   <script src="./lib/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
       data: {
-        awesome: true,
-        age: 18
-      }
+        birthday: '2018-11-11'
+      },
+      computed: {
+        age() {
+          return new Date().getFullYear() - new Date(this.birthday).getFullYear()
+        }
+      },
     });
   </script>
 </body>

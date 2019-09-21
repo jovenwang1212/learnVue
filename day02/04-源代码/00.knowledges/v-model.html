@@ -10,19 +10,15 @@
 
 <body>
   <div id="app">
-    <button @click="isShow=!isShow">切换显示与隐藏</button>
-    <h2>使用v-if</h2>
-    <p v-if="isShow">这是一个寂寞的天</p>
-    <h2>使用v-show</h2>
-    <p v-show="isShow">这是一个寂寞的天</p>
-
+    <h2>--{{message}}--</h2>
+    <input type="text" v-model.trim="message">
   </div>
   <script src="./lib/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
       data: {
-        isShow: true
+        message: '哈哈'
       }
     });
   </script>

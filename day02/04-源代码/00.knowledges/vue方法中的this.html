@@ -10,23 +10,25 @@
 
 <body>
   <div id="app">
-    <h2>{{message}}</h2>
-    <input type="text" v-model="message">
-    <h2>字符的长度{{messageLen}}</h2>
-
+    <button @click="sayHello">点我呀</button>
+    <button @click="arrowFun">箭头函数</button>
   </div>
   <script src="./lib/vue.js"></script>
   <script>
     const app = new Vue({
       el: "#app",
       data: {
-        message: '这是一个寂寞的天，'
+        message: 'Hello'
       },
-      computed: {
-        //message的长度
-        messageLen() {
-          console.log('我执行了。。。')
-          return this.message.length
+      methods: {
+        sayHello() {
+          // this就是Vue实例
+          console.log(this === app)
+          // this可以直接访问到data和methods里面的属性
+          console.log(this.message)
+        },
+        arrowFun: () => {
+          console.log(this) //window
         }
       },
     });

@@ -92,38 +92,24 @@ Vue不解析，原样输出
 ### 实现步骤
 
 1. 输入城市，显示城市
-   1. 获取用输入的城市名 v-model.trim:city
-   2. 显示 {{city}}
-2. 回车，发出请求
-   1. enter键抬起的事件 @keyup.enter:queryWeather
-   2. 发出请求 $.ajax
-   3. 接口：<http://wthrcdn.etouch.cn/weather_mini?city=深圳>
-   4. success:function(res)｛获取数据｝
-3. 请求的数据，渲染页面
-   1. v-for 渲染数据
-   2. 接受天气数组 forecastList = res.data.forecast
-
-4. 展示emoji表情
-   1. 如果item.type有云的话，展示云表情
-      1. indexOf
+   1. 获取用户输入的城市 v-model:city
+   2. 显示城市
+2. 回车，请求数据
+   1. enter键抬起响应 @keyup.enter:queryWeather
+   2. 请求天气 $.ajax(url,success:function(){获取天气数据})
+   3. 接口 http://wthrcdn.etouch.cn/weather_mini?city=深圳
+3. 展示天气列表
+   1. 获取天气信息forecast:[]
+   2. vfor遍历天气数组，渲染天气列表
+4. 天气信息emoji表情的展示
+   1. 天气类型有云雨，就展示对应的表情，否则展示晴天
+      1. item.type.indexOf('云')！==-1
 
 ### 注意点
 
- 1. indexOf的用法 a.indexOf(b), b在a中的下标，否则-1。 是否包含！-1
-
- 2. a.includes(b)返回true/false
-
- 3. $.ajax({success:function(res){这里的this不是Vue实例}}) 因为function会绑定this到当前调用的对象。
-
-    所以最好用箭头函数，箭头函数默认不会绑定this
-
-#### 补充问题
-
-1. 隐藏胡子语法
-2. ES6模板语法
-3. 接口 <http://wthrcdn.etouch.cn/weather_mini?city=深圳>，是一个get请求，不需要data
-4. 为什么要结合jquery使用
-5. emoji表情window7不展示
+1. function会绑定this为当前调用function的对象，箭头函数不会绑定this
+2. a.indexOf(b) 查找b在a字符串中的索引位置，如果没有的话返回-1; 判断是否包含!=-1
+3. includes字符串中是否包含字符
 
 
 
