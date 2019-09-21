@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- dom结构 -->
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- <h2 v-text="message"></h2> -->
+    <h2 v-html="alink"></h2>
+    <button v-on:click="showLove">点我呀</button>
+    <input type="text" v-model="message">
+    <ul>
+      <li v-for="(movie,index) in movieList">{{movie}}--{{index}}</li>
+    </ul>
+  </div>
+  <!-- 导包 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- 用包，实例化Vue -->
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: '敌军还有5秒到达',
+        alink: '<a href="http://www.baidu.com">百度</a>',
+        movieList: [
+          '哪吒',
+          '中国制造',
+          '上海堡垒',
+          '烈火英雄'
+        ]
+      },
+      methods: {
+        showLove() {
+          alert('好呀')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

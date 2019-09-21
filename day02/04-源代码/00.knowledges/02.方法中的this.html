@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{message}}
+    <button @click="sayHello">点我呀</button>
+    <button @click="arrowFun">箭头函数</button>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: 'Hello world'
+      },
+      methods: {
+        // 方法的简洁写法
+        // sayHello:function
+        sayHello() {
+          // alert('hello world')
+          // 方法中的this就是Vue实例
+          // console.log(this === app)
+          // console.log(this.message)
+          // this.message = '稳住，我们能赢'
+          this.arrowFun()
+        },
+        arrowFun: () => {
+          alert('ok')
+          //window
+          // console.log(this)
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

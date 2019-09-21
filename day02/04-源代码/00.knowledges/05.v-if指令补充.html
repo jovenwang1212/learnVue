@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>老弟，你今年{{age}}贵庚</h2>
+    <input type="text" v-model="age">
+    <!-- 不同年龄干的事情 -->
+    <h3 v-if="age<18">上网吧</h3>
+    <h3 v-else-if="age<24">来黑马学习</h3>
+    <h3 v-else>晚婚</h3>
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        age: 18
+      }
+    });
+  </script>
+</body>
+
+</html>
