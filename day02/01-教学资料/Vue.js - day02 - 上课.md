@@ -248,21 +248,43 @@ v-pre不渲染，语法直接显示
 
 
 
-
-
 ## 滚动底部-Vue异步更新
 
 [异步更新](https://cn.vuejs.org/v2/guide/reactivity.html#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E9%98%9F%E5%88%97)
 
+Vue 在更新 DOM 时是**异步**执行的
 
+Vue会把数据的更新缓存起来，批量去更新DOM
+
+解决滚动条的问题: 姐姐消息添加，且对应的dom更新完后，再强制滚动到底部
+
+```js
+// 姐姐消息添加后，强制让滚动条滚动底部
+setTimeout(() => {
+  $('.main').scrollTop(9999999)
+}, 0)
+```
 
 #### 课后学习
 
+事件循环(Event Loop)
 
 
-## Vue生命周期钩子函数
+
+## *Vue生命周期钩子函数
 
 [传送门](https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90)
+
+![1569049098267](assets/1569049098267.png)
+
+每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做**生命周期钩子**的函数，这给了用户在不同阶段添加自己的代码的机会
+
+1. 钩子函数就是回调函数
+2. Vue的生命周期就是Vue从创建到销毁过程
+3. Vue生命周期钩子函数就是vue从创建到销毁过程中，会经历8个重要的时间节点，在这些时间节点上会以回调函数的形式通知我们。回调函数里我们可以自定义逻辑
+4. Vue生命周期钩子函数里面的this就vue实例
+5. Vue生命周期钩子函数声明和el、data、methods的平级的
+6. updated钩子函数，是数据变更，对应的dom更新完了，就会触发updated
 
 
 
@@ -276,9 +298,47 @@ v-pre不渲染，语法直接显示
 
 [传送门](https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7)
 
+如果不想原样输出data里面的属性，那么就需要用到计算属性
+
+1. 计算属性是声明在computed里面一个方法
+2. computed声明和el、data平级
+3. 计算机属性这个方法必须return一个值
+4. 计算机属性的方法名可以像data里面属性一样的使用，值就为方法的返回值
+5. 当计算属性所依赖的属性有变化时，会重新计算
+
 
 
 ## Demo-品牌管理
+
+### 需求分析
+
+1. 展示品牌列表
+   1. 品牌数组 brandList
+   2. vfor遍历brandList，渲染列表
+2. 点某项删除，删除对应的这一项
+   1. @click:delBrand(index)
+   2. index来自vfor
+   3. 删除一项操作数组brandList.splice(index,1)
+3. 点击新增品牌，显示弹层;确认与取消时隐藏品牌
+   1. v-show结合data.isShow
+   2. 点击新增品牌 @click="isShow=true"
+   3. 确认与取消点击时 @click="isShow=false"
+4. 弹层输入框输入品牌，回车/点添加，添加品牌
+   1. 获取品牌名称 v-model.trim:inputVal
+   2. 回车/点添加  @keyup.enter/@click:addBrand
+   3. addBrand
+      1. 操作brandList brandList.push({})
+      2. 隐藏弹层
+5. 搜索框内输入关键字，展示过滤列表
+   1. 获取搜索关键字v-model.trim:'keyword'
+   2. 过滤列表其实一个根据keyword和brandList过滤后的列表
+      1. 遍历brandList, 每一项如果name包含keyword,就展这一项
+   3. 没有品牌数据的展示逻辑是过滤后的数组长度为0
+
+注意点
+
+1. v-show="isShow"来频繁切换弹层的显示与隐藏
+2. 搜索结果列表其实一个过滤后的数组，根据keyword过滤
 
 
 
@@ -290,6 +350,7 @@ v-pre不渲染，语法直接显示
 
 1. todoMVC作业
 2. 其他资料中的练习案例
+3. 事件循环(Event Loop)
 
 
 

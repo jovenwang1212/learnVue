@@ -47,7 +47,12 @@
         // 查询天气
         queryWeather() {
           $.ajax({
-            url: `http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`,
+            // url: `http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`,
+
+            url: 'http://wthrcdn.etouch.cn/weather_mini?city=' + this.city,
+            data: {
+
+            },
             dataType: 'json',
             // success: function (res) {
             success: (backData) => {

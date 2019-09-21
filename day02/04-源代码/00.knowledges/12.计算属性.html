@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>老弟你的生日{{birthday}}</h2>
+    <h2>老弟的年龄{{age}}</h2>
+    <input type="text" v-model="birthday">
+  </div>
+  <script src="./lib/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        birthday: '2000-11-11'
+      },
+      computed: {
+        age() {
+          // 当前时间的年-birhtday的年
+          return new Date().getFullYear() - new Date(this.birthday).getFullYear()
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

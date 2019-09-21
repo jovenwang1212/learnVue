@@ -39,14 +39,17 @@
        el: '#app',
        data: {
          //  消息数组
-         messageList: [
-         ],
+         messageList: [],
          //  用户的输入
          inputVal: ''
        },
        methods: {
          //  跟姐姐聊天
          chat() {
+           //  消息如何为空，就不添加
+           if (!this.inputVal) {
+             return
+           }
            //  添加我的消息
            this.messageList.push({
              content: this.inputVal,
@@ -66,12 +69,23 @@
                  content: res.text,
                  isme: false
                })
+
+               // 姐姐消息添加后，强制让滚动条滚动底部
+               //  setTimeout(() => {
+               //    $('.main').scrollTop(9999999)
+               //  }, 0)
+
              }
            })
 
            //  清空
            this.inputVal = ''
+
          }
+       },
+       updated() {
+         //  console.log('updated')
+         $('.main').scrollTop(9999999)
        },
      })
    </script>
