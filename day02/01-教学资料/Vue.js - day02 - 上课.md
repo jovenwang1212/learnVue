@@ -155,17 +155,96 @@ v-pre不渲染，语法直接显示
 ### 注意点
 
 1. 想判断a是否包含b a.indexOf(b) 返回b在a中的索引的位置，如果找不到-1; 是否包含就!=-1
+
 2. a.includes(b)=true/false就是表示a中是否包含b
+
 3. v-cloak结合display:none解析胡子语法显示的问题
+
 4. 天气数据status===1000的时候，输入的城市是正确，这个数据才正确。
+
+5. $.ajax(success:function(){这里的this不是Vue实例}) 因为function会把this绑定为调用function对象
+
+   ​	推荐用箭头函数不绑定this
 
 
 
 ## Demo-聊天机器人
 
+### 需要分析
 
+1. 展示聊天消息
+
+   1. 有很多条消息 messageList:[]
+   2. 消息至少得有两个属性，一个是消息所有者isme，还有消息本身
+   3. vfor遍历messageList,展示消息列表
+   4. v-bind:class根据消息的所有者添加不同的类名
+
+   ```js
+   messageList:[
+     {
+       content:'你好',
+       isme:true
+     },
+      {
+       content:'好呀',
+       isme:false
+     },
+      {
+       content:'吃饭吗',
+       isme:true
+     },
+      {
+       content:'滚',
+       isme:false
+     }
+   ]
+   ```
+
+2. 我输入消息，回车或者点发送，添加我的消息
+
+   1. 获取输入内容 v-model.trim:inputVal
+
+   2. 回车/点击 @keyup.enter/@click:chat
+
+   3. chat方法 给数组添加一项
+
+      ```js
+      messageList.push({
+        content:this.inputVal,
+        //标志是我的消息
+        isme:true
+      })
+      ```
+
+   4. 清空 this.inputVal=''
+
+ 3. 姐姐根据我的消息，调接口，获得姐姐消息，添加姐姐的消息
+
+    1. $.ajax(url,type,success:()=>{this实例})
+
+    2. 获取消息 res.text
+
+    3. 添加姐姐的消息
+
+       ```js
+       messageList.push({
+         content:res.text,
+         //标志是姐姐的消息
+         isme:false
+       })
+       ```
+
+       
+
+    >- 请求地址：<http://www.tuling123.com/openapi/api>
+    >- 请求方法：post
+    >- 请求参数：key,info
 
 ### 注意点
+
+1. 消息有两个属性，一个是消息所属者，一个消息体。所以消息得一个对象
+2. 展示消息列表样式时，需要根据消息所属者添加不同的样式，或者展示不同的头像 v-bind
+3. 遗留问题：滚动条不会自动滚动
 
 
 

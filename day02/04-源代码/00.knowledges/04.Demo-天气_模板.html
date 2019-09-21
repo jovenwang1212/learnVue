@@ -50,11 +50,11 @@
             url: `http://wthrcdn.etouch.cn/weather_mini?city=${this.city}`,
             dataType: 'json',
             // success: function (res) {
-            success: (res) => {
-              console.log(res.data.forecast)
+            success: (backData) => {
+              console.log(backData.data.forecast)
               // status为1000是，天气信息才是正确的返回
-              if (res.status === 1000) {
-                this.forecastList = res.data.forecast
+              if (backData.status === 1000) {
+                this.forecastList = backData.data.forecast
               }
             }
           })
